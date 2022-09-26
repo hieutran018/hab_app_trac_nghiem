@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
-import 'package:hab_app_trac_nghiem/ui/login_screen.dart';
+// import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
+// import 'package:hab_app_trac_nghiem/ui/login_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/login_screen.dart';
-import 'package:hab_app_trac_nghiem/ui/register_screen.dart';
+// import 'package:hab_app_trac_nghiem/ui/register_screen.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return const MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: RegisterScreen(),
+            home: MainScreen(),
           );
         });
   }
