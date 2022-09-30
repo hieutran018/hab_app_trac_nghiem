@@ -123,7 +123,9 @@ class LoginScreenState extends State<LoginScreen> {
                                 color: Color.fromRGBO(255, 255, 255, 1)),
                             borderRadius: BorderRadius.circular(24.w)))),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/register');
+                    },
                     child: const Text(
                       "Đăng ký",
                       style: TextStyle(color: Color.fromRGBO(100, 0, 255, 1)),
