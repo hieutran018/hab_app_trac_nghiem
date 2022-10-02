@@ -19,27 +19,30 @@ class HomeScreenState extends State<HomeScreen> {
         Padding(
           padding: EdgeInsets.fromLTRB(6.w, 16.w, 6.w, 0.w),
           child: Container(
-            height: 50.w,
+            height: 70.w,
             color: const Color.fromRGBO(0, 240, 255, 1),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Padding(
-                      padding: EdgeInsets.fromLTRB(18, 13, 0, 13),
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(18, 13, 0, 13),
                       child: StrokeText(
                         text: 'Tin mới nhất',
                         textStyle: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 20.0.w,
                           fontWeight: FontWeight.w400,
-                          color: Color.fromRGBO(255, 255, 255, 1),
+                          color: const Color.fromRGBO(255, 255, 255, 1),
                         ),
-                        strokeColor: Color.fromRGBO(255, 0, 0, 1),
+                        strokeColor: const Color.fromARGB(255, 255, 255, 255),
                       )),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0.w, 16.w, 8.w, 16.w),
                     child: InkWell(
                       onTap: () {},
-                      child: const Text('Xem thêm'),
+                      child: const Text(
+                        'Xem thêm >>',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   )
                 ]),
@@ -49,41 +52,86 @@ class HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.fromLTRB(6.w, 0.w, 6.w, 0.w),
           child: Column(
             children: [
-              Container(
-                  width: 416.w,
-                  height: 223.w,
-                  color: const Color.fromARGB(255, 236, 234, 234)),
               SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0.w, 3.w, 3.w, 0),
-                        child: Container(
-                            width: 136.w,
-                            height: 138.w,
-                            color: const Color.fromARGB(255, 236, 234, 234)),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0.w, 3.w, 3.w, 0),
-                        child: Container(
-                            width: 136.w,
-                            height: 138.w,
-                            color: Color.fromARGB(255, 158, 114, 114)),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0.w, 3.w, 0.w, 0),
-                        child: Container(
-                            width: 136.w,
-                            height: 138.w,
-                            color: Color.fromARGB(255, 128, 115, 115)),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(3.w, 3.w, 0.w, 0),
-                        child: Container(
-                            width: 136.w,
-                            height: 138.w,
-                            color: Color.fromARGB(255, 87, 82, 82)),
+                      SizedBox(
+                        height: 500.w,
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 15,
+                            itemBuilder: (BuildContext context, int index) =>
+                                Padding(
+                                  padding:
+                                      EdgeInsets.fromLTRB(0.w, 3.w, 3.w, 0.w),
+                                  child: SizedBox(
+                                      width: 400.w,
+                                      child: Container(
+                                          width: 400.w,
+                                          color: const Color.fromRGBO(
+                                              217, 217, 217, 1),
+                                          child: Column(
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    5.w, 5.w, 5.w, 0.w),
+                                                child: Image.asset(
+                                                  "assets/images/thumbnail/thumbnail_news_1.png",
+                                                  height: 350.w,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.fromLTRB(
+                                                    5.w, 5.w, 5.w, 0.w),
+                                                child: Text(
+                                                  "Trạm Thiên Cung cân bằng nhiệt thế nào ở độ cao...",
+                                                  style: TextStyle(
+                                                    fontSize: 17.w,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                              Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      5.w, 5.w, 5.w, 0.w),
+                                                  child: Row(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.fromLTRB(
+                                                                5.w,
+                                                                40.w,
+                                                                5.w,
+                                                                0.w),
+                                                        child: RichText(
+                                                          text: TextSpan(
+                                                              children: [
+                                                                WidgetSpan(
+                                                                  child: Icon(
+                                                                      Icons
+                                                                          .calendar_month_rounded,
+                                                                      size:
+                                                                          20.w),
+                                                                ),
+                                                                TextSpan(
+                                                                    text:
+                                                                        "20/09/2022",
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            20.w)),
+                                                              ]),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ))
+                                            ],
+                                          ))),
+                                )),
                       )
                     ],
                   ))
@@ -93,19 +141,19 @@ class HomeScreenState extends State<HomeScreen> {
         Padding(
           padding: EdgeInsets.fromLTRB(6.w, 16.w, 6.w, 0.w),
           child: Container(
-            height: 50.w,
+            height: 70.w,
             color: const Color.fromRGBO(0, 240, 255, 1),
-            child: Row(children: const [
+            child: Row(children: [
               Padding(
-                  padding: EdgeInsets.fromLTRB(18, 13, 0, 13),
+                  padding: const EdgeInsets.fromLTRB(18, 13, 0, 13),
                   child: StrokeText(
                     text: 'Bảng xếp hạng người chơi',
                     textStyle: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 20.0.w,
                       fontWeight: FontWeight.w400,
-                      color: Color.fromRGBO(255, 255, 255, 1),
+                      color: const Color.fromRGBO(255, 255, 255, 1),
                     ),
-                    strokeColor: Color.fromRGBO(255, 0, 0, 1),
+                    strokeColor: const Color.fromARGB(255, 255, 255, 255),
                   )),
             ]),
           ),
@@ -115,9 +163,72 @@ class HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               Container(
-                  width: 416.w,
-                  height: 265.w,
-                  color: const Color.fromARGB(255, 236, 234, 234)),
+                width: 416.w,
+                height: 600.w,
+                color: const Color.fromARGB(255, 236, 234, 234),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 300.w,
+                      height: 40.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.w),
+                        color: Colors.white,
+                        border: Border.all(
+                            width: 2.w,
+                            color: const Color.fromRGBO(255, 0, 0, 1)),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(3.w, 5.w, 3.w, 3.w),
+                        child: Text(
+                          "NGƯỜI CHƠI THÁCH ĐẤU",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20.w,
+                              color: const Color.fromRGBO(255, 0, 0, 1),
+                              fontWeight: FontWeight.w900),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 550.w,
+                      child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.all(8.w),
+                          itemCount: 5,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: EdgeInsets.all(8.w),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20.w),
+                                  color: const Color.fromARGB(255, 0, 243, 182),
+                                ),
+                                child: SizedBox(
+                                    width: 200.w,
+                                    height: 90.w,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(width: 10.w),
+                                        Image.asset(
+                                            "assets/images/components/ic_reward_no_1.png"),
+                                        SizedBox(width: 15.w),
+                                        Image.asset(
+                                            "assets/images/components/avatar.png"),
+                                        SizedBox(width: 15.w),
+                                        const Text("Trần Dương Chí Hiếu"),
+                                        SizedBox(width: 40.w),
+                                        const Text("100"),
+                                      ],
+                                    )),
+                              ),
+                            );
+                          }),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

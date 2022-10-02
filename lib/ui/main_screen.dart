@@ -60,6 +60,7 @@ class MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(66, 194, 255, 1),
         leading: Padding(
           padding: EdgeInsets.fromLTRB(10.w, 10.w, 0.w, 10.w),
           child: Image.asset("assets/images/ic_logo_hab.png"),

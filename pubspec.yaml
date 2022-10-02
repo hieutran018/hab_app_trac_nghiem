@@ -68,6 +68,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/thumbnail/
+    - assets/images/components/
     # - assets/images/logo_hab_small.png
     # - assets/images/ic_login_with_google.png
     # - assets/images/ic_login_with_facebook.png

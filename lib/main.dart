@@ -4,6 +4,9 @@ import 'package:hab_app_trac_nghiem/app/shared_preferences.dart';
 import 'package:hab_app_trac_nghiem/models/user.dart';
 import 'package:hab_app_trac_nghiem/provider/authprovider.dart';
 import 'package:hab_app_trac_nghiem/provider/user_provider.dart';
+import 'package:hab_app_trac_nghiem/ui/home_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/notification_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/splash_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
@@ -44,7 +47,8 @@ class MyApp extends StatelessWidget {
               routes: {
                 '/login': (context) => const LoginScreen(),
                 '/register': (context) => const RegisterScreen(),
-                // '/dashboard': (context) => DashBoard()
+                '/main': (context) => const MainScreen(),
+                '/notification': (context) => const NotificationScreen()
               },
             );
           }),
@@ -69,7 +73,7 @@ class AfterSplash extends StatelessWidget {
               if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else {
-                return const LoginScreen();
+                return const NotificationScreen();
               }
           }
         });

@@ -16,7 +16,7 @@ class FlashScreen extends StatelessWidget {
             navigateAfterSeconds: const AfterSplash(),
             backgroundColor: const Color.fromRGBO(66, 149, 255, 1),
             loaderColor: const Color.fromARGB(255, 255, 255, 255),
-            photoSize: 200.w,
+            photoSize: 170.w,
             image: Image.asset("assets/images/logo_hab_large.png")));
   }
 }
