@@ -68,7 +68,9 @@ class MainScreenState extends State<MainScreen> {
         leadingWidth: 60.w,
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/notification');
+              },
               icon: Image.asset("assets/images/ic_notification.png"))
         ],
       ),

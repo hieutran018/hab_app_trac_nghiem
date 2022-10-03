@@ -73,7 +73,7 @@ class AfterSplash extends StatelessWidget {
               if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else {
-                return const NotificationScreen();
+                return const MainScreen();
               }
           }
         });
