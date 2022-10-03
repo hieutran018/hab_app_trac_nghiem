@@ -35,16 +35,16 @@ class HomeScreenState extends State<HomeScreen> {
                         ),
                         strokeColor: const Color.fromARGB(255, 255, 255, 255),
                       )),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0.w, 16.w, 8.w, 16.w),
-                    child: InkWell(
-                      onTap: () {},
-                      child: const Text(
-                        'Xem thêm >>',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  )
+                  // Padding(
+                  //   padding: EdgeInsets.fromLTRB(0.w, 16.w, 8.w, 16.w),
+                  //   child: InkWell(
+                  //     onTap: () {},
+                  //     child: const Text(
+                  //       'Xem thêm >>',
+                  //       style: TextStyle(fontWeight: FontWeight.bold),
+                  //     ),
+                  //   ),
+                  // )
                 ]),
           ),
         ),

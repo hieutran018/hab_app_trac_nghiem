@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,6 +21,11 @@ class GameScreenState extends State<GameScreen> {
               onPressed: () {},
               icon: Image.asset("assets/images/components/ic_history.png"),
             ),
+            Text("Trắc Nghiệm Kiến Thức",
+                style: TextStyle(
+                    fontSize: 20.w,
+                    color: const Color.fromRGBO(0, 41, 255, 1),
+                    fontWeight: FontWeight.w900)),
             IconButton(
               onPressed: () {},
               icon: Image.asset("assets/images/components/ic_rules.png"),
