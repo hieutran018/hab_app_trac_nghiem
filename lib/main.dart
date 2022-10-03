@@ -4,8 +4,8 @@ import 'package:hab_app_trac_nghiem/app/shared_preferences.dart';
 import 'package:hab_app_trac_nghiem/models/user.dart';
 import 'package:hab_app_trac_nghiem/provider/authprovider.dart';
 import 'package:hab_app_trac_nghiem/provider/user_provider.dart';
-import 'package:hab_app_trac_nghiem/ui/home_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/news_detail_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/notification_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/splash_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen.dart';
@@ -48,7 +48,8 @@ class MyApp extends StatelessWidget {
                 '/login': (context) => const LoginScreen(),
                 '/register': (context) => const RegisterScreen(),
                 '/main': (context) => const MainScreen(),
-                '/notification': (context) => const NotificationScreen()
+                '/notification': (context) => const NotificationScreen(),
+                NewsDetailScreen.route: (context) => const NewsDetailScreen(),
               },
             );
           }),

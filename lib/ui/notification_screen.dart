@@ -17,7 +17,7 @@ class LoginScreenState extends State<NotificationScreen> {
           backgroundColor: const Color.fromRGBO(66, 194, 255, 1),
           leading: const BackButton(color: Color.fromRGBO(255, 255, 255, 1)),
           title: Image.asset(
-            "assets/images/ic_logo_hab.png",
+            "assets/images/components/ic_logo_hab.png",
             width: 45.w,
             height: 55.w,
           ),

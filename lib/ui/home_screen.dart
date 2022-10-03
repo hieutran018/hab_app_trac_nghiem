@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hab_app_trac_nghiem/ui/news_detail_screen.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   State<HomeScreen> createState() => HomeScreenState();
 }
@@ -57,82 +57,85 @@ class HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     children: [
                       SizedBox(
-                        height: 500.w,
-                        child: ListView.builder(
+                          height: 500.w,
+                          child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemCount: 15,
                             itemBuilder: (BuildContext context, int index) =>
                                 Padding(
-                                  padding:
-                                      EdgeInsets.fromLTRB(0.w, 3.w, 3.w, 0.w),
-                                  child: SizedBox(
-                                      width: 400.w,
-                                      child: Container(
-                                          width: 400.w,
-                                          color: const Color.fromRGBO(
-                                              217, 217, 217, 1),
-                                          child: Column(
-                                            children: [
-                                              Padding(
+                              padding: EdgeInsets.fromLTRB(0.w, 3.w, 3.w, 0.w),
+                              child: InkWell(
+                                onTap: () =>
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pushNamed(NewsDetailScreen.route),
+                                child: SizedBox(
+                                    width: 400.w,
+                                    child: Container(
+                                        width: 400.w,
+                                        color: const Color.fromRGBO(
+                                            217, 217, 217, 1),
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  5.w, 5.w, 5.w, 0.w),
+                                              child: Image.asset(
+                                                "assets/images/thumbnail/thumbnail_news_1.png",
+                                                height: 350.w,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  5.w, 5.w, 5.w, 0.w),
+                                              child: Text(
+                                                "Trạm Thiên Cung cân bằng nhiệt thế nào ở độ cao...",
+                                                style: TextStyle(
+                                                  fontSize: 17.w,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                            Padding(
                                                 padding: EdgeInsets.fromLTRB(
                                                     5.w, 5.w, 5.w, 0.w),
-                                                child: Image.asset(
-                                                  "assets/images/thumbnail/thumbnail_news_1.png",
-                                                  height: 350.w,
-                                                  fit: BoxFit.fill,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    5.w, 5.w, 5.w, 0.w),
-                                                child: Text(
-                                                  "Trạm Thiên Cung cân bằng nhiệt thế nào ở độ cao...",
-                                                  style: TextStyle(
-                                                    fontSize: 17.w,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                              ),
-                                              Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      5.w, 5.w, 5.w, 0.w),
-                                                  child: Row(
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.fromLTRB(
-                                                                5.w,
-                                                                40.w,
-                                                                5.w,
-                                                                0.w),
-                                                        child: RichText(
-                                                          text: TextSpan(
-                                                              children: [
-                                                                WidgetSpan(
-                                                                  child: Icon(
-                                                                      Icons
-                                                                          .calendar_month_rounded,
-                                                                      size:
-                                                                          20.w),
-                                                                ),
-                                                                TextSpan(
-                                                                    text:
-                                                                        "20/09/2022",
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize:
-                                                                            20.w)),
-                                                              ]),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ))
-                                            ],
-                                          ))),
-                                )),
-                      )
+                                                child: Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              5.w,
+                                                              40.w,
+                                                              5.w,
+                                                              0.w),
+                                                      child: RichText(
+                                                        text:
+                                                            TextSpan(children: [
+                                                          WidgetSpan(
+                                                            child: Icon(
+                                                                Icons
+                                                                    .calendar_month_rounded,
+                                                                size: 20.w),
+                                                          ),
+                                                          TextSpan(
+                                                              text:
+                                                                  "20/09/2022",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize:
+                                                                      20.w)),
+                                                        ]),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ))
+                                          ],
+                                        ))),
+                              ),
+                            ),
+                          )),
                     ],
                   ))
             ],
