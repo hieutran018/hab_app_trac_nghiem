@@ -6,10 +6,10 @@ class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);
 
   @override
-  State<NotificationScreen> createState() => LoginScreenState();
+  State<NotificationScreen> createState() => NotificationScreenState();
 }
 
-class LoginScreenState extends State<NotificationScreen> {
+class NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +23,7 @@ class LoginScreenState extends State<NotificationScreen> {
           ),
           centerTitle: true,
         ),
-        body: Center(
-            child: Column(
+        body: Column(
           children: [
             Padding(
                 padding: EdgeInsets.only(top: 10.w),
@@ -97,6 +96,6 @@ class LoginScreenState extends State<NotificationScreen> {
                   }),
             )
           ],
-        )));
+        ));
   }
 }

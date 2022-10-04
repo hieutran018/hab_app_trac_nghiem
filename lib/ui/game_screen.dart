@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hab_app_trac_nghiem/ui/single_game_screen.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -83,7 +84,10 @@ class GameScreenState extends State<GameScreen> {
           Padding(
               padding: EdgeInsets.fromLTRB(49.w, 5.w, 49.w, 0.w),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true)
+                        .pushNamed(SingleGameScreen.route);
+                  },
                   child: const Text(
                     "Chơi đơn",
                     style: TextStyle(color: Color.fromRGBO(64, 82, 238, 1)),

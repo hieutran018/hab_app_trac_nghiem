@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/ui/news_detail_screen.dart';
 import 'package:stroke_text/stroke_text.dart';
 
@@ -213,16 +214,32 @@ class HomeScreenState extends State<HomeScreen> {
                                     height: 90.w,
                                     child: Row(
                                       children: [
-                                        SizedBox(width: 10.w),
+                                        SizedBox(width: 5.w),
                                         Image.asset(
                                             "assets/images/components/ic_reward_no_1.png"),
-                                        SizedBox(width: 15.w),
+                                        SizedBox(width: 5.w),
                                         Image.asset(
                                             "assets/images/components/avatar.png"),
-                                        SizedBox(width: 15.w),
-                                        const Text("Trần Dương Chí Hiếu"),
+                                        SizedBox(width: 5.w),
+                                        Text(
+                                          "Trần Dương Chí Hiếu",
+                                          style: GoogleFonts.inter(
+                                            fontSize: 18.w,
+                                            fontWeight: FontWeight.w600,
+                                            color: const Color.fromRGBO(
+                                                255, 122, 0, 1),
+                                          ),
+                                        ),
                                         SizedBox(width: 40.w),
-                                        const Text("100"),
+                                        Text(
+                                          "100",
+                                          style: GoogleFonts.inter(
+                                            fontSize: 18.w,
+                                            fontWeight: FontWeight.w600,
+                                            color: const Color.fromRGBO(
+                                                255, 122, 0, 1),
+                                          ),
+                                        ),
                                       ],
                                     )),
                               ),

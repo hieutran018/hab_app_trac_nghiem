@@ -50,15 +50,20 @@ class MainScreenState extends State<MainScreen> {
           activeColorPrimary: CupertinoColors.activeBlue,
           inactiveColorPrimary: CupertinoColors.systemGrey),
       PersistentBottomNavBarItem(
-          icon: const Icon(CupertinoIcons.settings_solid),
-          title: 'Cài đặt',
-          activeColorPrimary: CupertinoColors.activeBlue,
-          inactiveColorPrimary: CupertinoColors.systemGrey),
+        icon: const Icon(CupertinoIcons.settings_solid),
+        title: 'Cài đặt',
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
+    PersistentTabController _controller;
+
+    _controller = PersistentTabController(initialIndex: 0);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(66, 194, 255, 1),
@@ -77,6 +82,8 @@ class MainScreenState extends State<MainScreen> {
       ),
       body: PersistentTabView(
         context,
+        controller: _controller,
+        confineInSafeArea: true,
         screens: screens(),
         items: navBarItems(),
         navBarStyle: NavBarStyle.style3,
