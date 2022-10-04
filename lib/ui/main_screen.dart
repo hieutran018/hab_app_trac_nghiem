@@ -6,7 +6,7 @@ import 'package:hab_app_trac_nghiem/ui/friend_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/home_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/news_screen.dart';
-import 'package:hab_app_trac_nghiem/ui/setting_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/setting_screen/setting_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class MainScreen extends StatefulWidget {
