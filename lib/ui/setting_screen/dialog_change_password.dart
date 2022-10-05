@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:hab_app_trac_nghiem/ui/setting_screen/success_dialog.dart';
 
@@ -15,21 +17,21 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Container(
+      title: SizedBox(
         height: 50,
         width: 30,
         child: Center(
           child: Text(
             "Đổi mật khẩu",
             style: TextStyle(
-              color: Colors.blue,
-              fontSize: 35,
+              color: const Color.fromRGBO(33, 150, 243, 1),
+              fontSize: 35.w,
             ),
           ),
         ),
       ),
       content: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,18 +40,18 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderRadius: BorderRadius.all(Radius.circular(15.w)),
                   ),
                   hintText: 'Nhập mật khẩu hiện tại',
                   labelText: 'Nhập mật khẩu hiện tại',
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 10),
+                padding: EdgeInsets.only(top: 10.w),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderRadius: BorderRadius.all(Radius.circular(15.w)),
                     ),
                     hintText: 'Nhập mật khẩu mới',
                     labelText: 'Nhập mật khẩu mới',
@@ -57,11 +59,11 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 10),
+                padding: EdgeInsets.only(top: 10.w),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      borderRadius: BorderRadius.all(Radius.circular(15.w)),
                     ),
                     hintText: 'Xác nhận mật khẩu',
                     labelText: 'Xác nhận mật khẩu',
@@ -75,8 +77,8 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                   children: [
                     Text(
                       "Quên mật khẩu?",
-                      style: TextStyle(
-                        color: Colors.black,
+                      style: GoogleFonts.inter(
+                        color: const Color.fromRGBO(0, 0, 0, 1),
                       ),
                     ),
                   ],
@@ -88,8 +90,8 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                   _buildFailDialog();
                 },
                 child: Container(
-                  height: 60,
-                  width: 250,
+                  height: 60.w,
+                  width: 250.w,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.white),
                     color: Colors.orangeAccent,
@@ -98,7 +100,9 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                   child: Center(
                     child: Text(
                       "Đổi mật khẩu",
-                      style: TextStyle(color: Colors.white, fontSize: 30),
+                      style: GoogleFonts.inter(
+                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          fontSize: 30.w),
                     ),
                   ),
                 ),

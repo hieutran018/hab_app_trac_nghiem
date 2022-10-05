@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hab_app_trac_nghiem/ui/setting_screen/dialog_change_password.dart';
 
 import 'info_screen.dart';
@@ -19,22 +19,22 @@ class SettingScreenState extends State<SettingScreen> {
         Center(
           child: Container(
             // padding: EdgeInsets.only(top: 10),
-            margin: EdgeInsets.only(top: 10, bottom: 10),
-           // width: 20,
-            height: 50,
+            margin: EdgeInsets.only(top: 10.w, bottom: 10.w),
+            // width: 20,
+            height: 50.w,
             decoration: BoxDecoration(
               color: Colors.lightBlue,
               border: Border.all(
                 color: Colors.white,
               ),
-              borderRadius: BorderRadius.all(Radius.circular(30)),
+              borderRadius: BorderRadius.all(Radius.circular(30.w)),
             ),
             child: Center(
               child: Text(
                 "Cài đặt chung",
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
+                  color: const Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: 20.w,
                 ),
               ),
             ),
@@ -43,27 +43,27 @@ class SettingScreenState extends State<SettingScreen> {
         Row(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.w),
               child: CircleAvatar(
-                radius: 50,
+                radius: 50.w,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Huỳnh Nguyễn Vân Anh",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20.w),
                   ),
                   Text(
                     "ID: 002",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20.w),
                   ),
                   Text(
                     "Xếp hạng: 01",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20.w),
                   ),
                 ],
               ),
@@ -76,11 +76,9 @@ class SettingScreenState extends State<SettingScreen> {
           endIndent: 20,
         ),
         TextButton(
-          onPressed: () {Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const InfoScreen()),
-          );
-
+          onPressed: () {
+            Navigator.of(context, rootNavigator: true)
+                .pushNamed(InfoScreen.route);
           },
           child: Row(
             children: [
