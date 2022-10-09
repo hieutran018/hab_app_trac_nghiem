@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class InfoScreen extends StatefulWidget {
   const InfoScreen({Key? key}) : super(key: key);
   static String route = "/info";
+
   @override
   State<InfoScreen> createState() => _InfoScreenState();
 }
