@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hab_app_trac_nghiem/ui/roles_game.dart';
 import 'package:hab_app_trac_nghiem/ui/single_game_screen.dart';
 
 class GameScreen extends StatefulWidget {
@@ -29,7 +30,14 @@ class GameScreenState extends State<GameScreen> {
                       color: const Color.fromRGBO(0, 41, 255, 1),
                       fontWeight: FontWeight.w900)),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const RolesGame();
+                    },
+                  );
+                },
                 icon: Image.asset("assets/images/components/ic_rules.png"),
               )
             ],
