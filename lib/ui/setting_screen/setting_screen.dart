@@ -14,14 +14,15 @@ class SettingScreen extends StatefulWidget {
 class SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return SingleChildScrollView(
+        child: Column(
       children: [
         Center(
           child: Container(
             // padding: EdgeInsets.only(top: 10),
             margin: EdgeInsets.only(top: 10.w, bottom: 10.w),
-            // width: 20,
-            height: 50.w,
+            width: 150.w,
+            height: 30.w,
             decoration: BoxDecoration(
               color: Colors.lightBlue,
               border: Border.all(
@@ -71,9 +72,9 @@ class SettingScreenState extends State<SettingScreen> {
           ],
         ),
         Divider(
-          thickness: 2,
-          indent: 20,
-          endIndent: 20,
+          thickness: 2.w,
+          indent: 20.w,
+          endIndent: 20.w,
         ),
         TextButton(
           onPressed: () {
@@ -83,54 +84,58 @@ class SettingScreenState extends State<SettingScreen> {
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Icon(
+                padding: EdgeInsets.only(left: 20.w),
+                child: const Icon(
                   Icons.person,
-                  color: Colors.black,
+                  color: Color.fromRGBO(0, 0, 0, 1),
                   size: 50,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: 2.w),
                 child: Text(
                   "Thông tin cá nhân",
-                  style: TextStyle(fontSize: 20, color: Colors.black87),
+                  style: TextStyle(
+                      fontSize: 20.w,
+                      color: const Color.fromRGBO(0, 0, 0, 0.867)),
                 ),
               ),
             ],
           ),
         ),
         Divider(
-          thickness: 2,
-          indent: 20,
-          endIndent: 20,
+          thickness: 2.w,
+          indent: 20.w,
+          endIndent: 20.w,
         ),
         TextButton(
           onPressed: () {},
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: 20.w),
                 child: Icon(
                   Icons.history,
-                  size: 50,
-                  color: Colors.black,
+                  size: 50.w,
+                  color: const Color.fromRGBO(0, 0, 0, 1),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: 20.w),
                 child: Text(
                   "Lịch sử trận đấu",
-                  style: TextStyle(fontSize: 20, color: Colors.black87),
+                  style: TextStyle(
+                      fontSize: 20.w,
+                      color: const Color.fromRGBO(0, 0, 0, 0.867)),
                 ),
               ),
             ],
           ),
         ),
         Divider(
-          thickness: 2,
-          indent: 20,
-          endIndent: 20,
+          thickness: 2.w,
+          indent: 20.w,
+          endIndent: 20.w,
         ),
         TextButton(
           onPressed: () {
@@ -139,52 +144,56 @@ class SettingScreenState extends State<SettingScreen> {
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: 20.w),
                 child: Icon(
                   Icons.lock_rounded,
-                  size: 50,
-                  color: Colors.black,
+                  size: 50.w,
+                  color: const Color.fromRGBO(0, 0, 0, 1),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: 20.w),
                 child: Text(
                   "Đổi mật khẩu",
-                  style: TextStyle(fontSize: 20, color: Colors.black87),
+                  style: TextStyle(
+                      fontSize: 20.w,
+                      color: const Color.fromRGBO(0, 0, 0, 0.867)),
                 ),
               ),
             ],
           ),
         ),
         Divider(
-          thickness: 2,
-          indent: 20,
-          endIndent: 20,
+          thickness: 2.w,
+          indent: 20.w,
+          endIndent: 20.w,
         ),
         TextButton(
           onPressed: () {},
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: 20.w),
                 child: Icon(
                   Icons.logout,
-                  size: 50,
-                  color: Colors.black,
+                  size: 50.w,
+                  color: const Color.fromRGBO(0, 0, 0, 1),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: 20.w),
                 child: Text(
                   "Đăng xuất",
-                  style: TextStyle(fontSize: 20, color: Colors.black87),
+                  style: TextStyle(
+                      fontSize: 20.w,
+                      color: const Color.fromRGBO(0, 0, 0, 0.867)),
                 ),
               ),
             ],
           ),
         ),
       ],
-    );
+    ));
   }
 
   _buildDialog() {
