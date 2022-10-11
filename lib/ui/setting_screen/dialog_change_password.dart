@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:hab_app_trac_nghiem/ui/setting_screen/success_dialog.dart';
+import 'package:hab_app_trac_nghiem/ui/setting_screen/dialog_success_change_password.dart';
 
-import 'fail_dialog.dart';
+import '../login_screen/dialog_forgot_password.dart';
+import 'dialog_fail_change_password.dart';
 
 class ChangePasswordDialog extends StatefulWidget {
   const ChangePasswordDialog({Key? key}) : super(key: key);
@@ -71,7 +72,9 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  _buildForgotPasswordDialog();
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -112,6 +115,12 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
         ),
       ),
     );
+  }
+
+  _buildForgotPasswordDialog(){
+    return showDialog(context: context, builder: (BuildContext context){
+      return ForgotPasswordDialog();
+    });
   }
 
   _buildSuccessDialog() {

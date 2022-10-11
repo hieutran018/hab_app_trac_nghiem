@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hab_app_trac_nghiem/ui/setting_screen/dialog_change_password.dart';
 
+import 'History_screen.dart';
 import 'info_screen.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -106,7 +107,12 @@ class SettingScreenState extends State<SettingScreen> {
           endIndent: 20,
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HistoryScreen()),
+            );
+          },
           child: Row(
             children: [
               Padding(

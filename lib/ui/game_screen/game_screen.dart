@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hab_app_trac_nghiem/ui/single_game_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/single_game_screen.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);

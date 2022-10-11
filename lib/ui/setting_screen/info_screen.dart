@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'dialog_fail_update_info.dart';
+import 'dialog_success_update_info.dart';
+
 class InfoScreen extends StatefulWidget {
   const InfoScreen({Key? key}) : super(key: key);
   static String route = "/info";
@@ -57,7 +60,8 @@ class _InfoScreenState extends State<InfoScreen> {
                     color: Colors.grey,
                   ),
                 ),
-              )
+              ),
+
             ],
           ),
           Column(
@@ -125,7 +129,9 @@ class _InfoScreenState extends State<InfoScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 30, left: 40, right: 40),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _buildFailUpdateInfoDialog();
+                  },
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
@@ -147,5 +153,17 @@ class _InfoScreenState extends State<InfoScreen> {
         ],
       ),
     );
+  }
+
+  _buildSuccessUpdateInfoDialog(){
+    return showDialog(context: context, builder: (BuildContext context){
+      return UpdateInfoSuccess();
+    });
+  }
+
+  _buildFailUpdateInfoDialog(){
+    return showDialog(context: context, builder: (BuildContext context){
+      return UpdateInfoFail();
+    });
   }
 }
