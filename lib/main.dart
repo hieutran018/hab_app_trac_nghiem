@@ -7,6 +7,7 @@ import 'package:hab_app_trac_nghiem/provider/user_provider.dart';
 import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/news_detail_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/notification_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/request_friend_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/setting_screen/info_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/single_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/splash_screen.dart';
@@ -54,6 +55,8 @@ class MyApp extends StatelessWidget {
                 NewsDetailScreen.route: (context) => const NewsDetailScreen(),
                 SingleGameScreen.route: (context) => const SingleGameScreen(),
                 InfoScreen.route: (context) => const InfoScreen(),
+                RequestFriendScreen.route: (context) =>
+                    const RequestFriendScreen(),
               },
             );
           }),
