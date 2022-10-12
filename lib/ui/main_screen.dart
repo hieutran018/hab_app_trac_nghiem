@@ -60,10 +60,6 @@ class MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    PersistentTabController _controller;
-
-    _controller = PersistentTabController(initialIndex: 0);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(66, 194, 255, 1),
@@ -82,7 +78,6 @@ class MainScreenState extends State<MainScreen> {
       ),
       body: PersistentTabView(
         context,
-        controller: _controller,
         confineInSafeArea: true,
         screens: screens(),
         items: navBarItems(),

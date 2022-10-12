@@ -23,7 +23,7 @@ class _InfoScreenState extends State<InfoScreen> {
           color: Color.fromRGBO(0, 0, 0, 1),
         ),
         title: Container(
-          width: 220.w,
+          width: 200.w,
           height: 30.w,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.white),
@@ -47,27 +47,26 @@ class _InfoScreenState extends State<InfoScreen> {
             children: [
               Center(
                 child: CircleAvatar(
-                  radius: 80,
+                  radius: 80.w,
                 ),
               ),
               Positioned(
-                top: 120,
-                left: 230,
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
+                top: 120.w,
+                left: 230.w,
+                child: const CircleAvatar(
+                  backgroundColor: Color.fromRGBO(255, 255, 255, 1),
                   child: Icon(
                     Icons.camera_alt,
-                    color: Colors.grey,
+                    color: Color.fromRGBO(158, 158, 158, 1),
                   ),
                 ),
-              ),
-
+              )
             ],
           ),
           Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 20, left: 50, right: 50),
+                padding: EdgeInsets.only(top: 20.w, left: 50.w, right: 50.w),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -79,7 +78,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 20, left: 50, right: 50),
+                padding: EdgeInsets.only(top: 20.w, left: 50.w, right: 50.w),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -91,7 +90,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 20, left: 50, right: 50),
+                padding: EdgeInsets.only(top: 20.w, left: 50.w, right: 50.w),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -103,7 +102,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 20, left: 50, right: 50),
+                padding: EdgeInsets.only(top: 20.w, left: 50.w, right: 50.w),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -115,7 +114,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 20, left: 50, right: 50),
+                padding: EdgeInsets.only(top: 20.w, left: 50.w, right: 50.w),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -127,25 +126,32 @@ class _InfoScreenState extends State<InfoScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 30, left: 40, right: 40),
-                child: TextButton(
-                  onPressed: () {
-                    _buildFailUpdateInfoDialog();
-                  },
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(25),
-                      color: Colors.orangeAccent,
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Hoàn tất",
-                        style: TextStyle(color: Colors.white, fontSize: 30),
-                      ),
-                    ),
+                padding: EdgeInsets.only(top: 30.w, left: 40.w, right: 40.w),
+                child: Container(
+                  height: 50.w,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(25),
+                    color: Colors.orangeAccent,
                   ),
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "Hoàn tất",
+                        style:
+                            TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          primary: const Color.fromRGBO(255, 122, 0, 1),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 83.w, vertical: 7.w),
+                          textStyle: TextStyle(
+                            fontSize: 32.w,
+                          ),
+                          shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                  color: Color.fromRGBO(255, 255, 255, 1)),
+                              borderRadius: BorderRadius.circular(24.w)))),
                 ),
               ),
             ],
@@ -155,15 +161,19 @@ class _InfoScreenState extends State<InfoScreen> {
     );
   }
 
-  _buildSuccessUpdateInfoDialog(){
-    return showDialog(context: context, builder: (BuildContext context){
-      return UpdateInfoSuccess();
-    });
+  _buildSuccessUpdateInfoDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return UpdateInfoSuccess();
+        });
   }
 
-  _buildFailUpdateInfoDialog(){
-    return showDialog(context: context, builder: (BuildContext context){
-      return UpdateInfoFail();
-    });
+  _buildFailUpdateInfoDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return UpdateInfoFail();
+        });
   }
 }
