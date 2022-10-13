@@ -86,74 +86,95 @@ class RequestFriendScreenState extends State<RequestFriendScreen> {
               child: ListView.builder(
                   itemCount: 10,
                   itemBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      height: 88.w,
-                      child: Card(
-                        child: ListTile(
-                          title: Text(
-                            'Dương Nghĩa Hiệp',
-                            style: GoogleFonts.inter(
-                              fontSize: 20.w,
-                              fontWeight: FontWeight.w700,
+                    return Padding(
+                        padding: EdgeInsets.fromLTRB(2.w, 2.w, 2.w, 2.w),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(0.w, 2.w, 0.w, 2.w),
+                          child: Container(
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 45.w,
+                                  child: Image.asset(
+                                      'assets/images/components/avatar_1.png'),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          5.w, 0.w, 0.w, 5.w),
+                                      child: Text(
+                                        'Dương Nghĩa Hiệp',
+                                        style: GoogleFonts.inter(
+                                            color: const Color.fromRGBO(
+                                                0, 0, 0, 1),
+                                            fontSize: 20.w,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
+                                    Padding(
+                                        padding: EdgeInsets.fromLTRB(
+                                            5.w, 0.w, 0.w, 0.w),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              width: 120.w,
+                                              height: 45.w,
+                                              decoration: BoxDecoration(
+                                                color: const Color.fromRGBO(
+                                                    5, 168, 238, 1),
+                                                border: Border.all(
+                                                    color: const Color.fromRGBO(
+                                                        255, 255, 255, 1)),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.w),
+                                              ),
+                                              child: TextButton(
+                                                onPressed: () {},
+                                                child: Text('Xác nhận',
+                                                    style: GoogleFonts.inter(
+                                                        fontSize: 20.w,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        color: const Color
+                                                                .fromRGBO(
+                                                            255, 255, 255, 1))),
+                                              ),
+                                            ),
+                                            SizedBox(width: 10.w),
+                                            Container(
+                                              width: 120.w,
+                                              height: 45.w,
+                                              decoration: BoxDecoration(
+                                                color: const Color.fromRGBO(
+                                                    75, 78, 80, 1),
+                                                border: Border.all(
+                                                    color: const Color.fromRGBO(
+                                                        255, 255, 255, 1)),
+                                                borderRadius:
+                                                    BorderRadius.circular(10.w),
+                                              ),
+                                              child: TextButton(
+                                                onPressed: () {},
+                                                child: Text('Xóa',
+                                                    style: GoogleFonts.inter(
+                                                        fontSize: 20.w,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        color: const Color
+                                                                .fromRGBO(
+                                                            255, 255, 255, 1))),
+                                              ),
+                                            ),
+                                          ],
+                                        ))
+                                  ],
+                                )
+                              ],
                             ),
                           ),
-                          leading: CircleAvatar(
-                            radius: 50.w,
-                            child: Image.asset(
-                              'assets/images/components/avatar_1.png',
-                              width: 75.w,
-                              height: 75.w,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          trailing: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.more_vert_rounded)),
-                          subtitle: Row(children: [
-                            Container(
-                              width: 100.w,
-                              height: 40.w,
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(5, 168, 238, 1),
-                                border: Border.all(
-                                    color:
-                                        const Color.fromRGBO(255, 255, 255, 1)),
-                                borderRadius: BorderRadius.circular(10.w),
-                              ),
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.of(context, rootNavigator: true)
-                                      .pushNamed(RequestFriendScreen.route);
-                                },
-                                child: Text('Xác nhận',
-                                    style: GoogleFonts.inter(
-                                        fontSize: 16.w,
-                                        fontWeight: FontWeight.w700,
-                                        color: const Color.fromRGBO(
-                                            255, 255, 255, 1))),
-                              ),
-                            ),
-                            Container(
-                              width: 100.w,
-                              height: 40.w,
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(75, 78, 80, 1),
-                                borderRadius: BorderRadius.circular(10.w),
-                              ),
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Text('Xóa',
-                                    style: GoogleFonts.inter(
-                                        fontSize: 16.w,
-                                        fontWeight: FontWeight.w700,
-                                        color: const Color.fromRGBO(
-                                            255, 255, 255, 1))),
-                              ),
-                            ),
-                          ]),
-                        ),
-                      ),
-                    );
+                        ));
                   }),
             )
           ],
