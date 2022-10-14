@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/models/news_category.dart';
+import 'package:hab_app_trac_nghiem/provider/news_category.dart';
 import 'package:hab_app_trac_nghiem/ui/new_screen/news_detail_screen.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -11,6 +13,16 @@ class NewsScreen extends StatefulWidget {
 }
 
 class NewsScreenState extends State<NewsScreen> {
+  late Future<NewsCategory> futureNewsCategory;
+  late NewsCategoryProvider newsCategoryProvider;
+  @override
+  void initState() {
+    super.initState();
+    futureNewsCategory;
+    newsCategoryProvider;
+    futureNewsCategory = NewsCategoryProvider.fetchNewsCategory();
+  }
+
   List<String> items = [
     "Khoa học",
     "Xã hội",
@@ -108,66 +120,76 @@ class NewsScreenState extends State<NewsScreen> {
           children: [
             /// CUSTOM TABBAR
             SizedBox(
-              width: double.infinity,
-              height: 60,
-              child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: items.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (ctx, index) {
-                    return Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              current = index;
-                            });
-                          },
-                          child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            margin: const EdgeInsets.all(5),
-                            width: 80,
-                            height: 45,
-                            decoration: BoxDecoration(
-                              color: current == index
-                                  ? Colors.white70
-                                  : Colors.white54,
-                              borderRadius: current == index
-                                  ? BorderRadius.circular(15)
-                                  : BorderRadius.circular(10),
-                              border: current == index
-                                  ? Border.all(
-                                      color:
-                                          const Color.fromRGBO(0, 41, 255, 1),
-                                      width: 2)
-                                  : null,
-                            ),
-                            child: Center(
-                              child: Text(
-                                items[index],
-                                style: GoogleFonts.inter(
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FontStyle.normal,
-                                    color: current == index
-                                        ? Colors.black
-                                        : Colors.grey),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Visibility(
-                            visible: current == index,
-                            child: Container(
-                              width: 5,
-                              height: 5,
-                              decoration: const BoxDecoration(
-                                  color: Color.fromRGBO(0, 41, 255, 1),
-                                  shape: BoxShape.circle),
-                            ))
-                      ],
-                    );
-                  }),
-            ),
+                width: double.infinity,
+                height: 60,
+                child: FutureBuilder<NewsCategory>(
+                  future: futureNewsCategory,
+                  builder: (context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: snapshot.data!.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (ctx, index) {
+                            return Column(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      current = index;
+                                    });
+                                  },
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 300),
+                                    margin: const EdgeInsets.all(5),
+                                    width: 80,
+                                    height: 45,
+                                    decoration: BoxDecoration(
+                                      color: current == index
+                                          ? Colors.white70
+                                          : Colors.white54,
+                                      borderRadius: current == index
+                                          ? BorderRadius.circular(15)
+                                          : BorderRadius.circular(10),
+                                      border: current == index
+                                          ? Border.all(
+                                              color: const Color.fromRGBO(
+                                                  0, 41, 255, 1),
+                                              width: 2)
+                                          : null,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        items[index],
+                                        style: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle: FontStyle.normal,
+                                            color: current == index
+                                                ? Colors.black
+                                                : Colors.grey),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                    visible: current == index,
+                                    child: Container(
+                                      width: 5,
+                                      height: 5,
+                                      decoration: const BoxDecoration(
+                                          color: Color.fromRGBO(0, 41, 255, 1),
+                                          shape: BoxShape.circle),
+                                    ))
+                              ],
+                            );
+                          });
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
+                )),
 
             /// MAIN BODY
 
