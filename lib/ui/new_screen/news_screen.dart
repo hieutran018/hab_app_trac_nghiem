@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/app/app_url.dart';
 import 'package:hab_app_trac_nghiem/models/news_category.dart';
 import 'package:hab_app_trac_nghiem/provider/news_category.dart';
 import 'package:hab_app_trac_nghiem/ui/new_screen/news_detail_screen.dart';
+import 'package:http/http.dart' as http;
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({Key? key}) : super(key: key);
@@ -101,6 +105,23 @@ class NewsScreenState extends State<NewsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Future<NewsCategory> fetchNewsCategory() async {
+      final resposne = await http.get(Uri.parse(AppUrl.newsCategory));
+
+      if (resposne.statusCode == 200) {
+        return NewsCategory.fromJson(jsonDecode(resposne.body.toString()));
+      } else {
+        throw Exception('Failed to load news category!');
+      }
+    }
+
+    late Future<NewsCategory> futureNewsCategory;
+    @override
+    void initState() {
+      super.initState();
+      futureNewsCategory = fetchNewsCategory();
+    }
+
     return Center(
       child: Container(
         width: double.infinity,
@@ -112,8 +133,8 @@ class NewsScreenState extends State<NewsScreen> {
             SizedBox(
                 width: double.infinity,
                 height: 60,
-                child: FutureBuilder(
-                  future: NewsCategoryProvider.fetchNewsCategory(),
+                child: FutureBuilder<NewsCategory>(
+                  future: fetchNewsCategory(),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
@@ -150,7 +171,8 @@ class NewsScreenState extends State<NewsScreen> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        items[index],
+                                        snapshot.data!.newsCategoryName
+                                            .toString(),
                                         style: GoogleFonts.inter(
                                             fontWeight: FontWeight.w500,
                                             fontStyle: FontStyle.normal,

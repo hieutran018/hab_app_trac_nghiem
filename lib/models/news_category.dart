@@ -1,27 +1,36 @@
 class NewsCategory {
-  int? id;
-  String? newsCategoryName;
-  String? description;
+  int id;
+  String newsCategoryName;
+  String description;
 
-  int? status;
+  int status;
 
-  NewsCategory({this.id, this.newsCategoryName, this.description, this.status});
+  NewsCategory(
+      {required this.id,
+      required this.newsCategoryName,
+      required this.description,
+      required this.status});
 
-  NewsCategory.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    newsCategoryName = json['news_category_name'];
-    description = json['description'];
-
-    status = json['status'];
+  factory NewsCategory.fromJson(Map<String, dynamic> json) {
+    return NewsCategory(
+      id: json['id'],
+      newsCategoryName: json['news_category_name'],
+      description: json['description'],
+      status: json['status'],
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['news_category_name'] = this.newsCategoryName;
-    data['description'] = this.description;
+  int? get _id => id;
+  String? get _newsCategoryName => newsCategoryName;
+  String? get _description => description;
+  int? get _status => status;
 
-    data['status'] = this.status;
-    return data;
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['id'] = _id;
+    map['news_category_name'] = _newsCategoryName;
+    map['description'] = _description;
+    map['status'] = _status;
+    return map;
   }
 }
