@@ -13,16 +13,6 @@ class NewsScreen extends StatefulWidget {
 }
 
 class NewsScreenState extends State<NewsScreen> {
-  late Future<NewsCategory> futureNewsCategory;
-  late NewsCategoryProvider newsCategoryProvider;
-  @override
-  void initState() {
-    super.initState();
-    futureNewsCategory;
-    newsCategoryProvider;
-    futureNewsCategory = NewsCategoryProvider.fetchNewsCategory();
-  }
-
   List<String> items = [
     "Khoa học",
     "Xã hội",
@@ -122,8 +112,8 @@ class NewsScreenState extends State<NewsScreen> {
             SizedBox(
                 width: double.infinity,
                 height: 60,
-                child: FutureBuilder<NewsCategory>(
-                  future: futureNewsCategory,
+                child: FutureBuilder(
+                  future: NewsCategoryProvider.fetchNewsCategory(),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
@@ -184,6 +174,7 @@ class NewsScreenState extends State<NewsScreen> {
                             );
                           });
                     } else if (snapshot.hasError) {
+                      print(snapshot.error.toString());
                       return Text('${snapshot.error}');
                     } else {
                       return const CircularProgressIndicator();

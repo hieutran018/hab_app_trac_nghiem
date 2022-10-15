@@ -1,23 +1,27 @@
 class NewsCategory {
-  final int id;
-  final String categoryName;
-  final String description;
+  int? id;
+  String? newsCategoryName;
+  String? description;
 
-  NewsCategory(
-      {required this.id,
-      required this.categoryName,
-      required this.description});
+  int? status;
 
-  factory NewsCategory.fromJson(Map<String, dynamic> responseData) {
-    return NewsCategory(
-        id: responseData["id"],
-        categoryName: responseData["categoryName"],
-        description: responseData["description"]);
+  NewsCategory({this.id, this.newsCategoryName, this.description, this.status});
+
+  NewsCategory.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    newsCategoryName = json['news_category_name'];
+    description = json['description'];
+
+    status = json['status'];
   }
-}
 
-class Data {
-  final String id, categoryName, description;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['news_category_name'] = this.newsCategoryName;
+    data['description'] = this.description;
 
-  Data(this.id, this.categoryName, this.description);
+    data['status'] = this.status;
+    return data;
+  }
 }
