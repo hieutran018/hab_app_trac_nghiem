@@ -58,10 +58,10 @@ class AuthProvider extends ChangeNotifier {
 
     final Map<String, dynamic> responseData = json.decode(response.body);
 
-    print(responseData);
+    // print(responseData);
 
     if (response.statusCode == 200) {
-      var userData = responseData['data'];
+      // var userData = responseData['data'];
 
       // now we will create a user model
       User authUser = User.fromJson(responseData);

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/app/app_url.dart';
 import 'package:hab_app_trac_nghiem/models/news_category.dart';
@@ -17,13 +18,6 @@ class NewsScreen extends StatefulWidget {
 }
 
 class NewsScreenState extends State<NewsScreen> {
-  List<String> items = [
-    "Khoa học",
-    "Xã hội",
-    "Thể thao",
-    "Văn hóa",
-    "Chính trị",
-  ];
   int current = 0;
 
   Widget _tabContent(String date) {
@@ -105,21 +99,23 @@ class NewsScreenState extends State<NewsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Future<NewsCategory> fetchNewsCategory() async {
-      final resposne = await http.get(Uri.parse(AppUrl.newsCategory));
+    Future<List<NewsCategory>> fectchNewsCategory() async {
+      var data = await http.get(Uri.parse(AppUrl.newsCategory));
 
-      if (resposne.statusCode == 200) {
-        return NewsCategory.fromJson(jsonDecode(resposne.body.toString()));
-      } else {
-        throw Exception('Failed to load news category!');
+      var jsonData = json.decode(data.body);
+
+      List<NewsCategory> newsCategory = [];
+
+      for (var u in jsonData) {
+        NewsCategory _newsCategory = NewsCategory(
+            id: u["id"],
+            newsCategoryName: u["news_category_name"],
+            description: u["description"],
+            status: u['status']);
+
+        newsCategory.add(_newsCategory);
       }
-    }
-
-    late Future<NewsCategory> futureNewsCategory;
-    @override
-    void initState() {
-      super.initState();
-      futureNewsCategory = fetchNewsCategory();
+      return newsCategory;
     }
 
     return Center(
@@ -133,8 +129,8 @@ class NewsScreenState extends State<NewsScreen> {
             SizedBox(
                 width: double.infinity,
                 height: 60,
-                child: FutureBuilder<NewsCategory>(
-                  future: fetchNewsCategory(),
+                child: FutureBuilder(
+                  future: fectchNewsCategory(),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
@@ -171,8 +167,7 @@ class NewsScreenState extends State<NewsScreen> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        snapshot.data!.newsCategoryName
-                                            .toString(),
+                                        snapshot.data[index].newsCategoryName,
                                         style: GoogleFonts.inter(
                                             fontWeight: FontWeight.w500,
                                             fontStyle: FontStyle.normal,
@@ -199,7 +194,9 @@ class NewsScreenState extends State<NewsScreen> {
                       print(snapshot.error.toString());
                       return Text('${snapshot.error}');
                     } else {
-                      return const CircularProgressIndicator();
+                      return const SpinKitThreeInOut(
+                        color: Color.fromRGBO(0, 41, 255, 1),
+                      );
                     }
                   },
                 )),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class NewsCategory {
   int id;
   String newsCategoryName;
@@ -13,10 +15,10 @@ class NewsCategory {
 
   factory NewsCategory.fromJson(Map<String, dynamic> json) {
     return NewsCategory(
-      id: json['id'],
-      newsCategoryName: json['news_category_name'],
-      description: json['description'],
-      status: json['status'],
+      id: json["id"],
+      newsCategoryName: json["news_category_name"],
+      description: json["description"],
+      status: json["status"],
     );
   }
 
@@ -25,12 +27,15 @@ class NewsCategory {
   String? get _description => description;
   int? get _status => status;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = _id;
-    map['news_category_name'] = _newsCategoryName;
-    map['description'] = _description;
-    map['status'] = _status;
-    return map;
-  }
+  // Map<String, dynamic> toJson() {
+  //   final map = <String, dynamic>{};
+  //   map['id'] = _id;
+  //   map['news_category_name'] = _newsCategoryName;
+  //   map['description'] = _description;
+  //   map['status'] = _status;
+  //   return map;
+  // }
 }
+
+List<NewsCategory> newsCategoryFromJson(String str) => List<NewsCategory>.from(
+    json.decode(str).map((x) => NewsCategory.fromJson(x)));
