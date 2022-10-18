@@ -4,6 +4,8 @@ import 'package:hab_app_trac_nghiem/app/shared_preferences.dart';
 import 'package:hab_app_trac_nghiem/models/user.dart';
 import 'package:hab_app_trac_nghiem/provider/authprovider.dart';
 import 'package:hab_app_trac_nghiem/provider/user_provider.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/single/playing_game_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/single/select_topic.dart';
 import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 
 import 'package:hab_app_trac_nghiem/ui/new_screen/news_detail_screen.dart';
@@ -11,7 +13,7 @@ import 'package:hab_app_trac_nghiem/ui/notification_screen/notification_screen.d
 import 'package:hab_app_trac_nghiem/ui/request_friend_screen.dart';
 
 import 'package:hab_app_trac_nghiem/ui/setting_screen/info_screen.dart';
-import 'package:hab_app_trac_nghiem/ui/game_screen/single_game_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/single/single_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/splash_screen/splash_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/login_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
@@ -59,6 +61,9 @@ class MyApp extends StatelessWidget {
                 InfoScreen.route: (context) => const InfoScreen(),
                 RequestFriendScreen.route: (context) =>
                     const RequestFriendScreen(),
+                SelectTopicSingleGameScreen.route: (context) =>
+                    const SelectTopicSingleGameScreen(),
+                PlayingGameScreen.route: (context) => const PlayingGameScreen(),
               },
             );
           }),
