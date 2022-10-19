@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/challenger_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/single_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/roles_game.dart';
 
@@ -129,7 +130,10 @@ class GameScreenState extends State<GameScreen> {
           Padding(
               padding: EdgeInsets.fromLTRB(49.w, 5.w, 49.w, 0.w),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context, rootNavigator: true)
+                        .pushNamed(ChallengerGameScreen.route);
+                  },
                   child: const Text(
                     "Thách đấu",
                     style: TextStyle(color: Color.fromRGBO(238, 64, 64, 1)),

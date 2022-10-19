@@ -4,6 +4,10 @@ import 'package:hab_app_trac_nghiem/app/shared_preferences.dart';
 import 'package:hab_app_trac_nghiem/models/user.dart';
 import 'package:hab_app_trac_nghiem/provider/authprovider.dart';
 import 'package:hab_app_trac_nghiem/provider/user_provider.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/challenger_game_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/playing_game_screen_challenger_mode.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/request_play_game_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/select_topic.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/playing_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/select_topic.dart';
 import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
@@ -64,6 +68,14 @@ class MyApp extends StatelessWidget {
                 SelectTopicSingleGameScreen.route: (context) =>
                     const SelectTopicSingleGameScreen(),
                 PlayingGameScreen.route: (context) => const PlayingGameScreen(),
+                ChallengerGameScreen.route: (context) =>
+                    const ChallengerGameScreen(),
+                RequestPlayGameScreen.route: (context) =>
+                    const RequestPlayGameScreen(),
+                SelectTopicChallengerGameScreen.route: (context) =>
+                    const SelectTopicChallengerGameScreen(),
+                PlayingChallengerGameScreen.route: (context) =>
+                    const PlayingChallengerGameScreen(),
               },
             );
           }),

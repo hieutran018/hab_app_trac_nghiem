@@ -6,7 +6,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/app/app_url.dart';
 import 'package:hab_app_trac_nghiem/models/news_category.dart';
-import 'package:hab_app_trac_nghiem/provider/news_category.dart';
 import 'package:hab_app_trac_nghiem/ui/new_screen/news_detail_screen.dart';
 import 'package:http/http.dart' as http;
 
