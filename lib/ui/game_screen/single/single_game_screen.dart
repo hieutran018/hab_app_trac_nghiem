@@ -212,13 +212,13 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                                         SelectTopicSingleGameScreen.route);
                               },
                               child: const Text(
-                                "Chơi đơn",
+                                "Chơi",
                                 style: TextStyle(
-                                    color: Color.fromRGBO(64, 82, 238, 1)),
+                                    color: Color.fromRGBO(255, 255, 255, 1)),
                               ),
                               style: ElevatedButton.styleFrom(
                                   primary:
-                                      const Color.fromRGBO(169, 255, 139, 1),
+                                      const Color.fromRGBO(26, 103, 246, 1),
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 83.w, vertical: 7.w),
                                   textStyle: TextStyle(
@@ -227,7 +227,7 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                                   shape: RoundedRectangleBorder(
                                       side: const BorderSide(
                                           color:
-                                              Color.fromRGBO(54, 237, 215, 1)),
+                                              Color.fromRGBO(255, 255, 255, 1)),
                                       borderRadius:
                                           BorderRadius.circular(24.w))))),
                     ],
