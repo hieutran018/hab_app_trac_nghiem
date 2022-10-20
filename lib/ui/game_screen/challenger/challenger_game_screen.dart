@@ -28,50 +28,46 @@ class ChallengerGameScreenState extends State<ChallengerGameScreen> {
             height: 55.w,
           ),
           centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const RolesSingleGame();
+                  },
+                );
+              },
+              icon: Image.asset("assets/images/components/ic_rules.png"),
+            )
+          ],
         ),
         body: SafeArea(
-          child: SingleChildScrollView(
+          child: Center(
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(61.w, 12.w, 0.w, 0.w),
-                      child: Container(
-                        width: 306.w,
-                        height: 43.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.w),
-                          color: const Color.fromRGBO(244, 207, 186, 1),
-                        ),
-                        child: BorderedText(
-                          strokeWidth: 2.0.w,
-                          strokeColor: const Color.fromARGB(255, 255, 255, 255),
-                          child: Text(
-                            'Thách Đấu',
-                            style: GoogleFonts.inter(
-                              fontSize: 32.w,
-                              fontWeight: FontWeight.w600,
-                              color: const Color.fromRGBO(238, 64, 64, 1),
-                            ),
-                          ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0.w, 12.h, 0.w, 0.h),
+                  child: Container(
+                    width: 180.w,
+                    height: 43.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12.w),
+                      color: const Color.fromRGBO(244, 207, 186, 1),
+                    ),
+                    child: BorderedText(
+                      strokeWidth: 2.0.w,
+                      strokeColor: const Color.fromARGB(255, 255, 255, 255),
+                      child: Text(
+                        'Thách Đấu',
+                        style: GoogleFonts.inter(
+                          fontSize: 32.sp,
+                          fontWeight: FontWeight.w600,
+                          color: const Color.fromRGBO(238, 64, 64, 1),
                         ),
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return const RolesSingleGame();
-                          },
-                        );
-                      },
-                      icon:
-                          Image.asset("assets/images/components/ic_rules.png"),
-                    )
-                  ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -79,8 +75,8 @@ class ChallengerGameScreenState extends State<ChallengerGameScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        width: 130.w,
-                        height: 30.w,
+                        width: MediaQuery.of(context).size.width / 2.5.w,
+                        height: MediaQuery.of(context).size.height / 20.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.w),
                           color: Colors.white,
@@ -90,15 +86,15 @@ class ChallengerGameScreenState extends State<ChallengerGameScreen> {
                         ),
                         child: Text(
                           "Lượt chơi: 3",
-                          style: TextStyle(
-                              fontSize: 20.w,
+                          style: GoogleFonts.inter(
+                              fontSize: 20.sp,
                               color: const Color.fromRGBO(5, 0, 255, 1)),
                           textAlign: TextAlign.center,
                         ),
                       ),
                       Container(
-                        width: 130.w,
-                        height: 30.w,
+                        width: MediaQuery.of(context).size.width / 2.5.w,
+                        height: MediaQuery.of(context).size.height / 20.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.w),
                           color: const Color.fromRGBO(118, 255, 207, 1),
@@ -108,7 +104,7 @@ class ChallengerGameScreenState extends State<ChallengerGameScreen> {
                         ),
                         child: Text(
                           "01 : 00 : 00",
-                          style: TextStyle(fontSize: 20.w),
+                          style: GoogleFonts.inter(fontSize: 20.sp),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -116,36 +112,39 @@ class ChallengerGameScreenState extends State<ChallengerGameScreen> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(6.w, 0.w, 6.w, 0.w),
+                  padding: EdgeInsets.fromLTRB(6.w, 0.h, 6.w, 0.h),
                   child: Column(
                     children: [
                       Container(
-                        width: 416.w,
-                        height: 600.w,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 1.6.h,
                         color: const Color.fromARGB(255, 236, 234, 234),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              width: 340.w,
-                              height: 40.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12.w),
-                                color: Colors.white,
-                                border: Border.all(
-                                    width: 2.w,
-                                    color: const Color.fromRGBO(255, 0, 0, 1)),
-                              ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(3.w, 5.w, 3.w, 3.w),
-                                child: Text(
-                                  "NGƯỜI CHƠI THÁCH ĐẤU DẪN ĐẦU",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 20.w,
-                                      color: const Color.fromRGBO(255, 0, 0, 1),
-                                      fontWeight: FontWeight.w900),
+                            AspectRatio(
+                              aspectRatio: 16 / 2,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12.w),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      width: 2.w,
+                                      color:
+                                          const Color.fromRGBO(255, 0, 0, 1)),
+                                ),
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.fromLTRB(3.w, 5.h, 3.w, 3.h),
+                                  child: Text(
+                                    "NGƯỜI CHƠI THÁCH ĐẤU DẪN ĐẦU",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.inter(
+                                        fontSize: 20.sp,
+                                        color:
+                                            const Color.fromRGBO(255, 0, 0, 1),
+                                        fontWeight: FontWeight.w900),
+                                  ),
                                 ),
                               ),
                             ),
@@ -167,7 +166,7 @@ class ChallengerGameScreenState extends State<ChallengerGameScreen> {
                                         ),
                                         child: SizedBox(
                                             width: 200.w,
-                                            height: 70.w,
+                                            height: 70.h,
                                             child: Row(
                                               children: [
                                                 SizedBox(width: 5.w),
@@ -190,7 +189,7 @@ class ChallengerGameScreenState extends State<ChallengerGameScreen> {
                                                 Text(
                                                   "100",
                                                   style: GoogleFonts.inter(
-                                                    fontSize: 18.w,
+                                                    fontSize: 18.sp,
                                                     fontWeight: FontWeight.w600,
                                                     color: const Color.fromRGBO(
                                                         255, 122, 0, 1),
@@ -206,7 +205,7 @@ class ChallengerGameScreenState extends State<ChallengerGameScreen> {
                         ),
                       ),
                       Padding(
-                          padding: EdgeInsets.fromLTRB(49.w, 5.w, 49.w, 10.w),
+                          padding: EdgeInsets.fromLTRB(49.w, 5.h, 49.w, 0.h),
                           child: ElevatedButton(
                               onPressed: () {
                                 Navigator.of(context, rootNavigator: true)
@@ -223,7 +222,7 @@ class ChallengerGameScreenState extends State<ChallengerGameScreen> {
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 83.w, vertical: 7.w),
                                   textStyle: TextStyle(
-                                    fontSize: 32.w,
+                                    fontSize: 32.sp,
                                   ),
                                   shape: RoundedRectangleBorder(
                                       side: const BorderSide(

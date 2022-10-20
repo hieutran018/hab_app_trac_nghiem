@@ -49,7 +49,7 @@ class SelectTopicSingleGameScreenState
                     Row(
                       children: [
                         Padding(
-                            padding: EdgeInsets.fromLTRB(10.w, 10.w, 10.w, 5.w),
+                            padding: EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 5.h),
                             child: Text(
                               "Phần chơi THỬ THÁCH",
                               style: GoogleFonts.inter(

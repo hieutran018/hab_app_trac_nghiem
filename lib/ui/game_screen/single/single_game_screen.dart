@@ -28,14 +28,14 @@ class SingleGameScreenState extends State<SingleGameScreen> {
           centerTitle: true,
         ),
         body: SafeArea(
-          child: SingleChildScrollView(
+          child: Center(
             child: Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(61.w, 12.w, 0.w, 0.w),
+                      padding: EdgeInsets.fromLTRB(61.w, 12.h, 0.w, 0.h),
                       child: Container(
                         width: 306.w,
                         height: 43.w,
@@ -49,7 +49,7 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                           child: Text(
                             'Chơi Đơn',
                             style: GoogleFonts.inter(
-                              fontSize: 32.w,
+                              fontSize: 32.h,
                               fontWeight: FontWeight.w600,
                               color: const Color.fromRGBO(64, 82, 238, 1),
                             ),
@@ -96,7 +96,7 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                       ),
                       Container(
                         width: 130.w,
-                        height: 30.w,
+                        height: 30.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.w),
                           color: const Color.fromRGBO(118, 255, 207, 1),
@@ -114,19 +114,19 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(6.w, 0.w, 6.w, 0.w),
+                  padding: EdgeInsets.fromLTRB(6.w, 0.w, 6.w, 0.h),
                   child: Column(
                     children: [
                       Container(
                         width: 416.w,
-                        height: 600.w,
+                        height: 600.h,
                         color: const Color.fromARGB(255, 236, 234, 234),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
                               width: 300.w,
-                              height: 40.w,
+                              height: 40.h,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.w),
                                 color: Colors.white,
@@ -204,7 +204,7 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                         ),
                       ),
                       Padding(
-                          padding: EdgeInsets.fromLTRB(49.w, 5.w, 49.w, 10.w),
+                          padding: EdgeInsets.fromLTRB(49.w, 5.h, 49.w, 10.h),
                           child: ElevatedButton(
                               onPressed: () {
                                 Navigator.of(context, rootNavigator: true)

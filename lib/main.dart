@@ -47,38 +47,30 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider())
       ],
-      child: ScreenUtilInit(
-          designSize: const Size(428, 926),
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: (context, child) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: const FlashScreen(),
-              routes: {
-                '/login': (context) => const LoginScreen(),
-                '/register': (context) => const RegisterScreen(),
-                '/main': (context) => const MainScreen(),
-                '/notification': (context) => const NotificationScreen(),
-                NewsDetailScreen.route: (context) => const NewsDetailScreen(),
-                SingleGameScreen.route: (context) => const SingleGameScreen(),
-                InfoScreen.route: (context) => const InfoScreen(),
-                RequestFriendScreen.route: (context) =>
-                    const RequestFriendScreen(),
-                SelectTopicSingleGameScreen.route: (context) =>
-                    const SelectTopicSingleGameScreen(),
-                PlayingGameScreen.route: (context) => const PlayingGameScreen(),
-                ChallengerGameScreen.route: (context) =>
-                    const ChallengerGameScreen(),
-                RequestPlayGameScreen.route: (context) =>
-                    const RequestPlayGameScreen(),
-                SelectTopicChallengerGameScreen.route: (context) =>
-                    const SelectTopicChallengerGameScreen(),
-                PlayingChallengerGameScreen.route: (context) =>
-                    const PlayingChallengerGameScreen(),
-              },
-            );
-          }),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const FlashScreen(),
+        routes: {
+          '/login': (context) => const LoginScreen(),
+          '/register': (context) => const RegisterScreen(),
+          '/main': (context) => const MainScreen(),
+          '/notification': (context) => const NotificationScreen(),
+          NewsDetailScreen.route: (context) => const NewsDetailScreen(),
+          SingleGameScreen.route: (context) => const SingleGameScreen(),
+          InfoScreen.route: (context) => const InfoScreen(),
+          RequestFriendScreen.route: (context) => const RequestFriendScreen(),
+          SelectTopicSingleGameScreen.route: (context) =>
+              const SelectTopicSingleGameScreen(),
+          PlayingGameScreen.route: (context) => const PlayingGameScreen(),
+          ChallengerGameScreen.route: (context) => const ChallengerGameScreen(),
+          RequestPlayGameScreen.route: (context) =>
+              const RequestPlayGameScreen(),
+          SelectTopicChallengerGameScreen.route: (context) =>
+              const SelectTopicChallengerGameScreen(),
+          PlayingChallengerGameScreen.route: (context) =>
+              const PlayingChallengerGameScreen(),
+        },
+      ),
     );
   }
 }

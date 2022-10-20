@@ -35,31 +35,6 @@ class PlayingChallengerGameScreenState
                   )),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 306.w,
-                height: 43.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.w),
-                  color: const Color.fromRGBO(244, 207, 186, 1),
-                ),
-                child: BorderedText(
-                  strokeWidth: 2.0.w,
-                  strokeColor: const Color.fromARGB(255, 255, 255, 255),
-                  child: Text(
-                    'Thách Đấu',
-                    style: GoogleFonts.inter(
-                      fontSize: 32.w,
-                      fontWeight: FontWeight.w600,
-                      color: const Color.fromRGBO(238, 64, 64, 1),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: Row(
@@ -84,6 +59,36 @@ class PlayingChallengerGameScreenState
                 ),
               ],
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                  height: 50.w,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        icon: Image.asset(
+                            'assets/images/components/helper_50.png'),
+                        onPressed: () {},
+                        iconSize: 70.w,
+                      ),
+                      IconButton(
+                        icon: Image.asset(
+                            'assets/images/components/helper_swap.png'),
+                        onPressed: () {},
+                        iconSize: 70.w,
+                      ),
+                      IconButton(
+                        icon: Image.asset(
+                            'assets/images/components/helper_vote.png'),
+                        onPressed: () {},
+                        iconSize: 70.w,
+                      ),
+                    ],
+                  ))
+            ],
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(25.w, 5.w, 25.w, 0.w),
@@ -145,7 +150,7 @@ class PlayingChallengerGameScreenState
                 padding: EdgeInsets.fromLTRB(5.w, 10.w, 5.w, 5.w),
                 child: Container(
                   width: 400.w,
-                  height: 200.w,
+                  height: 150.w,
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: const Color.fromRGBO(0, 41, 255, 1)),
@@ -199,32 +204,6 @@ class PlayingChallengerGameScreenState
                       );
                     }),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                      icon:
-                          Image.asset('assets/images/components/helper_50.png'),
-                      onPressed: () {},
-                      iconSize: 70.w,
-                    ),
-                    IconButton(
-                      icon: Image.asset(
-                          'assets/images/components/helper_swap.png'),
-                      onPressed: () {},
-                      iconSize: 70.w,
-                    ),
-                    IconButton(
-                      icon: Image.asset(
-                          'assets/images/components/helper_vote.png'),
-                      onPressed: () {},
-                      iconSize: 70.w,
-                    ),
-                  ],
-                ),
-              )
             ],
           ))
         ],

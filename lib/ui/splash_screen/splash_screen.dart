@@ -10,13 +10,18 @@ class FlashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return SafeArea(
-        child: SplashScreen(
-            seconds: 4,
-            navigateAfterSeconds: const AfterSplash(),
-            backgroundColor: const Color.fromRGBO(66, 149, 255, 1),
-            loaderColor: const Color.fromARGB(255, 255, 255, 255),
-            photoSize: 170.w,
-            image: Image.asset("assets/images/logo_hab_large.png")));
+      child: ScreenUtilInit(
+          designSize: Size(width, height),
+          builder: (context, child) => SplashScreen(
+              seconds: 4,
+              navigateAfterSeconds: const AfterSplash(),
+              backgroundColor: const Color.fromRGBO(66, 149, 255, 1),
+              loaderColor: const Color.fromARGB(255, 255, 255, 255),
+              photoSize: 170.w,
+              image: Image.asset("assets/images/logo_hab_large.png"))),
+    );
   }
 }
