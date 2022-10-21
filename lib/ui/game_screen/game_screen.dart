@@ -29,7 +29,7 @@ class GameScreenState extends State<GameScreen> {
               ),
               Text("Trắc Nghiệm Kiến Thức",
                   style: GoogleFonts.inter(
-                      fontSize: 20.sp,
+                      fontSize: 30.sp,
                       color: const Color.fromRGBO(0, 41, 255, 1),
                       fontWeight: FontWeight.w900)),
               IconButton(
@@ -54,7 +54,7 @@ class GameScreenState extends State<GameScreen> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 20.w),
+            padding: EdgeInsets.only(left: 150.w, right: 150.w, bottom: 20.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -95,71 +95,36 @@ class GameScreenState extends State<GameScreen> {
             ),
           ),
           Padding(
-              padding: EdgeInsets.fromLTRB(63.w, 2.h, 63.w, 0.h),
-              child: const Divider(
-                color: Color.fromRGBO(0, 0, 0, 1),
+              padding: EdgeInsets.fromLTRB(63.w, 50.h, 63.w, 25.h),
+              child: Divider(
+                color: const Color.fromRGBO(0, 0, 0, 1),
+                height: 2.h,
               )),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true)
-                    .pushNamed(SingleGameScreen.route);
-              },
-              child: const Text(
-                "Chơi đơn",
-                style: TextStyle(color: Color.fromRGBO(64, 82, 238, 1)),
-              ),
-              style: ElevatedButton.styleFrom(
-                  primary: const Color.fromRGBO(169, 255, 139, 1),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 83.h, vertical: 7.w),
-                  textStyle: GoogleFonts.inter(
-                    fontSize: 32.sp,
-                  ),
-                  shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                          color: Color.fromRGBO(54, 237, 215, 1)),
-                      borderRadius: BorderRadius.circular(24.w)))),
           Padding(
-              padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 0.w),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Thứ hạng"),
-                  Image.asset("assets/images/components/ic_reward_no_1.png"),
-                ],
-              )),
-          Text(
-            "Điểm cao nhất: 1000",
-            style: GoogleFonts.inter(fontSize: 14.sp),
+            padding: EdgeInsets.only(top: 15.h),
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pushNamed(SingleGameScreen.route);
+                },
+                child: const Text(
+                  "Thử Thách",
+                  style: TextStyle(color: Color.fromRGBO(64, 82, 238, 1)),
+                ),
+                style: ElevatedButton.styleFrom(
+                    primary: const Color.fromRGBO(169, 255, 139, 1),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 83.h, vertical: 7.w),
+                    textStyle: GoogleFonts.inter(
+                      fontSize: 32.sp,
+                    ),
+                    shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            color: Color.fromRGBO(54, 237, 215, 1)),
+                        borderRadius: BorderRadius.circular(24.w)))),
           ),
           Padding(
-              padding: EdgeInsets.fromLTRB(63.w, 2.h, 63.w, 0.h),
-              child: const Divider(
-                color: Color.fromRGBO(0, 0, 0, 1),
-              )),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.of(context, rootNavigator: true)
-                    .pushNamed(ChallengerGameScreen.route);
-              },
-              child: Text(
-                "Thách đấu",
-                style: GoogleFonts.inter(
-                    color: const Color.fromRGBO(238, 64, 64, 1)),
-              ),
-              style: ElevatedButton.styleFrom(
-                  primary: const Color.fromRGBO(244, 207, 186, 1),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 83.w, vertical: 7.w),
-                  textStyle: TextStyle(
-                    fontSize: 32.w,
-                  ),
-                  shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                          color: Color.fromRGBO(54, 237, 215, 1)),
-                      borderRadius: BorderRadius.circular(24.w)))),
-          Padding(
-              padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 0.w),
+              padding: EdgeInsets.only(bottom: 5.h),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -169,7 +134,50 @@ class GameScreenState extends State<GameScreen> {
               )),
           Text(
             "Điểm cao nhất: 1000",
-            style: GoogleFonts.inter(fontSize: 14.sp),
+            style: GoogleFonts.inter(fontSize: 25.sp),
+          ),
+          Padding(
+              padding: EdgeInsets.fromLTRB(63.w, 50.h, 63.w, 25.h),
+              child: Divider(
+                color: const Color.fromRGBO(0, 0, 0, 1),
+                height: 2.h,
+              )),
+          Padding(
+            padding: EdgeInsets.only(top: 15.h),
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true)
+                      .pushNamed(ChallengerGameScreen.route);
+                },
+                child: Text(
+                  "Thách đấu",
+                  style: GoogleFonts.inter(
+                      color: const Color.fromRGBO(238, 64, 64, 1)),
+                ),
+                style: ElevatedButton.styleFrom(
+                    primary: const Color.fromRGBO(244, 207, 186, 1),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 83.w, vertical: 7.w),
+                    textStyle: TextStyle(
+                      fontSize: 32.w,
+                    ),
+                    shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                            color: Color.fromRGBO(54, 237, 215, 1)),
+                        borderRadius: BorderRadius.circular(24.w)))),
+          ),
+          Padding(
+              padding: EdgeInsets.only(bottom: 5.h),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Thứ hạng"),
+                  Image.asset("assets/images/components/ic_reward_no_1.png"),
+                ],
+              )),
+          Text(
+            "Điểm cao nhất: 1000",
+            style: GoogleFonts.inter(fontSize: 25.sp),
           ),
         ],
       )),

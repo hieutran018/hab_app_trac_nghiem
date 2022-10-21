@@ -10,8 +10,8 @@ class FlashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+    var width = 720.0;
+    var height = 1280.0;
     return SafeArea(
       child: ScreenUtilInit(
           designSize: Size(width, height),

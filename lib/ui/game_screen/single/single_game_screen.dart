@@ -32,13 +32,13 @@ class SingleGameScreenState extends State<SingleGameScreen> {
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(61.w, 12.h, 0.w, 0.h),
+                      padding: EdgeInsets.fromLTRB(0.w, 12.h, 0.w, 0.h),
                       child: Container(
-                        width: 306.w,
-                        height: 43.w,
+                        width: 400.w,
+                        height: 43.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.w),
                           color: const Color.fromRGBO(169, 255, 139, 1),
@@ -49,7 +49,7 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                           child: Text(
                             'Chơi Đơn',
                             style: GoogleFonts.inter(
-                              fontSize: 32.h,
+                              fontSize: 32.sp,
                               fontWeight: FontWeight.w600,
                               color: const Color.fromRGBO(64, 82, 238, 1),
                             ),
@@ -57,18 +57,6 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                         ),
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return const RolesSingleGame();
-                          },
-                        );
-                      },
-                      icon:
-                          Image.asset("assets/images/components/ic_rules.png"),
-                    )
                   ],
                 ),
                 Padding(
@@ -77,7 +65,7 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        width: 130.w,
+                        width: 135.w,
                         height: 30.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.w),
@@ -95,7 +83,7 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                         ),
                       ),
                       Container(
-                        width: 130.w,
+                        width: 135.w,
                         height: 30.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.w),
@@ -114,19 +102,21 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(6.w, 0.w, 6.w, 0.h),
+                  padding: EdgeInsets.fromLTRB(6.w, 5.h, 6.w, 0.h),
                   child: Column(
                     children: [
                       Container(
-                        width: 416.w,
-                        height: 600.h,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height <= 1280.h
+                            ? 850.h
+                            : 950.h,
                         color: const Color.fromARGB(255, 236, 234, 234),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              width: 300.w,
-                              height: 40.h,
+                              width: 400.w,
+                              height: 60.h,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.w),
                                 color: Colors.white,
@@ -136,20 +126,24 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                               ),
                               child: Padding(
                                 padding:
-                                    EdgeInsets.fromLTRB(3.w, 5.w, 3.w, 3.w),
+                                    EdgeInsets.fromLTRB(3.w, 10.h, 3.w, 10.h),
                                 child: Text(
-                                  "NGƯỜI CHƠI DẪN ĐẦU",
+                                  "NGƯỜI CHƠI THÁCH ĐẤU",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      fontSize: 20.w,
+                                      fontSize: 32.sp,
                                       color: const Color.fromRGBO(255, 0, 0, 1),
                                       fontWeight: FontWeight.w900),
                                 ),
                               ),
                             ),
-                            Expanded(
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height <= 1280.h
+                                      ? 770.h
+                                      : 870.h,
                               child: ListView.builder(
-                                  // physics: const NeverScrollableScrollPhysics(),
+                                  //physics: const NeverScrollableScrollPhysics(),
                                   padding: EdgeInsets.all(8.w),
                                   itemCount: 10,
                                   itemBuilder:
@@ -164,34 +158,67 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                                               255, 0, 243, 182),
                                         ),
                                         child: SizedBox(
-                                            width: 200.w,
-                                            height: 70.w,
+                                            width: 300.w,
+                                            height: 100.h,
                                             child: Row(
                                               children: [
-                                                SizedBox(width: 5.w),
-                                                Image.asset(
-                                                    "assets/images/components/ic_reward_no_1.png"),
-                                                SizedBox(width: 5.w),
-                                                Image.asset(
-                                                    "assets/images/components/avatar.png"),
-                                                SizedBox(width: 5.w),
-                                                Text(
-                                                  "Trần Dương Chí Hiếu",
-                                                  style: GoogleFonts.inter(
-                                                    fontSize: 18.w,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: const Color.fromRGBO(
-                                                        255, 122, 0, 1),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 10.w),
+                                                  child: index == 0
+                                                      ? SizedBox(
+                                                          width: 60.w,
+                                                          child: Image.asset(
+                                                            "assets/images/components/ic_reward_no_1.png",
+                                                            height: 50.h,
+                                                            width: 50.w,
+                                                          ),
+                                                        )
+                                                      : SizedBox(
+                                                          width: 50.w,
+                                                          child: Text(
+                                                            "${index + 1}",
+                                                            style: GoogleFonts
+                                                                .inter(
+                                                                    fontSize:
+                                                                        32.sp),
+                                                          ),
+                                                        ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 10.w),
+                                                  child: Image.asset(
+                                                      "assets/images/components/avatar.png"),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 10.w),
+                                                  child: Text(
+                                                    "Trần Dương Chí Hiếu",
+                                                    style: GoogleFonts.inter(
+                                                      fontSize: 20.sp,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              255, 122, 0, 1),
+                                                    ),
                                                   ),
                                                 ),
-                                                SizedBox(width: 40.w),
-                                                Text(
-                                                  "100",
-                                                  style: GoogleFonts.inter(
-                                                    fontSize: 18.w,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: const Color.fromRGBO(
-                                                        255, 122, 0, 1),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 250.w),
+                                                  child: Text(
+                                                    "100",
+                                                    style: GoogleFonts.inter(
+                                                      fontSize: 18.w,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              255, 122, 0, 1),
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -203,36 +230,32 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                           ],
                         ),
                       ),
-                      Padding(
-                          padding: EdgeInsets.fromLTRB(49.w, 5.h, 49.w, 10.h),
-                          child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context, rootNavigator: true)
-                                    .pushNamed(
-                                        SelectTopicSingleGameScreen.route);
-                              },
-                              child: const Text(
-                                "Chơi",
-                                style: TextStyle(
-                                    color: Color.fromRGBO(255, 255, 255, 1)),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                  primary:
-                                      const Color.fromRGBO(26, 103, 246, 1),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 83.w, vertical: 7.w),
-                                  textStyle: TextStyle(
-                                    fontSize: 32.w,
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(255, 255, 255, 1)),
-                                      borderRadius:
-                                          BorderRadius.circular(24.w))))),
                     ],
                   ),
                 ),
+                Padding(
+                    padding: EdgeInsets.fromLTRB(49.w, 5.h, 49.w, 10.h),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context, rootNavigator: true)
+                              .pushNamed(SelectTopicSingleGameScreen.route);
+                        },
+                        child: const Text(
+                          "Chơi",
+                          style: TextStyle(
+                              color: Color.fromRGBO(255, 255, 255, 1)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            primary: const Color.fromRGBO(26, 103, 246, 1),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 83.w, vertical: 7.w),
+                            textStyle: TextStyle(
+                              fontSize: 32.w,
+                            ),
+                            shape: RoundedRectangleBorder(
+                                side: const BorderSide(
+                                    color: Color.fromRGBO(255, 255, 255, 1)),
+                                borderRadius: BorderRadius.circular(24.w))))),
               ],
             ),
           ),

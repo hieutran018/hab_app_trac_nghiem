@@ -29,7 +29,7 @@ class NotificationScreenState extends State<NotificationScreen> {
                 padding: EdgeInsets.only(top: 10.w),
                 child: Container(
                   width: 200.w,
-                  height: 30.w,
+                  height: 30.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.w),
                     color: const Color.fromRGBO(66, 194, 255, 1),
@@ -61,33 +61,34 @@ class NotificationScreenState extends State<NotificationScreen> {
                       child: Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(13.w, 0.w, 0.w, 0.w),
+                            padding: EdgeInsets.only(left: 15.w),
                             child: CircleAvatar(
                               child: SvgPicture.asset(
                                   "assets/images/components/noti_friend.svg"),
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(8.w, 0.w, 8.w, 0.w),
+                              padding: EdgeInsets.only(left: 15.w),
                               child: Container(
                                 color: const Color.fromRGBO(255, 255, 255, 1),
                                 height: 50.w,
-                                width: 350.w,
-                                child: RichText(
-                                  text: TextSpan(children: [
-                                    TextSpan(
-                                        text: "Trần Dương Chí Hiếu",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 20.w)),
-                                    TextSpan(
-                                        text:
-                                            " đã gửi cho bạn lời mời kết bạn.",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 20.w)),
-                                  ]),
+                                child: SizedBox(
+                                  child: RichText(
+                                    text: TextSpan(children: [
+                                      TextSpan(
+                                          text: "Trần Dương Chí Hiếu",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 20.w)),
+                                      TextSpan(
+                                          text:
+                                              " đã gửi cho bạn lời mời kết bạn.",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20.w)),
+                                    ]),
+                                  ),
                                 ),
                               ))
                         ],

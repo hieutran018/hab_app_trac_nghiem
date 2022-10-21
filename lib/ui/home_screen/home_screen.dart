@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/ui/new_screen/news_detail_screen.dart';
-import 'package:stroke_text/stroke_text.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,21 +18,20 @@ class HomeScreenState extends State<HomeScreen> {
         Padding(
           padding: EdgeInsets.fromLTRB(6.w, 16.h, 6.w, 0.h),
           child: Container(
-            height: 50.h,
-            color: const Color.fromRGBO(0, 240, 255, 1),
+            height: 70.h,
+            color: const Color.fromRGBO(0, 115, 255, 1),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                       padding: EdgeInsets.fromLTRB(18.w, 13.h, 0.w, 13.h),
-                      child: StrokeText(
-                        text: 'Tin mới nhất',
-                        textStyle: TextStyle(
-                          fontSize: 20.0.sp,
-                          fontWeight: FontWeight.w400,
+                      child: Text(
+                        'Tin mới nhất',
+                        style: GoogleFonts.inter(
+                          fontSize: 25.sp,
+                          fontWeight: FontWeight.w600,
                           color: const Color.fromRGBO(255, 255, 255, 1),
                         ),
-                        strokeColor: const Color.fromARGB(255, 255, 255, 255),
                       )),
                   // Padding(
                   //   padding: EdgeInsets.fromLTRB(0.w, 16.w, 8.w, 16.w),
@@ -57,7 +55,7 @@ class HomeScreenState extends State<HomeScreen> {
                   child: Row(
                     children: [
                       SizedBox(
-                          height: 450.h,
+                          height: 480.h,
                           child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
@@ -73,17 +71,23 @@ class HomeScreenState extends State<HomeScreen> {
                                     width: MediaQuery.of(context).size.width -
                                         20.w,
                                     child: Container(
-                                        width: 400.w,
+                                        width:
+                                            MediaQuery.of(context).size.width,
                                         color: const Color.fromRGBO(
                                             217, 217, 217, 1),
                                         child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.fromLTRB(
                                                   5.w, 5.w, 5.w, 0.w),
                                               child: Image.asset(
                                                 "assets/images/thumbnail/thumbnail_news_1.png",
-                                                height: 300.h,
+                                                height: 340.h,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
                                                 fit: BoxFit.fill,
                                               ),
                                             ),
@@ -91,11 +95,12 @@ class HomeScreenState extends State<HomeScreen> {
                                               padding: EdgeInsets.fromLTRB(
                                                   5.w, 5.w, 5.w, 0.w),
                                               child: Text(
-                                                "Trạm Thiên Cung cân bằng nhiệt thế nào ở độ cao...",
-                                                style: TextStyle(
-                                                  fontSize: 17.w,
+                                                "Trạm Thiên Cung cân bằng nhiệt thế nào ở độ cao 400 km?",
+                                                style: GoogleFonts.inder(
+                                                  fontSize: 25.sp,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
-                                                textAlign: TextAlign.left,
+                                                textAlign: TextAlign.start,
                                               ),
                                             ),
                                             Padding(
@@ -107,7 +112,7 @@ class HomeScreenState extends State<HomeScreen> {
                                                       padding:
                                                           EdgeInsets.fromLTRB(
                                                               5.w,
-                                                              40.h,
+                                                              10.h,
                                                               5.w,
                                                               0.h),
                                                       child: RichText(
@@ -146,37 +151,36 @@ class HomeScreenState extends State<HomeScreen> {
         Padding(
           padding: EdgeInsets.fromLTRB(6.w, 16.h, 6.w, 0.h),
           child: Container(
-            height: 50.h,
-            color: const Color.fromRGBO(0, 240, 255, 1),
+            height: 70.h,
+            color: const Color.fromRGBO(0, 115, 255, 1),
             child: Row(children: [
               Padding(
                   padding: EdgeInsets.fromLTRB(18.w, 13.h, 0.w, 13.h),
-                  child: StrokeText(
-                    text: 'Bảng xếp hạng người chơi',
-                    textStyle: GoogleFonts.inter(
-                      fontSize: 20.0.sp,
-                      fontWeight: FontWeight.w400,
+                  child: Text(
+                    'Bảng xếp hạng người chơi',
+                    style: GoogleFonts.inter(
+                      fontSize: 25.sp,
+                      fontWeight: FontWeight.w600,
                       color: const Color.fromRGBO(255, 255, 255, 1),
                     ),
-                    strokeColor: const Color.fromARGB(255, 255, 255, 255),
                   )),
             ]),
           ),
         ),
         Padding(
-          padding: EdgeInsets.fromLTRB(6.w, 0.h, 6.w, 0.h),
+          padding: EdgeInsets.fromLTRB(6.w, 5.h, 6.w, 0.h),
           child: Column(
             children: [
               Container(
-                width: 416.w,
-                height: 600.h,
+                width: MediaQuery.of(context).size.width,
+                height: 760.h,
                 color: const Color.fromARGB(255, 236, 234, 234),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      width: 300.w,
-                      height: 40.h,
+                      width: 400.w,
+                      height: 60.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12.w),
                         color: Colors.white,
@@ -185,51 +189,51 @@ class HomeScreenState extends State<HomeScreen> {
                             color: const Color.fromRGBO(255, 0, 0, 1)),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.fromLTRB(3.w, 5.h, 3.w, 3.h),
+                        padding: EdgeInsets.fromLTRB(3.w, 10.h, 3.w, 10.h),
                         child: Text(
                           "NGƯỜI CHƠI THÁCH ĐẤU",
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.inter(
-                              fontSize: 20.sp,
+                          style: TextStyle(
+                              fontSize: 32.sp,
                               color: const Color.fromRGBO(255, 0, 0, 1),
                               fontWeight: FontWeight.w900),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: 550.w,
+                      height: 700.h,
                       child: ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           padding: EdgeInsets.all(8.w),
-                          itemCount: 5,
+                          itemCount: 6,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
-                              padding: EdgeInsets.all(8.w),
+                              padding: EdgeInsets.all(5.w),
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20.w),
                                   color: const Color.fromARGB(255, 0, 243, 182),
                                 ),
                                 child: SizedBox(
-                                    width: 200.w,
-                                    height: 90.h,
+                                    width: 300.w,
+                                    height: 100.h,
                                     child: Row(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.fromLTRB(
-                                              5.w, 0.h, 5.w, 0.h),
+                                          padding: EdgeInsets.only(left: 10.w),
                                           child: Image.asset(
-                                              "assets/images/components/ic_reward_no_1.png"),
+                                            "assets/images/components/ic_reward_no_1.png",
+                                            height: 50.h,
+                                            width: 50.w,
+                                          ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.fromLTRB(
-                                              5.w, 0.h, 5.w, 0.h),
+                                          padding: EdgeInsets.only(left: 10.w),
                                           child: Image.asset(
                                               "assets/images/components/avatar.png"),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.fromLTRB(
-                                              5.w, 0.h, 15.w, 0.h),
+                                          padding: EdgeInsets.only(left: 10.w),
                                           child: Text(
                                             "Trần Dương Chí Hiếu",
                                             style: GoogleFonts.inter(
@@ -240,15 +244,17 @@ class HomeScreenState extends State<HomeScreen> {
                                             ),
                                           ),
                                         ),
-                                        Text(
-                                          "100",
-                                          style: GoogleFonts.inter(
-                                            fontSize: 18.w,
-                                            fontWeight: FontWeight.w600,
-                                            color: const Color.fromRGBO(
-                                                255, 122, 0, 1),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 250.w),
+                                          child: Text(
+                                            "100",
+                                            style: GoogleFonts.inter(
+                                              fontSize: 18.w,
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color.fromRGBO(
+                                                  255, 122, 0, 1),
+                                            ),
                                           ),
-                                          textAlign: TextAlign.right,
                                         ),
                                       ],
                                     )),

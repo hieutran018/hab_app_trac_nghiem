@@ -29,23 +29,26 @@ class NewsScreenState extends State<NewsScreen> {
                 shrinkWrap: true,
                 itemCount: date == "22/09/2022" ? 5 : 10,
                 itemBuilder: (BuildContext context, int index) => Padding(
-                      padding: EdgeInsets.fromLTRB(0.w, 3.w, 3.w, 0.w),
+                      padding: EdgeInsets.fromLTRB(0.w, 3.h, 3.w, 0.h),
                       child: InkWell(
                         onTap: () => Navigator.of(context, rootNavigator: true)
                             .pushNamed(NewsDetailScreen.route),
                         child: SizedBox(
-                            width: 400.w,
+                            width: MediaQuery.of(context).size.width - 20.w,
                             child: Container(
-                                width: 400.w,
+                                width: MediaQuery.of(context).size.width,
                                 color: const Color.fromRGBO(217, 217, 217, 1),
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.fromLTRB(
                                           5.w, 5.w, 5.w, 0.w),
                                       child: Image.asset(
                                         "assets/images/thumbnail/thumbnail_news_1.png",
-                                        height: 350.w,
+                                        height: 340.h,
+                                        width:
+                                            MediaQuery.of(context).size.width,
                                         fit: BoxFit.fill,
                                       ),
                                     ),
@@ -53,11 +56,12 @@ class NewsScreenState extends State<NewsScreen> {
                                       padding: EdgeInsets.fromLTRB(
                                           5.w, 5.w, 5.w, 0.w),
                                       child: Text(
-                                        "Trạm Thiên Cung cân bằng nhiệt thế nào ở độ cao...",
-                                        style: TextStyle(
-                                          fontSize: 17.w,
+                                        "Trạm Thiên Cung cân bằng nhiệt thế nào ở độ cao 400 km?",
+                                        style: GoogleFonts.inder(
+                                          fontSize: 25.sp,
+                                          fontWeight: FontWeight.w600,
                                         ),
-                                        textAlign: TextAlign.center,
+                                        textAlign: TextAlign.start,
                                       ),
                                     ),
                                     Padding(
@@ -67,20 +71,20 @@ class NewsScreenState extends State<NewsScreen> {
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.fromLTRB(
-                                                  5.w, 40.w, 5.w, 0.w),
+                                                  5.w, 10.h, 5.w, 0.h),
                                               child: RichText(
                                                 text: TextSpan(children: [
                                                   WidgetSpan(
                                                     child: Icon(
                                                         Icons
                                                             .calendar_month_rounded,
-                                                        size: 20.w),
+                                                        size: 20.sp),
                                                   ),
                                                   TextSpan(
-                                                      text: date,
-                                                      style: TextStyle(
+                                                      text: "20/09/2022",
+                                                      style: GoogleFonts.inter(
                                                           color: Colors.black,
-                                                          fontSize: 20.w)),
+                                                          fontSize: 20.sp)),
                                                 ]),
                                               ),
                                             )
