@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class NewsDetailScreen extends StatefulWidget {
@@ -15,8 +16,8 @@ class NewsDetailScreenState extends State<NewsDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromRGBO(66, 194, 255, 1),
-          leading: const BackButton(color: Color.fromRGBO(255, 255, 255, 1)),
+          backgroundColor: ColorApp.lightBlue5125,
+          leading: const BackButton(color: ColorApp.white),
           title: Image.asset(
             "assets/images/components/ic_logo_hab.png",
             width: 45.w,
@@ -39,52 +40,54 @@ class NewsDetailScreenState extends State<NewsDetailScreen> {
                 padding: EdgeInsets.fromLTRB(2.w, 2.w, 2.w, 0.w),
                 child: Container(
                   height: 70.w,
-                  color: const Color.fromRGBO(0, 240, 255, 1),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        StrokeText(
-                          text: 'Tin tức khoa học',
-                          textStyle: GoogleFonts.inter(
-                            fontSize: 24.w,
-                            fontWeight: FontWeight.w400,
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                          ),
-                          strokeColor: const Color.fromARGB(255, 255, 255, 255),
-                        )
-                      ]),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(2.w, 5.w, 2.w, 0.w),
-                child: Text(
-                  "Trạm Thiên Cung cân bằng nhiệt thế nào ở độ cao 400 km?",
-                  style: GoogleFonts.inter(
-                    fontSize: 20.w,
-                    fontWeight: FontWeight.w600,
-                    color: const Color.fromRGBO(0, 0, 0, 1),
+                  color: ColorApp.blue,
+                  child: Container(
+                    height: 70.h,
+                    color: ColorApp.blue,
+                    child: Center(
+                      child: Text(
+                        'Tin tức khoa học',
+                        style: GoogleFonts.inter(
+                          fontSize: 25.sp,
+                          fontWeight: FontWeight.w600,
+                          color: ColorApp.white,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(2.w, 5.w, 2.w, 0.w),
+                padding: EdgeInsets.fromLTRB(5.w, 5.h, 5.w, 5.h),
+                child: Text(
+                  "Trạm Thiên Cung cân bằng nhiệt thế nào ở độ cao 400 km?",
+                  style: GoogleFonts.inter(
+                    fontSize: 35.sp,
+                    fontWeight: FontWeight.w600,
+                    color: ColorApp.black,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(5.w, 5.h, 5.w, 5.h),
                 child: const Text("Nguồn: VN Express"),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(2.w, 5.w, 2.w, 20.w),
+                padding: EdgeInsets.fromLTRB(5.w, 5.h, 5.w, 5.h),
                 child: RichText(
                   text: TextSpan(children: [
                     WidgetSpan(
-                      child: Icon(Icons.calendar_month_rounded, size: 20.w),
+                      child: Icon(Icons.calendar_month_rounded, size: 20.sp),
                     ),
                     TextSpan(
                         text: "20/09/2022",
-                        style: TextStyle(color: Colors.black, fontSize: 20.w)),
+                        style:
+                            TextStyle(color: ColorApp.black, fontSize: 20.sp)),
                   ]),
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.fromLTRB(2.w, 0.w, 2.w, 0.w),
+                  padding: EdgeInsets.fromLTRB(5.w, 5.h, 5.w, 5.h),
                   child: Column(
                     children: [
                       const Text(

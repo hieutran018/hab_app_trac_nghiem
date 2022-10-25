@@ -4,17 +4,19 @@ import 'package:hab_app_trac_nghiem/app/shared_preferences.dart';
 import 'package:hab_app_trac_nghiem/models/user.dart';
 import 'package:hab_app_trac_nghiem/provider/authprovider.dart';
 import 'package:hab_app_trac_nghiem/provider/user_provider.dart';
+import 'package:hab_app_trac_nghiem/ui/friend_screen/friend_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/challenger_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/playing_game_screen_challenger_mode.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/request_play_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/select_topic.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/playing_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/select_topic.dart';
 import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 
 import 'package:hab_app_trac_nghiem/ui/new_screen/news_detail_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/notification_screen/notification_screen.dart';
-import 'package:hab_app_trac_nghiem/ui/request_friend_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/friend_screen/request_friend_screen.dart';
 
 import 'package:hab_app_trac_nghiem/ui/setting_screen/info_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/single_game_screen.dart';
@@ -47,38 +49,33 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider())
       ],
-      child: ScreenUtilInit(
-          designSize: const Size(428, 926),
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: (context, child) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: const FlashScreen(),
-              routes: {
-                '/login': (context) => const LoginScreen(),
-                '/register': (context) => const RegisterScreen(),
-                '/main': (context) => const MainScreen(),
-                '/notification': (context) => const NotificationScreen(),
-                NewsDetailScreen.route: (context) => const NewsDetailScreen(),
-                SingleGameScreen.route: (context) => const SingleGameScreen(),
-                InfoScreen.route: (context) => const InfoScreen(),
-                RequestFriendScreen.route: (context) =>
-                    const RequestFriendScreen(),
-                SelectTopicSingleGameScreen.route: (context) =>
-                    const SelectTopicSingleGameScreen(),
-                PlayingGameScreen.route: (context) => const PlayingGameScreen(),
-                ChallengerGameScreen.route: (context) =>
-                    const ChallengerGameScreen(),
-                RequestPlayGameScreen.route: (context) =>
-                    const RequestPlayGameScreen(),
-                SelectTopicChallengerGameScreen.route: (context) =>
-                    const SelectTopicChallengerGameScreen(),
-                PlayingChallengerGameScreen.route: (context) =>
-                    const PlayingChallengerGameScreen(),
-              },
-            );
-          }),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const FlashScreen(),
+        routes: {
+          '/login': (context) => const LoginScreen(),
+          RegisterScreen.route: (context) => const RegisterScreen(),
+          '/main': (context) => const MainScreen(),
+          '/notification': (context) => const NotificationScreen(),
+          NewsDetailScreen.route: (context) => const NewsDetailScreen(),
+          SingleGameScreen.route: (context) => const SingleGameScreen(),
+          InfoScreen.route: (context) => const InfoScreen(),
+          FriendScreen.route: (context) => const FriendScreen(),
+          RequestFriendScreen.route: (context) => const RequestFriendScreen(),
+          SelectTopicSingleGameScreen.route: (context) =>
+              const SelectTopicSingleGameScreen(),
+          PlayingSingleGameScreen.route: (context) =>
+              const PlayingSingleGameScreen(),
+          ChallengerGameScreen.route: (context) => const ChallengerGameScreen(),
+          RequestPlayGameScreen.route: (context) =>
+              const RequestPlayGameScreen(),
+          SelectTopicChallengerGameScreen.route: (context) =>
+              const SelectTopicChallengerGameScreen(),
+          PlayingChallengerGameScreen.route: (context) =>
+              const PlayingChallengerGameScreen(),
+          GameScreen.route: (context) => const GameScreen(),
+        },
+      ),
     );
   }
 }

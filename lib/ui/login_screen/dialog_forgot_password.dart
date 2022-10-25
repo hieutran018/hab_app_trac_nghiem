@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 
 import 'dialog_fail_verification.dart';
 import 'dialog_success_verification.dart';
@@ -18,64 +21,69 @@ class _ForgotPasswordDialogState extends State<ForgotPasswordDialog> {
         borderRadius: BorderRadius.circular(30),
       ),
       title: Container(
+        height: 80.h,
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.white,
+            color: ColorApp.white,
           ),
-          color: Colors.lightBlue,
+          color: ColorApp.blue,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Center(
           child: Text(
             "Quên mật khẩu",
-            style: TextStyle(color: Colors.white),
+            style: GoogleFonts.inter(color: ColorApp.white, fontSize: 50.sp),
           ),
         ),
       ),
       content: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 20.0),
+              padding: EdgeInsets.only(top: 20.0.h),
               child: Text(
-                "Vui lòng cung cấp địa chỉ email\n"
-                "bạn sử dụng đăng ký tài khoản,\n"
-                "chúng tôi sẽ gửi mã xác nhận\n"
-                "đến tài khoản email của bạn",
+                "Vui lòng cung cấp địa chỉ email bạn sử dụng đăng ký tài khoản, chúng tôi sẽ gửi mã xác nhận đến tài khoản email của bạn",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
+                style: GoogleFonts.inter(
+                  fontSize: 30.sp,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20,bottom: 20.0),
-              child: TextField(
+              padding: EdgeInsets.only(top: 20.h, bottom: 20.0.h),
+              child: TextFormField(
                 decoration: InputDecoration(
+                  labelStyle:
+                      const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  labelText: "Email",
+                  hintText: "Nhập email của bạn...",
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderRadius: BorderRadius.circular(24.0.w),
                   ),
-                  hintText: 'Email',
-                  labelText: 'Email',
+                  filled: true,
+                  fillColor: Color.fromRGBO(255, 255, 255, 0.49.w),
+                  isDense: true,
+                  contentPadding: EdgeInsets.fromLTRB(20.w, 15.h, 20.w, 15.h),
                 ),
               ),
             ),
             TextButton(
                 onPressed: () {
-                  _buildFailVerificationDialog();
+                  _buildSuccessVerificationDialog();
                 },
                 child: Container(
-                  width: 150,
-                  height: 50,
+                  width: 300.w,
+                  height: 100.h,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                    color: Colors.orangeAccent,
+                    color: ColorApp.lightBlue0121,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Center(
                     child: Text(
                       "Xác nhận",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: GoogleFonts.inter(
+                          color: ColorApp.white, fontSize: 35.sp),
                     ),
                   ),
                 ))
@@ -85,17 +93,19 @@ class _ForgotPasswordDialogState extends State<ForgotPasswordDialog> {
     );
   }
 
-  _buildSuccessVerificationDialog(){
-    return showDialog(context: context, builder: (BuildContext context){
-      return SuccessVerificationDialog();
-    });
+  _buildSuccessVerificationDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SuccessVerificationDialog();
+        });
   }
 
-  _buildFailVerificationDialog(){
-    return showDialog(context: context, builder: (BuildContext context){
-      return FailVerificationDialog();
-    });
-
+  _buildFailVerificationDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return FailVerificationDialog();
+        });
   }
-
 }

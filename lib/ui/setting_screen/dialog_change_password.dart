@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 
 import 'package:hab_app_trac_nghiem/ui/setting_screen/dialog_success_change_password.dart';
 
@@ -19,14 +20,14 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: SizedBox(
-        height: 50,
-        width: 30,
+        height: 50.h,
+        width: 30.w,
         child: Center(
           child: Text(
             "Đổi mật khẩu",
             style: TextStyle(
-              color: const Color.fromRGBO(33, 150, 243, 1),
-              fontSize: 35.w,
+              color: ColorApp.blue,
+              fontSize: 35.sp,
             ),
           ),
         ),
@@ -88,28 +89,24 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                 ),
               ),
               TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  _buildFailDialog();
-                },
-                child: Container(
-                  height: 60.w,
-                  width: 250.w,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                    color: Colors.orangeAccent,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Đổi mật khẩu",
-                      style: GoogleFonts.inter(
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          fontSize: 30.w),
+                  onPressed: () {
+                    _buildFailDialog();
+                  },
+                  child: Container(
+                    width: 300.w,
+                    height: 100.h,
+                    decoration: BoxDecoration(
+                      color: ColorApp.lightBlue0121,
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ),
-                ),
-              ),
+                    child: Center(
+                      child: Text(
+                        "Đổi mật khẩu",
+                        style:
+                            TextStyle(color: ColorApp.white, fontSize: 35.sp),
+                      ),
+                    ),
+                  ))
             ],
           ),
         ),
@@ -117,10 +114,12 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
     );
   }
 
-  _buildForgotPasswordDialog(){
-    return showDialog(context: context, builder: (BuildContext context){
-      return ForgotPasswordDialog();
-    });
+  _buildForgotPasswordDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return ForgotPasswordDialog();
+        });
   }
 
   _buildSuccessDialog() {

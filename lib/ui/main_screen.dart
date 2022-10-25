@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hab_app_trac_nghiem/models/news_category.dart';
-import 'package:hab_app_trac_nghiem/provider/news_category.dart';
+import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/friend_screen/friend_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/home_screen/home_screen.dart';
@@ -64,7 +62,7 @@ class MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(66, 194, 255, 1),
+        backgroundColor: ColorApp.lightBlue5125,
         leading: Padding(
           padding: EdgeInsets.fromLTRB(10.w, 10.w, 0.w, 10.w),
           child: Image.asset("assets/images/components/ic_logo_hab.png"),

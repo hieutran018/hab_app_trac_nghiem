@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/select_topic.dart';
 
 class RequestPlayGameScreen extends StatefulWidget {
@@ -15,8 +16,7 @@ class RequestPlayGameScreenState extends State<RequestPlayGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: Theme.of(context).copyWith(
-          scaffoldBackgroundColor: const Color.fromRGBO(66, 194, 255, 1)),
+      data: Theme.of(context).copyWith(scaffoldBackgroundColor: ColorApp.blue),
       child: Scaffold(
         body: SafeArea(
           child: Column(
@@ -48,7 +48,7 @@ class RequestPlayGameScreenState extends State<RequestPlayGameScreen> {
                             child: Text(
                               "Phần chơi THÁCH ĐẤU",
                               style: GoogleFonts.inter(
-                                  fontSize: 20.w,
+                                  fontSize: 35.sp,
                                   fontWeight: FontWeight.w400,
                                   color:
                                       const Color.fromRGBO(255, 255, 255, 1)),
@@ -62,7 +62,7 @@ class RequestPlayGameScreenState extends State<RequestPlayGameScreen> {
                             child: Text(
                               "Chọn đối thủ nào <:",
                               style: GoogleFonts.inter(
-                                  fontSize: 25.w,
+                                  fontSize: 25.sp,
                                   fontWeight: FontWeight.w400,
                                   color:
                                       const Color.fromRGBO(255, 255, 255, 1)),
@@ -82,57 +82,78 @@ class RequestPlayGameScreenState extends State<RequestPlayGameScreen> {
                           topLeft: Radius.circular(12.w),
                           topRight: Radius.circular(12.w)),
                     ),
-                    child: ListView.builder(
-                        // physics: const NeverScrollableScrollPhysics(),
-                        padding: EdgeInsets.all(8.w),
-                        itemCount: 10,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: EdgeInsets.all(5.w),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.w),
-                                color: const Color.fromARGB(255, 0, 243, 182),
-                              ),
-                              child: SizedBox(
-                                  width: 200.w,
-                                  height: 70.w,
-                                  child: Row(
-                                    children: [
-                                      SizedBox(width: 5.w),
-                                      Image.asset(
-                                          "assets/images/components/ic_reward_no_1.png"),
-                                      SizedBox(width: 5.w),
-                                      Image.asset(
-                                          "assets/images/components/avatar.png"),
-                                      SizedBox(width: 5.w),
-                                      Text(
-                                        "Trần Dương Chí Hiếu",
-                                        style: GoogleFonts.inter(
-                                          fontSize: 18.w,
-                                          fontWeight: FontWeight.w600,
-                                          color: const Color.fromRGBO(
-                                              255, 122, 0, 1),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height <= 1280.h
+                          ? 770.h
+                          : 870.h,
+                      child: ListView.builder(
+                          //physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.all(8.w),
+                          itemCount: 10,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: EdgeInsets.all(5.w),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20.w),
+                                  color: const Color.fromARGB(255, 0, 243, 182),
+                                ),
+                                child: SizedBox(
+                                    width: 300.w,
+                                    height: 100.h,
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 10.w),
+                                          child: Image.asset(
+                                              "assets/images/components/avatar.png"),
                                         ),
-                                      ),
-                                      SizedBox(width: 40.w),
-                                      IconButton(
-                                        onPressed: () {
-                                          Navigator.of(context,
-                                                  rootNavigator: true)
-                                              .pushNamed(
-                                                  SelectTopicChallengerGameScreen
-                                                      .route);
-                                        },
-                                        icon: Image.asset(
-                                            'assets/images/components/knight.png'),
-                                        iconSize: 50.w,
-                                      ),
-                                    ],
-                                  )),
-                            ),
-                          );
-                        }),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 10.w),
+                                          child: Text(
+                                            "Trần Dương Chí Hiếu",
+                                            style: GoogleFonts.inter(
+                                              fontSize: 20.sp,
+                                              fontWeight: FontWeight.w700,
+                                              color: const Color.fromRGBO(
+                                                  255, 122, 0, 1),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 170.w),
+                                          child: Container(
+                                            height: 70.h,
+                                            decoration: BoxDecoration(
+                                                color: Colors.amber[900],
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(24.w))),
+                                            child: TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(
+                                                    context,
+                                                    rootNavigator: true,
+                                                  ).pushNamed(
+                                                    SelectTopicChallengerGameScreen
+                                                        .route,
+                                                  );
+                                                },
+                                                child: Text("Thách đấu",
+                                                    style: GoogleFonts.inter(
+                                                        fontSize: 20.sp,
+                                                        color: const Color
+                                                                .fromRGBO(
+                                                            255, 255, 255, 1),
+                                                        fontWeight:
+                                                            FontWeight.w600))),
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                              ),
+                            );
+                          }),
+                    ),
                   ),
                 ),
               )

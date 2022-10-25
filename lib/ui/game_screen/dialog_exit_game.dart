@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/game_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/single/single_game_screen.dart';
 
-class SuccessVerificationDialog extends StatefulWidget {
-  const SuccessVerificationDialog({Key? key}) : super(key: key);
+class ExitGameDialog extends StatefulWidget {
+  const ExitGameDialog({Key? key}) : super(key: key);
 
   @override
-  State<SuccessVerificationDialog> createState() =>
-      _SuccessVerificationDialog();
+  State<ExitGameDialog> createState() => ExitGameDialogState();
 }
 
-class _SuccessVerificationDialog extends State<SuccessVerificationDialog> {
+class ExitGameDialogState extends State<ExitGameDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -29,7 +30,7 @@ class _SuccessVerificationDialog extends State<SuccessVerificationDialog> {
         ),
         child: Center(
           child: Text(
-            "Thông báo",
+            "Tạm ngưng",
             style: TextStyle(color: ColorApp.white, fontSize: 50.sp),
           ),
         ),
@@ -43,7 +44,7 @@ class _SuccessVerificationDialog extends State<SuccessVerificationDialog> {
               padding: EdgeInsets.only(top: 50.0.h, bottom: 50.h),
               child: Center(
                 child: Text(
-                  "Mã xác nhận đã được gửi đến địa chỉ email của bạn",
+                  "Bạn thật sự muốn ngưng phần chơi?",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.inter(
                     fontSize: 35.sp,
@@ -51,24 +52,41 @@ class _SuccessVerificationDialog extends State<SuccessVerificationDialog> {
                 ),
               ),
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  width: 300.w,
-                  height: 100.h,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 180.w,
+                  height: 70.h,
                   decoration: BoxDecoration(
-                    color: ColorApp.lightBlue0121,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(24.w),
+                    color: ColorApp.lightRed2251,
                   ),
-                  child: Center(
+                  child: TextButton(
                     child: Text(
                       "Xác nhận",
-                      style: TextStyle(color: ColorApp.white, fontSize: 35.sp),
+                      style: GoogleFonts.inter(color: ColorApp.white),
                     ),
+                    onPressed: () {},
                   ),
-                ))
+                ),
+                Container(
+                  width: 180.w,
+                  height: 70.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24.w),
+                    color: ColorApp.lightBlue4121,
+                  ),
+                  child: TextButton(
+                    child: Text(
+                      "Hủy",
+                      style: GoogleFonts.inter(color: ColorApp.white),
+                    ),
+                    onPressed: () {},
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),
