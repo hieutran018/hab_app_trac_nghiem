@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 
 class SuccessDialog extends StatefulWidget {
   const SuccessDialog({Key? key}) : super(key: key);
@@ -12,24 +15,21 @@ class _SuccessDialogState extends State<SuccessDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.blue),
         borderRadius: BorderRadius.circular(30),
       ),
       title: Container(
+        height: 80.h,
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.white,
+            color: ColorApp.white,
           ),
-          color: Colors.lightBlue,
+          color: ColorApp.green3191,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Center(
           child: Text(
             "Thông báo",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 35,
-            ),
+            style: TextStyle(color: ColorApp.white, fontSize: 50.sp),
           ),
         ),
       ),
@@ -38,9 +38,14 @@ class _SuccessDialogState extends State<SuccessDialog> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 50.0, bottom: 50),
-              child: Text(
-                "Thay đổi mật khẩu thành công!",
-                style: TextStyle(fontSize: 20),
+              child: Center(
+                child: Text(
+                  "Thay đổi mật khẩu thành công!",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.inter(
+                    fontSize: 35.sp,
+                  ),
+                ),
               ),
             ),
             TextButton(
@@ -48,17 +53,16 @@ class _SuccessDialogState extends State<SuccessDialog> {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  width: 150,
-                  height: 50,
+                  width: 300.w,
+                  height: 100.h,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                    color: Colors.orangeAccent,
+                    color: ColorApp.lightBlue0121,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Center(
                     child: Text(
                       "Xác nhận",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(color: ColorApp.white, fontSize: 35.sp),
                     ),
                   ),
                 ))

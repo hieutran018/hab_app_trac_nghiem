@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/new_screen/news_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.fromLTRB(6.w, 16.h, 6.w, 0.h),
           child: Container(
             height: 70.h,
-            color: const Color.fromRGBO(0, 115, 255, 1),
+            color: ColorApp.blue,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -30,7 +31,7 @@ class HomeScreenState extends State<HomeScreen> {
                         style: GoogleFonts.inter(
                           fontSize: 25.sp,
                           fontWeight: FontWeight.w600,
-                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          color: ColorApp.white,
                         ),
                       )),
                   // Padding(
@@ -73,8 +74,7 @@ class HomeScreenState extends State<HomeScreen> {
                                     child: Container(
                                         width:
                                             MediaQuery.of(context).size.width,
-                                        color: const Color.fromRGBO(
-                                            217, 217, 217, 1),
+                                        color: ColorApp.lightGrey,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -152,7 +152,7 @@ class HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.fromLTRB(6.w, 16.h, 6.w, 0.h),
           child: Container(
             height: 70.h,
-            color: const Color.fromRGBO(0, 115, 255, 1),
+            color: ColorApp.blue,
             child: Row(children: [
               Padding(
                   padding: EdgeInsets.fromLTRB(18.w, 13.h, 0.w, 13.h),
@@ -161,7 +161,7 @@ class HomeScreenState extends State<HomeScreen> {
                     style: GoogleFonts.inter(
                       fontSize: 25.sp,
                       fontWeight: FontWeight.w600,
-                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      color: ColorApp.white,
                     ),
                   )),
             ]),
@@ -174,7 +174,7 @@ class HomeScreenState extends State<HomeScreen> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 760.h,
-                color: const Color.fromARGB(255, 236, 234, 234),
+                color: ColorApp.lightGrey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -183,10 +183,8 @@ class HomeScreenState extends State<HomeScreen> {
                       height: 60.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12.w),
-                        color: Colors.white,
-                        border: Border.all(
-                            width: 2.w,
-                            color: const Color.fromRGBO(255, 0, 0, 1)),
+                        color: ColorApp.white,
+                        border: Border.all(width: 2.w, color: ColorApp.red),
                       ),
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(3.w, 10.h, 3.w, 10.h),
@@ -195,7 +193,7 @@ class HomeScreenState extends State<HomeScreen> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 32.sp,
-                              color: const Color.fromRGBO(255, 0, 0, 1),
+                              color: ColorApp.red,
                               fontWeight: FontWeight.w900),
                         ),
                       ),
@@ -212,7 +210,7 @@ class HomeScreenState extends State<HomeScreen> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20.w),
-                                  color: const Color.fromARGB(255, 0, 243, 182),
+                                  color: ColorApp.lightBlue,
                                 ),
                                 child: SizedBox(
                                     width: 300.w,
@@ -237,22 +235,20 @@ class HomeScreenState extends State<HomeScreen> {
                                           child: Text(
                                             "Trần Dương Chí Hiếu",
                                             style: GoogleFonts.inter(
-                                              fontSize: 18.w,
+                                              fontSize: 30.sp,
                                               fontWeight: FontWeight.w600,
-                                              color: const Color.fromRGBO(
-                                                  255, 122, 0, 1),
+                                              color: ColorApp.darkBlue,
                                             ),
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(left: 250.w),
+                                          padding: EdgeInsets.only(left: 130.w),
                                           child: Text(
                                             "100",
                                             style: GoogleFonts.inter(
-                                              fontSize: 18.w,
+                                              fontSize: 30.sp,
                                               fontWeight: FontWeight.w600,
-                                              color: const Color.fromRGBO(
-                                                  255, 122, 0, 1),
+                                              color: ColorApp.darkBlue,
                                             ),
                                           ),
                                         ),

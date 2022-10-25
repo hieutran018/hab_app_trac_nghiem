@@ -48,6 +48,8 @@ dependencies:
   flutter_svg:
   flutter_spinkit: ^5.1.0
   circular_countdown_timer:
+  page_transition: ^2.0.9
+  liquid_pull_to_refresh: ^3.0.1
   
 
 dev_dependencies:

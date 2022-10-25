@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/challenger_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/single_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/roles_game.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
+  static String route = "/gamescreen";
 
   @override
   State<GameScreen> createState() => GameScreenState();
@@ -28,9 +30,9 @@ class GameScreenState extends State<GameScreen> {
                 icon: Image.asset("assets/images/components/ic_history.png"),
               ),
               Text("Trắc Nghiệm Kiến Thức",
-                  style: GoogleFonts.inter(
-                      fontSize: 30.sp,
-                      color: const Color.fromRGBO(0, 41, 255, 1),
+                  style: GoogleFonts.inriaSans(
+                      fontSize: 35.sp,
+                      color: ColorApp.blue,
                       fontWeight: FontWeight.w900)),
               IconButton(
                 onPressed: () {
@@ -59,35 +61,30 @@ class GameScreenState extends State<GameScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: 130.w,
-                  height: 30.h,
+                  width: 160.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.w),
                     color: Colors.white,
-                    border: Border.all(
-                        width: 2.w, color: const Color.fromRGBO(5, 0, 255, 1)),
+                    border: Border.all(width: 2.w, color: ColorApp.blue),
                   ),
                   child: Text(
                     "Lượt chơi: 3",
                     style: GoogleFonts.inter(
-                        fontSize: 20.sp,
-                        color: const Color.fromRGBO(5, 0, 255, 1)),
+                        fontSize: 25.sp, color: ColorApp.blue),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Container(
-                  width: 130.w,
-                  height: 30.w,
+                  width: 160.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.w),
-                    color: const Color.fromRGBO(118, 255, 207, 1),
-                    border: Border.all(
-                        width: 2.w,
-                        color: const Color.fromRGBO(118, 255, 70, 1)),
+                    color: ColorApp.white,
+                    border: Border.all(width: 2.w, color: ColorApp.darkGreen),
                   ),
                   child: Text(
                     "01 : 00 : 00",
-                    style: GoogleFonts.inter(fontSize: 20.sp),
+                    style: GoogleFonts.inter(
+                        fontSize: 25.sp, color: ColorApp.darkGreen),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -109,18 +106,16 @@ class GameScreenState extends State<GameScreen> {
                 },
                 child: const Text(
                   "Thử Thách",
-                  style: TextStyle(color: Color.fromRGBO(64, 82, 238, 1)),
+                  style: TextStyle(color: ColorApp.blue6821),
                 ),
                 style: ElevatedButton.styleFrom(
-                    primary: const Color.fromRGBO(169, 255, 139, 1),
+                    primary: ColorApp.lightGreen,
                     padding:
                         EdgeInsets.symmetric(horizontal: 83.h, vertical: 7.w),
                     textStyle: GoogleFonts.inter(
                       fontSize: 32.sp,
                     ),
                     shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            color: Color.fromRGBO(54, 237, 215, 1)),
                         borderRadius: BorderRadius.circular(24.w)))),
           ),
           Padding(
@@ -151,19 +146,16 @@ class GameScreenState extends State<GameScreen> {
                 },
                 child: Text(
                   "Thách đấu",
-                  style: GoogleFonts.inter(
-                      color: const Color.fromRGBO(238, 64, 64, 1)),
+                  style: GoogleFonts.inter(color: ColorApp.red),
                 ),
                 style: ElevatedButton.styleFrom(
-                    primary: const Color.fromRGBO(244, 207, 186, 1),
+                    primary: ColorApp.lightRed,
                     padding:
                         EdgeInsets.symmetric(horizontal: 83.w, vertical: 7.w),
                     textStyle: TextStyle(
                       fontSize: 32.w,
                     ),
                     shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                            color: Color.fromRGBO(54, 237, 215, 1)),
                         borderRadius: BorderRadius.circular(24.w)))),
           ),
           Padding(
