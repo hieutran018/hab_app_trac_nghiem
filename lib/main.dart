@@ -8,13 +8,16 @@ import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/challenger_game_sc
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/playing_game_screen_challenger_mode.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/request_play_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/select_topic.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/playing_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/select_topic.dart';
 import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 
 import 'package:hab_app_trac_nghiem/ui/new_screen/news_detail_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/notification_screen/notification_screen.dart';
-import 'package:hab_app_trac_nghiem/ui/request_friend_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/friend_screen/request_friend_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/setting_screen/history.dart';
+import 'package:hab_app_trac_nghiem/ui/setting_screen/history_detail_single_game.dart';
 
 import 'package:hab_app_trac_nghiem/ui/setting_screen/info_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/single_game_screen.dart';
@@ -69,6 +72,10 @@ class MyApp extends StatelessWidget {
               const SelectTopicChallengerGameScreen(),
           PlayingChallengerGameScreen.route: (context) =>
               const PlayingChallengerGameScreen(),
+          GameScreen.route: (context) => const GameScreen(),
+          HistoryScreen.route: (context) => const HistoryScreen(),
+          HistoryDetailSingleGame.route: (context) =>
+              const HistoryDetailSingleGame(),
         },
       ),
     );
