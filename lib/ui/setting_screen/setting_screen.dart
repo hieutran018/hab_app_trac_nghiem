@@ -86,9 +86,9 @@ class SettingScreenState extends State<SettingScreen> {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 20.w),
-                child: const Icon(
+                child: Icon(
                   Icons.person,
-                  color: Color.fromRGBO(0, 0, 0, 1),
+                  color: const Color.fromRGBO(0, 0, 0, 1),
                   size: 50.w,
                 ),
               ),
