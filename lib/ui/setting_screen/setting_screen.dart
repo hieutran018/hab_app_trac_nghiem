@@ -15,41 +15,47 @@ class SettingScreen extends StatefulWidget {
 }
 
 class SettingScreenState extends State<SettingScreen> {
+  final double icon_size = 70.w;
+  final double text_size = 40.w;
+  final double text_info_size = 40.sp;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
       children: [
         Center(
-          child: Container(
-            width: 240.w,
-            height: 60.h,
-            decoration: BoxDecoration(
-              border: Border.all(color: ColorApp.white),
-              color: ColorApp.blue,
-              borderRadius: BorderRadius.circular(24.w),
-            ),
+          child: Padding(
+            padding: EdgeInsets.only(top: 15.0.h),
             child: Container(
-              padding: EdgeInsets.fromLTRB(0.w, 3.w, 0.w, 3.w),
-              child: Center(
-                child: Text(
-                  "Cài đặt chung",
-                  style:
-                      GoogleFonts.inter(color: ColorApp.white, fontSize: 30.sp),
-                  textAlign: TextAlign.center,
+              width: 300.w,
+              height: 80.h,
+              decoration: BoxDecoration(
+                border: Border.all(color: ColorApp.white),
+                color: ColorApp.blue,
+                borderRadius: BorderRadius.circular(50.w),
+              ),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(0.w, 3.w, 0.w, 3.w),
+                child: Center(
+                  child: Text(
+                    "Cài đặt chung",
+                    style:
+                        GoogleFonts.inter(color: ColorApp.white, fontSize: 40.sp),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 15.h),
+          padding: EdgeInsets.only(top: 15.h,bottom: 8.h ),
           child: Row(
             children: [
               Padding(
                 padding: EdgeInsets.all(8.0.w),
                 child: CircleAvatar(
-                  radius: 50.w,
+                  radius: 100.w,
                 ),
               ),
               Padding(
@@ -59,15 +65,15 @@ class SettingScreenState extends State<SettingScreen> {
                   children: [
                     Text(
                       "Huỳnh Nguyễn Vân Anh",
-                      style: GoogleFonts.inter(fontSize: 30.sp),
+                      style: GoogleFonts.inter(fontSize: text_info_size),
                     ),
                     Text(
                       "ID: 002",
-                      style: GoogleFonts.inter(fontSize: 30.sp),
+                      style: GoogleFonts.inter(fontSize: text_info_size),
                     ),
                     Text(
                       "Xếp hạng: 01",
-                      style: GoogleFonts.inter(fontSize: 30.sp),
+                      style: GoogleFonts.inter(fontSize: text_info_size),
                     ),
                   ],
                 ),
@@ -92,14 +98,14 @@ class SettingScreenState extends State<SettingScreen> {
                 child: Icon(
                   Icons.person,
                   color: ColorApp.black,
-                  size: 50.w,
+                  size: icon_size,
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 20.w),
                 child: Text(
                   "Thông tin cá nhân",
-                  style: TextStyle(fontSize: 25.w, color: ColorApp.black),
+                  style: TextStyle(fontSize:text_size, color: ColorApp.black),
                 ),
               ),
             ],
@@ -121,7 +127,7 @@ class SettingScreenState extends State<SettingScreen> {
                 padding: EdgeInsets.only(left: 20.w),
                 child: Icon(
                   Icons.history,
-                  size: 50.w,
+                  size: icon_size,
                   color: ColorApp.black,
                 ),
               ),
@@ -129,7 +135,7 @@ class SettingScreenState extends State<SettingScreen> {
                 padding: EdgeInsets.only(left: 20.w),
                 child: Text(
                   "Lịch sử trận đấu",
-                  style: TextStyle(fontSize: 25.w, color: ColorApp.black),
+                  style: TextStyle(fontSize: text_size, color: ColorApp.black),
                 ),
               ),
             ],
@@ -150,7 +156,7 @@ class SettingScreenState extends State<SettingScreen> {
                 padding: EdgeInsets.only(left: 20.w),
                 child: Icon(
                   Icons.lock_rounded,
-                  size: 50.w,
+                  size: icon_size,
                   color: ColorApp.black,
                 ),
               ),
@@ -158,7 +164,7 @@ class SettingScreenState extends State<SettingScreen> {
                 padding: EdgeInsets.only(left: 20.w),
                 child: Text(
                   "Đổi mật khẩu",
-                  style: TextStyle(fontSize: 25.w, color: ColorApp.black),
+                  style: TextStyle(fontSize: text_size, color: ColorApp.black),
                 ),
               ),
             ],
@@ -177,7 +183,7 @@ class SettingScreenState extends State<SettingScreen> {
                 padding: EdgeInsets.only(left: 20.w),
                 child: Icon(
                   Icons.logout,
-                  size: 50.w,
+                  size: icon_size,
                   color: ColorApp.black,
                 ),
               ),
@@ -185,7 +191,7 @@ class SettingScreenState extends State<SettingScreen> {
                 padding: EdgeInsets.only(left: 20.w),
                 child: Text(
                   "Đăng xuất",
-                  style: TextStyle(fontSize: 25.w, color: ColorApp.black),
+                  style: TextStyle(fontSize: text_size, color: ColorApp.black),
                 ),
               ),
             ],
