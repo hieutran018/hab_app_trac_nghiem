@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+import 'package:hab_app_trac_nghiem/ui/login_screen/login_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/setting_screen/dialog_change_password.dart';
 
 import 'history.dart';
@@ -176,7 +177,10 @@ class SettingScreenState extends State<SettingScreen> {
           endIndent: 20.w,
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context, rootNavigator: true)
+                .pushNamed(LoginScreen.route);
+          },
           child: Row(
             children: [
               Padding(

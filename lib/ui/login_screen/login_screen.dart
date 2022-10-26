@@ -5,9 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/dialog_forgot_password.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/register_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+  static String route = '/loginscreen';
   @override
   State<LoginScreen> createState() => LoginScreenState();
 }
@@ -33,7 +35,7 @@ class LoginScreenState extends State<LoginScreen> {
                     height: 35.h,
                   ),
                   Text("Đăng nhập",
-                      style: GoogleFonts.inriaSans(
+                      style: GoogleFonts.inter(
                           fontSize: 70.sp,
                           fontWeight: FontWeight.w700,
                           color: ColorApp.darkBlue418)),
@@ -125,7 +127,9 @@ class LoginScreenState extends State<LoginScreen> {
                     height: 35.w,
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, MainScreen.route);
+                      },
                       child: const Text(
                         "Đăng nhập",
                         style: TextStyle(color: ColorApp.white),

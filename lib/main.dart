@@ -30,6 +30,7 @@ import 'package:hab_app_trac_nghiem/ui/login_screen/login_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/register_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:splashscreen/splashscreen.dart';
 // import 'package:hab_app_trac_nghiem/ui/login_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
@@ -57,9 +58,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: const FlashScreen(),
         routes: {
-          '/login': (context) => const LoginScreen(),
+          LoginScreen.route: (context) => const LoginScreen(),
           RegisterScreen.route: (context) => const RegisterScreen(),
           '/main': (context) => const MainScreen(),
+          MainScreen.route: (context) => const MainScreen(),
           '/notification': (context) => const NotificationScreen(),
           NewsDetailScreen.route: (context) => const NewsDetailScreen(),
           SingleGameScreen.route: (context) => const SingleGameScreen(),
@@ -105,7 +107,7 @@ class AfterSplash extends StatelessWidget {
               if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               } else {
-                return const MainScreen();
+                return const LoginScreen();
               }
           }
         });

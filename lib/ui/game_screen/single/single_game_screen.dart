@@ -19,7 +19,7 @@ class SingleGameScreenState extends State<SingleGameScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: ColorApp.blue,
+          backgroundColor: ColorApp.lightBlue5125,
           leading: const BackButton(color: Color.fromRGBO(255, 255, 255, 1)),
           title: Image.asset(
             "assets/images/components/ic_logo_hab.png",
