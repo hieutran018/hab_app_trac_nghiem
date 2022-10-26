@@ -11,7 +11,7 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
-
+  static String route = 'mainscreen';
   @override
   State<MainScreen> createState() => MainScreenState();
 }

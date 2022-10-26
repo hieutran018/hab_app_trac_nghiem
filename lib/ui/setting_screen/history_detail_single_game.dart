@@ -112,103 +112,97 @@ class HistoryDetailSingleGame extends StatelessWidget {
                 padding: EdgeInsets.all(8.w),
                 itemCount: 20,
                 itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.of(context, rootNavigator: true)
-                          .pushNamed(HistoryDetailSingleGame.route);
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(5.w),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.w),
-                          color: ColorApp.lightBlue,
-                        ),
-                        child: SizedBox(
-                            width: 300.w,
-                            height: 150.h,
-                            child: Row(
-                              children: [
-                                Padding(
-                                    padding: EdgeInsets.only(left: 20.w),
-                                    child: Text(
-                                      '${index + 1}',
-                                      style: GoogleFonts.inter(
-                                          color: ColorApp.lightBlue5125,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 40.sp),
-                                    )),
-                                Padding(
-                                    padding: EdgeInsets.only(left: 100.w),
-                                    child: Container(
-                                      width: 70.w,
-                                      height: 70.h,
-                                      decoration: BoxDecoration(
-                                          color: ColorApp.white,
-                                          borderRadius:
-                                              BorderRadius.circular(50.w)),
-                                      child: Center(
-                                          child: Text(
-                                        "A",
-                                        style: GoogleFonts.inter(
-                                            fontSize: 30.sp,
-                                            fontWeight: FontWeight.w700),
-                                      )),
-                                    )),
-                                Padding(
-                                    padding: EdgeInsets.only(left: 20.w),
-                                    child: Container(
-                                      width: 70.w,
-                                      height: 70.h,
-                                      decoration: BoxDecoration(
-                                          color: ColorApp.white,
-                                          borderRadius:
-                                              BorderRadius.circular(50.w)),
-                                      child: Center(
-                                          child: Text(
-                                        "B",
-                                        style: GoogleFonts.inter(
-                                            fontSize: 30.sp,
-                                            fontWeight: FontWeight.w700),
-                                      )),
-                                    )),
-                                Padding(
-                                    padding: EdgeInsets.only(left: 20.w),
-                                    child: Container(
-                                      width: 70.w,
-                                      height: 70.h,
-                                      decoration: BoxDecoration(
-                                          color: ColorApp.white,
-                                          borderRadius:
-                                              BorderRadius.circular(50.w)),
-                                      child: Center(
-                                          child: Text(
-                                        "C",
-                                        style: GoogleFonts.inter(
-                                            fontSize: 30.sp,
-                                            fontWeight: FontWeight.w700),
-                                      )),
-                                    )),
-                                Padding(
-                                    padding: EdgeInsets.only(left: 20.w),
-                                    child: Container(
-                                      width: 70.w,
-                                      height: 70.h,
-                                      decoration: BoxDecoration(
-                                          color: ColorApp.white,
-                                          borderRadius:
-                                              BorderRadius.circular(50.w)),
-                                      child: Center(
-                                          child: Text(
-                                        "D",
-                                        style: GoogleFonts.inter(
-                                            fontSize: 30.sp,
-                                            fontWeight: FontWeight.w700),
-                                      )),
-                                    )),
-                              ],
-                            )),
+                  return Padding(
+                    padding: EdgeInsets.all(5.w),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.w),
+                        color: ColorApp.lightBlue,
                       ),
+                      child: SizedBox(
+                          // width: 300.w,
+                          height: 150.h,
+                          child: Row(
+                            children: [
+                              Padding(
+                                  padding: EdgeInsets.only(left: 20.w),
+                                  child: Text(
+                                    '${index + 1}',
+                                    style: GoogleFonts.inter(
+                                        color: ColorApp.lightBlue5125,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 40.sp),
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.only(left: 100.w),
+                                  child: Container(
+                                    width: 70.w,
+                                    height: 70.h,
+                                    decoration: BoxDecoration(
+                                        color: ColorApp.white,
+                                        borderRadius:
+                                            BorderRadius.circular(50.w)),
+                                    child: Center(
+                                        child: Text(
+                                      "A",
+                                      style: GoogleFonts.inter(
+                                          fontSize: 30.sp,
+                                          fontWeight: FontWeight.w700),
+                                    )),
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.only(left: 20.w),
+                                  child: Container(
+                                    width: 70.w,
+                                    height: 70.h,
+                                    decoration: BoxDecoration(
+                                        color: ColorApp.white,
+                                        borderRadius:
+                                            BorderRadius.circular(50.w)),
+                                    child: Center(
+                                        child: Text(
+                                      "B",
+                                      style: GoogleFonts.inter(
+                                          fontSize: 30.sp,
+                                          fontWeight: FontWeight.w700),
+                                    )),
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.only(left: 20.w),
+                                  child: Container(
+                                    width: 70.w,
+                                    height: 70.h,
+                                    decoration: BoxDecoration(
+                                        color: ColorApp.white,
+                                        borderRadius:
+                                            BorderRadius.circular(50.w)),
+                                    child: Center(
+                                        child: Text(
+                                      "C",
+                                      style: GoogleFonts.inter(
+                                          fontSize: 30.sp,
+                                          fontWeight: FontWeight.w700),
+                                    )),
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.only(left: 20.w),
+                                  child: Container(
+                                    width: 70.w,
+                                    height: 70.h,
+                                    decoration: BoxDecoration(
+                                        color: ColorApp.white,
+                                        borderRadius:
+                                            BorderRadius.circular(50.w)),
+                                    child: Center(
+                                        child: Text(
+                                      "D",
+                                      style: GoogleFonts.inter(
+                                          fontSize: 30.sp,
+                                          fontWeight: FontWeight.w700),
+                                    )),
+                                  )),
+                            ],
+                          )),
                     ),
                   );
                 }),
