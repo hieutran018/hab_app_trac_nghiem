@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hab_app_trac_nghiem/main.dart';
-import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 class FlashScreen extends StatelessWidget {
@@ -19,7 +18,7 @@ class FlashScreen extends StatelessWidget {
           builder: (context, child) => SplashScreen(
               seconds: 4,
               navigateAfterSeconds: const AfterSplash(),
-              backgroundColor: ColorApp.lightBlue5125,
+              backgroundColor: const Color.fromRGBO(66, 149, 255, 1),
               loaderColor: const Color.fromARGB(255, 255, 255, 255),
               photoSize: 170.w,
               image: Image.asset("assets/images/logo_hab_large.png"))),

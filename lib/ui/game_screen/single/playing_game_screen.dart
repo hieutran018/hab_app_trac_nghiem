@@ -3,19 +3,16 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hab_app_trac_nghiem/ui/components/color.dart';
-import 'package:hab_app_trac_nghiem/ui/game_screen/dialog_exit_game.dart';
 
-class PlayingSingleGameScreen extends StatefulWidget {
-  const PlayingSingleGameScreen({Key? key}) : super(key: key);
+class PlayingGameScreen extends StatefulWidget {
+  const PlayingGameScreen({Key? key}) : super(key: key);
   static String route = "/playingsinglegame";
 
   @override
-  State<PlayingSingleGameScreen> createState() =>
-      PlayingSingleGameScreenState();
+  State<PlayingGameScreen> createState() => PlayingGameScreenState();
 }
 
-class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
+class PlayingGameScreenState extends State<PlayingGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,38 +24,34 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
               IconButton(
                   alignment: Alignment.center,
                   onPressed: () {
-                    // _buildFailDialog();
                     Navigator.pop(context);
                   },
                   icon: Icon(
                     Icons.close,
                     size: 50.w,
-                    color: ColorApp.red,
+                    color: const Color.fromRGBO(235, 0, 0, 1),
                   )),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(0.w, 12.h, 0.w, 0.h),
-                child: Container(
-                  width: 400.w,
-                  height: 43.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.w),
-                    color: ColorApp.lightGreen,
-                  ),
-                  child: BorderedText(
-                    strokeWidth: 2.0.w,
-                    strokeColor: ColorApp.white,
-                    child: Text(
-                      'Chơi Đơn',
-                      style: GoogleFonts.inter(
-                        fontSize: 32.sp,
-                        fontWeight: FontWeight.w600,
-                        color: ColorApp.blue6821,
-                      ),
+              Container(
+                width: 306.w,
+                height: 43.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.w),
+                  color: const Color.fromRGBO(169, 255, 139, 1),
+                ),
+                child: BorderedText(
+                  strokeWidth: 2.0.w,
+                  strokeColor: const Color.fromARGB(255, 255, 255, 255),
+                  child: Text(
+                    'Chơi Đơn',
+                    style: GoogleFonts.inter(
+                      fontSize: 32.w,
+                      fontWeight: FontWeight.w600,
+                      color: const Color.fromRGBO(64, 82, 238, 1),
                     ),
                   ),
                 ),
@@ -71,52 +64,53 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 230.w,
-                  height: 40.h,
+                  width: 200.w,
+                  height: 30.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.w),
-                    color: ColorApp.lightGreen4211,
+                    color: const Color.fromRGBO(4, 202, 133, 1),
+                    border: Border.all(
+                        width: 2.w,
+                        color: const Color.fromRGBO(118, 255, 70, 1)),
                   ),
-                  child: Center(
-                    child: Text(
-                      "Chủ đề: Khoa Học",
-                      style: GoogleFonts.inter(
-                          fontSize: 25.sp, color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
+                  child: Text(
+                    "Chủ đề: Khoa Học",
+                    style:
+                        GoogleFonts.inter(fontSize: 20.w, color: Colors.white),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(100.w, 5.h, 100.w, 0.h),
+            padding: EdgeInsets.fromLTRB(25.w, 5.w, 25.w, 0.w),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 150.w,
-                    height: 50.w,
+                    width: 130.w,
+                    height: 30.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12.w),
                       color: const Color.fromRGBO(118, 255, 207, 1),
-                      border: Border.all(width: 2.w, color: ColorApp.blue),
+                      border: Border.all(
+                          width: 2.w,
+                          color: const Color.fromRGBO(118, 255, 70, 1)),
                     ),
-                    child: Center(
-                      child: Text(
-                        "Điểm: 100",
-                        style: TextStyle(fontSize: 25.sp),
-                        textAlign: TextAlign.center,
-                      ),
+                    child: Text(
+                      "Điểm: 100",
+                      style: TextStyle(fontSize: 20.w),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   CircularCountDownTimer(
                     duration: 15,
                     initialDuration: 0,
-                    ringColor: ColorApp.white,
+                    ringColor: const Color.fromRGBO(255, 255, 255, 1),
                     width: 60.w,
                     height: 60.w,
-                    fillColor: ColorApp.red,
+                    fillColor: const Color.fromRGBO(255, 0, 0, 1),
                     onStart: () {
                       debugPrint('Countdown Started');
                     },
@@ -125,19 +119,19 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                     },
                   ),
                   Container(
-                    width: 150.w,
-                    height: 50.w,
+                    width: 130.w,
+                    height: 30.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12.w),
                       color: const Color.fromRGBO(118, 255, 207, 1),
-                      border: Border.all(width: 2.w, color: ColorApp.blue),
+                      border: Border.all(
+                          width: 2.w,
+                          color: const Color.fromRGBO(118, 255, 70, 1)),
                     ),
-                    child: Center(
-                      child: Text(
-                        "01/15",
-                        style: TextStyle(fontSize: 25.sp),
-                        textAlign: TextAlign.center,
-                      ),
+                    child: Text(
+                      "Câu: 01/15",
+                      style: TextStyle(fontSize: 20.w),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ]),
@@ -148,7 +142,8 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
               Padding(
                 padding: EdgeInsets.fromLTRB(5.w, 10.w, 5.w, 5.w),
                 child: Container(
-                  height: 300.h,
+                  width: 400.w,
+                  height: 200.w,
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: const Color.fromRGBO(0, 41, 255, 1)),
@@ -158,7 +153,7 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                     child: Text(
                       "Cuộc gọi đầu tiên trên thế giới là giữa nhà phát minh Alexander Graham Bell và ...?",
                       style: GoogleFonts.inter(
-                          fontSize: 30.sp, fontWeight: FontWeight.w400),
+                          fontSize: 20.w, fontWeight: FontWeight.w400),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -178,23 +173,24 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                             color: const Color.fromRGBO(123, 120, 237, 1),
                           ),
                           child: SizedBox(
-                              height: 100.h,
+                              width: 200.w,
+                              height: 65.w,
                               child: Row(
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.fromLTRB(
-                                        20.w, 0.h, 10.w, 0.h),
+                                        10.w, 0.w, 10.w, 0.w),
                                     child: Text("A",
                                         style: GoogleFonts.inter(
-                                            fontSize: 25.sp,
+                                            fontSize: 20.w,
                                             fontWeight: FontWeight.w400,
-                                            color: ColorApp.white)),
+                                            color: Colors.white)),
                                   ),
                                   Text("Bạn của ông",
                                       style: GoogleFonts.inter(
-                                          fontSize: 25.sp,
+                                          fontSize: 20.w,
                                           fontWeight: FontWeight.w400,
-                                          color: ColorApp.white))
+                                          color: Colors.white))
                                 ],
                               )),
                         ),
@@ -210,19 +206,19 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                       icon:
                           Image.asset('assets/images/components/helper_50.png'),
                       onPressed: () {},
-                      iconSize: 100.w,
+                      iconSize: 70.w,
                     ),
                     IconButton(
                       icon: Image.asset(
                           'assets/images/components/helper_swap.png'),
                       onPressed: () {},
-                      iconSize: 100.w,
+                      iconSize: 70.w,
                     ),
                     IconButton(
                       icon: Image.asset(
                           'assets/images/components/helper_vote.png'),
                       onPressed: () {},
-                      iconSize: 100.w,
+                      iconSize: 70.w,
                     ),
                   ],
                 ),
@@ -232,13 +228,5 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
         ],
       ),
     ));
-  }
-
-  _buildFailDialog() {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const ExitGameDialog();
-        });
   }
 }

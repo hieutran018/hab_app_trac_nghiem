@@ -3,12 +3,10 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hab_app_trac_nghiem/ui/components/color.dart';
-import 'package:hab_app_trac_nghiem/ui/game_screen/dialog_exit_game.dart';
 
 class PlayingChallengerGameScreen extends StatefulWidget {
   const PlayingChallengerGameScreen({Key? key}) : super(key: key);
-  static String route = "/playingchallengergame";
+  static String route = "/playingsinglegame";
 
   @override
   State<PlayingChallengerGameScreen> createState() =>
@@ -28,42 +26,13 @@ class PlayingChallengerGameScreenState
               IconButton(
                   alignment: Alignment.center,
                   onPressed: () {
-                    // _buildFailDialog();
                     Navigator.pop(context);
                   },
                   icon: Icon(
                     Icons.close,
                     size: 50.w,
-                    color: ColorApp.red,
+                    color: const Color.fromRGBO(235, 0, 0, 1),
                   )),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(0.w, 12.h, 0.w, 0.h),
-                child: Container(
-                  width: 400.w,
-                  height: 43.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.w),
-                    color: ColorApp.lightRed,
-                  ),
-                  child: BorderedText(
-                    strokeWidth: 2.0.w,
-                    strokeColor: ColorApp.white,
-                    child: Text(
-                      'Thách Đấu',
-                      style: GoogleFonts.inter(
-                        fontSize: 32.sp,
-                        fontWeight: FontWeight.w600,
-                        color: ColorApp.red,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
           Padding(
@@ -72,52 +41,83 @@ class PlayingChallengerGameScreenState
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 230.w,
-                  height: 40.h,
+                  width: 200.w,
+                  height: 30.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.w),
-                    color: ColorApp.lightGreen4211,
+                    color: const Color.fromRGBO(4, 202, 133, 1),
+                    border: Border.all(
+                        width: 2.w,
+                        color: const Color.fromRGBO(118, 255, 70, 1)),
                   ),
-                  child: Center(
-                    child: Text(
-                      "Chủ đề: Khoa Học",
-                      style: GoogleFonts.inter(
-                          fontSize: 25.sp, color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
+                  child: Text(
+                    "Chủ đề: Khoa Học",
+                    style:
+                        GoogleFonts.inter(fontSize: 20.w, color: Colors.white),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                  height: 50.w,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        icon: Image.asset(
+                            'assets/images/components/helper_50.png'),
+                        onPressed: () {},
+                        iconSize: 70.w,
+                      ),
+                      IconButton(
+                        icon: Image.asset(
+                            'assets/images/components/helper_swap.png'),
+                        onPressed: () {},
+                        iconSize: 70.w,
+                      ),
+                      IconButton(
+                        icon: Image.asset(
+                            'assets/images/components/helper_vote.png'),
+                        onPressed: () {},
+                        iconSize: 70.w,
+                      ),
+                    ],
+                  ))
+            ],
+          ),
           Padding(
-            padding: EdgeInsets.fromLTRB(100.w, 5.h, 100.w, 0.h),
+            padding: EdgeInsets.fromLTRB(25.w, 5.w, 25.w, 0.w),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 150.w,
-                    height: 50.w,
+                    width: 130.w,
+                    height: 30.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12.w),
                       color: const Color.fromRGBO(118, 255, 207, 1),
-                      border: Border.all(width: 2.w, color: ColorApp.blue),
+                      border: Border.all(
+                          width: 2.w,
+                          color: const Color.fromRGBO(118, 255, 70, 1)),
                     ),
-                    child: Center(
-                      child: Text(
-                        "Điểm: 100",
-                        style: TextStyle(fontSize: 25.sp),
-                        textAlign: TextAlign.center,
-                      ),
+                    child: Text(
+                      "Điểm: 100",
+                      style: TextStyle(fontSize: 20.w),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   CircularCountDownTimer(
                     duration: 15,
                     initialDuration: 0,
-                    ringColor: ColorApp.white,
+                    ringColor: const Color.fromRGBO(255, 255, 255, 1),
                     width: 60.w,
                     height: 60.w,
-                    fillColor: ColorApp.red,
+                    fillColor: const Color.fromRGBO(255, 0, 0, 1),
                     onStart: () {
                       debugPrint('Countdown Started');
                     },
@@ -126,19 +126,19 @@ class PlayingChallengerGameScreenState
                     },
                   ),
                   Container(
-                    width: 150.w,
-                    height: 50.w,
+                    width: 130.w,
+                    height: 30.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12.w),
                       color: const Color.fromRGBO(118, 255, 207, 1),
-                      border: Border.all(width: 2.w, color: ColorApp.blue),
+                      border: Border.all(
+                          width: 2.w,
+                          color: const Color.fromRGBO(118, 255, 70, 1)),
                     ),
-                    child: Center(
-                      child: Text(
-                        "01/15",
-                        style: TextStyle(fontSize: 25.sp),
-                        textAlign: TextAlign.center,
-                      ),
+                    child: Text(
+                      "Câu: 01/15",
+                      style: TextStyle(fontSize: 20.w),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ]),
@@ -149,7 +149,8 @@ class PlayingChallengerGameScreenState
               Padding(
                 padding: EdgeInsets.fromLTRB(5.w, 10.w, 5.w, 5.w),
                 child: Container(
-                  height: 300.h,
+                  width: 400.w,
+                  height: 150.w,
                   decoration: BoxDecoration(
                       border: Border.all(
                           color: const Color.fromRGBO(0, 41, 255, 1)),
@@ -159,7 +160,7 @@ class PlayingChallengerGameScreenState
                     child: Text(
                       "Cuộc gọi đầu tiên trên thế giới là giữa nhà phát minh Alexander Graham Bell và ...?",
                       style: GoogleFonts.inter(
-                          fontSize: 30.sp, fontWeight: FontWeight.w400),
+                          fontSize: 20.w, fontWeight: FontWeight.w400),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -179,67 +180,34 @@ class PlayingChallengerGameScreenState
                             color: const Color.fromRGBO(123, 120, 237, 1),
                           ),
                           child: SizedBox(
-                              height: 100.h,
+                              width: 200.w,
+                              height: 65.w,
                               child: Row(
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.fromLTRB(
-                                        20.w, 0.h, 10.w, 0.h),
+                                        10.w, 0.w, 10.w, 0.w),
                                     child: Text("A",
                                         style: GoogleFonts.inter(
-                                            fontSize: 25.sp,
+                                            fontSize: 20.w,
                                             fontWeight: FontWeight.w400,
-                                            color: ColorApp.white)),
+                                            color: Colors.white)),
                                   ),
                                   Text("Bạn của ông",
                                       style: GoogleFonts.inter(
-                                          fontSize: 25.sp,
+                                          fontSize: 20.w,
                                           fontWeight: FontWeight.w400,
-                                          color: ColorApp.white))
+                                          color: Colors.white))
                                 ],
                               )),
                         ),
                       );
                     }),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                      icon:
-                          Image.asset('assets/images/components/helper_50.png'),
-                      onPressed: () {},
-                      iconSize: 100.w,
-                    ),
-                    IconButton(
-                      icon: Image.asset(
-                          'assets/images/components/helper_swap.png'),
-                      onPressed: () {},
-                      iconSize: 100.w,
-                    ),
-                    IconButton(
-                      icon: Image.asset(
-                          'assets/images/components/helper_vote.png'),
-                      onPressed: () {},
-                      iconSize: 100.w,
-                    ),
-                  ],
-                ),
-              )
             ],
           ))
         ],
       ),
     ));
-  }
-
-  _buildFailDialog() {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const ExitGameDialog();
-        });
   }
 }

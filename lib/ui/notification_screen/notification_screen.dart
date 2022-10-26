@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);
@@ -16,7 +14,7 @@ class NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: ColorApp.lightBlue5125,
+          backgroundColor: const Color.fromRGBO(66, 194, 255, 1),
           leading: const BackButton(color: Color.fromRGBO(255, 255, 255, 1)),
           title: Image.asset(
             "assets/images/components/ic_logo_hab.png",
@@ -28,28 +26,23 @@ class NotificationScreenState extends State<NotificationScreen> {
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 10.w),
-              child: Container(
-                width: 200.w,
-                height: 60.h,
-                decoration: BoxDecoration(
-                  border: Border.all(color: ColorApp.white),
-                  color: ColorApp.blue,
-                  borderRadius: BorderRadius.circular(24.w),
-                ),
+                padding: EdgeInsets.only(top: 10.w),
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(0.w, 3.w, 0.w, 3.w),
-                  child: Center(
-                    child: Text(
-                      "Thông báo",
-                      style: GoogleFonts.inter(
-                          color: ColorApp.white, fontSize: 30.sp),
-                      textAlign: TextAlign.center,
-                    ),
+                  width: 200.w,
+                  height: 30.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.w),
+                    color: const Color.fromRGBO(66, 194, 255, 1),
                   ),
-                ),
-              ),
-            ),
+                  child: Text(
+                    "Thông báo",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20.w,
+                        fontWeight: FontWeight.w900,
+                        color: const Color.fromRGBO(255, 255, 255, 1)),
+                  ),
+                )),
             SizedBox(
               height: 5.w,
             ),
@@ -63,7 +56,8 @@ class NotificationScreenState extends State<NotificationScreen> {
                       decoration: BoxDecoration(
                           color: const Color.fromRGBO(255, 255, 255, 1),
                           border: Border.all(
-                              width: 0.1.w, color: ColorApp.darkGrey)),
+                              width: 0.1.w,
+                              color: const Color.fromARGB(255, 90, 90, 90))),
                       child: Row(
                         children: [
                           Padding(
@@ -76,22 +70,22 @@ class NotificationScreenState extends State<NotificationScreen> {
                           Padding(
                               padding: EdgeInsets.only(left: 15.w),
                               child: Container(
-                                color: ColorApp.white,
-                                height: 70.h,
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                height: 50.w,
                                 child: SizedBox(
                                   child: RichText(
                                     text: TextSpan(children: [
                                       TextSpan(
                                           text: "Trần Dương Chí Hiếu",
                                           style: TextStyle(
-                                              color: ColorApp.black,
+                                              color: Colors.black,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 20.w)),
                                       TextSpan(
                                           text:
                                               " đã gửi cho bạn lời mời kết bạn.",
                                           style: TextStyle(
-                                              color: ColorApp.black,
+                                              color: Colors.black,
                                               fontSize: 20.w)),
                                     ]),
                                   ),
