@@ -7,6 +7,7 @@ import 'package:hab_app_trac_nghiem/ui/roles_game.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
+  static String route = 'gamescreen';
 
   @override
   State<GameScreen> createState() => GameScreenState();
