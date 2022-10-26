@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+import 'package:hab_app_trac_nghiem/ui/setting_screen/info_screen.dart';
 
 class RequestFriendScreen extends StatefulWidget {
   const RequestFriendScreen({Key? key}) : super(key: key);
@@ -116,10 +117,13 @@ class RequestFriendScreenState extends State<RequestFriendScreen> {
                                     child: Image.asset(
                                         'assets/images/components/avatar_1.png'),
                                   ),
-                                  title: Text("Dương Nghĩa Hiệp",
-                                      style: GoogleFonts.inter(
-                                          fontSize: 32.sp,
-                                          fontWeight: FontWeight.w600)),
+                                  title: InkWell(
+                                    onTap: () {},
+                                    child: Text("Dương Nghĩa Hiệp",
+                                        style: GoogleFonts.inter(
+                                            fontSize: 32.sp,
+                                            fontWeight: FontWeight.w600)),
+                                  ),
                                 ),
                                 Expanded(
                                   child: Row(
