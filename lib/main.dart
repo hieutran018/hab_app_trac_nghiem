@@ -13,6 +13,7 @@ import 'package:hab_app_trac_nghiem/ui/game_screen/game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/playing_game_screen.dart';
 
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/select_topic.dart';
+import 'package:hab_app_trac_nghiem/ui/info_user/info_user.dart';
 import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 
 import 'package:hab_app_trac_nghiem/ui/new_screen/news_detail_screen.dart';
@@ -80,6 +81,7 @@ class MyApp extends StatelessWidget {
           HistoryScreen.route: (context) => const HistoryScreen(),
           HistoryDetailSingleGame.route: (context) =>
               const HistoryDetailSingleGame(),
+          InfoUserScreen.route: (context) => const InfoUserScreen(),
         },
       ),
     );

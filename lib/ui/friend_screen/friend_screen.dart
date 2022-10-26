@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/friend_screen/request_friend_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/info_user/info_user.dart';
 
 class FriendScreen extends StatefulWidget {
   const FriendScreen({Key? key}) : super(key: key);
@@ -116,7 +117,10 @@ class FriendScreenState extends State<FriendScreen> {
                           ),
                         ),
                         trailing: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context, rootNavigator: true)
+                                  .pushNamed(InfoUserScreen.route);
+                            },
                             icon: const Icon(Icons.more_vert_rounded)),
                       ),
                     ),
