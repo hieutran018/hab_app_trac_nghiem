@@ -1,7 +1,9 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/controllers/auth_controller.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/dialog_forgot_password.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/register_screen.dart';
@@ -15,6 +17,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  var _emailTextController = TextEditingController(text: "");
+  var _passwordTextController = TextEditingController(text: "");
+
+  final AuthController controller = Get.put(AuthController());
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +49,7 @@ class LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: EdgeInsets.fromLTRB(49.w, 17.w, 49.w, 0.w),
                     child: TextFormField(
+                      controller: _emailTextController,
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(color: ColorApp.black),
                         labelText: "Email",
@@ -60,6 +68,7 @@ class LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: EdgeInsets.fromLTRB(49.w, 17.w, 49.w, 0.w),
                     child: TextFormField(
+                      controller: _passwordTextController,
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(color: ColorApp.black),
                         labelText: "Mật khẩu",
@@ -127,8 +136,15 @@ class LoginScreenState extends State<LoginScreen> {
                     height: 35.w,
                   ),
                   ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, MainScreen.route);
+                      onPressed: () async {
+                        String error = await controller.login(
+                            _emailTextController.text,
+                            _passwordTextController.text);
+                        if (error != "") {
+                          Get.defaultDialog(title: "Oop!", middleText: error);
+                        } else {
+                          Get.offAllNamed(MainScreen.route);
+                        }
                       },
                       child: const Text(
                         "Đăng nhập",

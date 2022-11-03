@@ -16,8 +16,11 @@ class SettingScreen extends StatefulWidget {
 }
 
 class SettingScreenState extends State<SettingScreen> {
+  // ignore: non_constant_identifier_names
   final double icon_size = 70.w;
+  // ignore: non_constant_identifier_names
   final double text_size = 40.w;
+  // ignore: non_constant_identifier_names
   final double text_info_size = 40.sp;
   @override
   Widget build(BuildContext context) {
@@ -40,8 +43,8 @@ class SettingScreenState extends State<SettingScreen> {
                 child: Center(
                   child: Text(
                     "Cài đặt chung",
-                    style:
-                        GoogleFonts.inter(color: ColorApp.white, fontSize: 40.sp),
+                    style: GoogleFonts.inter(
+                        color: ColorApp.white, fontSize: 40.sp),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -50,7 +53,7 @@ class SettingScreenState extends State<SettingScreen> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 15.h,bottom: 8.h ),
+          padding: EdgeInsets.only(top: 15.h, bottom: 8.h),
           child: Row(
             children: [
               Padding(
@@ -106,7 +109,7 @@ class SettingScreenState extends State<SettingScreen> {
                 padding: EdgeInsets.only(left: 20.w),
                 child: Text(
                   "Thông tin cá nhân",
-                  style: TextStyle(fontSize:text_size, color: ColorApp.black),
+                  style: TextStyle(fontSize: text_size, color: ColorApp.black),
                 ),
               ),
             ],

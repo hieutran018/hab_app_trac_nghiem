@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:hab_app_trac_nghiem/app/shared_preferences.dart';
 import 'package:hab_app_trac_nghiem/models/user.dart';
 import 'package:hab_app_trac_nghiem/provider/authprovider.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider())
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: const FlashScreen(),
         routes: {
