@@ -16,15 +16,12 @@ class SettingScreen extends StatefulWidget {
 }
 
 class SettingScreenState extends State<SettingScreen> {
-<<<<<<< Updated upstream
-=======
   // ignore: non_constant_identifier_names
   final double icon_size = 70.w;
   // ignore: non_constant_identifier_names
   final double text_size = 40.w;
   // ignore: non_constant_identifier_names
   final double text_info_size = 40.sp;
->>>>>>> Stashed changes
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -40,15 +37,6 @@ class SettingScreenState extends State<SettingScreen> {
               borderRadius: BorderRadius.circular(24.w),
             ),
             child: Container(
-<<<<<<< Updated upstream
-              padding: EdgeInsets.fromLTRB(0.w, 3.w, 0.w, 3.w),
-              child: Center(
-                child: Text(
-                  "Cài đặt chung",
-                  style:
-                      GoogleFonts.inter(color: ColorApp.white, fontSize: 30.sp),
-                  textAlign: TextAlign.center,
-=======
               width: 300.w,
               height: 80.h,
               decoration: BoxDecoration(
@@ -65,18 +53,13 @@ class SettingScreenState extends State<SettingScreen> {
                         color: ColorApp.white, fontSize: 40.sp),
                     textAlign: TextAlign.center,
                   ),
->>>>>>> Stashed changes
                 ),
               ),
             ),
           ),
         ),
         Padding(
-<<<<<<< Updated upstream
-          padding: EdgeInsets.only(top: 15.h),
-=======
           padding: EdgeInsets.only(top: 15.h, bottom: 8.h),
->>>>>>> Stashed changes
           child: Row(
             children: [
               Padding(
@@ -132,11 +115,7 @@ class SettingScreenState extends State<SettingScreen> {
                 padding: EdgeInsets.only(left: 20.w),
                 child: Text(
                   "Thông tin cá nhân",
-<<<<<<< Updated upstream
-                  style: TextStyle(fontSize: 25.w, color: ColorApp.black),
-=======
                   style: TextStyle(fontSize: text_size, color: ColorApp.black),
->>>>>>> Stashed changes
                 ),
               ),
             ],
