@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hab_app_trac_nghiem/provider/authprovider.dart';
+import 'package:hab_app_trac_nghiem/controllers/auth_controller.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
-import 'package:provider/provider.dart';
+import 'package:hab_app_trac_nghiem/ui/login_screen/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -14,7 +14,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class RegisterScreenState extends State<RegisterScreen> {
-  Duration get loginTime => Duration(milliseconds: timeDilation.ceil() * 2250);
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -22,35 +21,10 @@ class RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   final formKey = GlobalKey<FormState>();
-
+  final AuthController controller = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
-    AuthProvider auth = Provider.of<AuthProvider>(context);
-
     // ignore: prefer_function_declarations_over_variables
-    void doRegister() {
-      final form = formKey.currentState;
-
-      form?.save();
-
-      auth.loggedInStatus = Status.authenticating;
-      auth.notify();
-      auth
-          .register(_emailController.text, _passwordController.text,
-              _firstNameController.text, _lastNameController.text)
-          .then((response) {
-        if (response == true) {
-          Navigator.pushReplacementNamed(context, '/login');
-        } else {
-          print("FAILED");
-        }
-      });
-
-      // Future.delayed(loginTime).then((_) {
-      //   auth.loggedInStatus = Status.loggedIn;
-      //   auth.notify();
-      // });
-    }
 
     return Scaffold(
       backgroundColor: ColorApp.lightBlue5125,
@@ -182,8 +156,18 @@ class RegisterScreenState extends State<RegisterScreen> {
             ),
             SizedBox(height: 25.w),
             ElevatedButton(
-                onPressed: () {
-                  doRegister();
+                onPressed: () async {
+                  String message = await controller.register(
+                      _firstNameController.text,
+                      _lastNameController.text,
+                      _emailController.text,
+                      _passwordController.text);
+                  if (message != "") {
+                    print(['button', message]);
+                    Get.defaultDialog(title: "Oop!", middleText: message);
+                  } else {
+                    Get.offAllNamed(LoginScreen.route);
+                  }
                 },
                 child: const Text(
                   "Đăng ký",

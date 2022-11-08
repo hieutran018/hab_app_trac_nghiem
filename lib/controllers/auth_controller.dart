@@ -4,7 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController {
   var loginProcess = false.obs;
+  var registerProcess = false.obs;
   var error = "";
+  var message = "";
 
   Future<String> login(String email, String password) async {
     error = "";
@@ -22,5 +24,27 @@ class AuthController extends GetxController {
       loginProcess(false);
     }
     return error;
+  }
+
+  Future<String> register(
+      String fName, String lName, String email, String password) async {
+    message = "";
+    try {
+      registerProcess(true);
+      List register = await AuthService.registerEmailandPassword(
+          fName, lName, email, password);
+      if (register[0] == "success") {
+        //success
+        message = register[1];
+        print(message);
+      } else {
+        message = register[1];
+        print(message);
+      }
+    } finally {
+      registerProcess(false);
+    }
+    print(message);
+    return message;
   }
 }

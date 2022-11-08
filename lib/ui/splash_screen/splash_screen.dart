@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hab_app_trac_nghiem/main.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+// import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 class FlashScreen extends StatelessWidget {

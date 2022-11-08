@@ -34,4 +34,23 @@ class AuthService {
       }
     }
   }
+
+  static Future<List> registerEmailandPassword(
+      String fName, String lName, String email, String password) async {
+    var response = await http.post(Uri.parse(AppUrl.register),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: jsonEncode(<String, String>{
+          'first_name': fName,
+          'last_name': lName,
+          'email': email,
+          'password': password
+        }));
+    if (response.statusCode == 200) {
+      return ["", ""];
+    } else {
+      return ["", "Đăng ký thất bại, vui lòng thử lại sau!"];
+    }
+  }
 }
