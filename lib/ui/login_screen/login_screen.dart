@@ -1,10 +1,12 @@
 // ignore_for_file: deprecated_member_use
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/controllers/auth_controller.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+import 'package:hab_app_trac_nghiem/ui/components/validate.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/dialog_forgot_password.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/register_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
@@ -29,6 +31,8 @@ class LoginScreenState extends State<LoginScreen> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Center(
+                child: Form(
+              key: _formKey,
               child: Column(
                 children: [
                   Padding(
@@ -50,6 +54,14 @@ class LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.fromLTRB(49.w, 17.w, 49.w, 0.w),
                     child: TextFormField(
                       controller: _emailTextController,
+                      validator: (val) {
+                        if (val!.trim().isEmpty) {
+                          return 'Email không được bỏ trống!';
+                        } else if (!val.isValidEmail) {
+                          return 'Email không hợp lệ!';
+                        }
+                        return null;
+                      },
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(color: ColorApp.black),
                         labelText: "Email",
@@ -69,6 +81,9 @@ class LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.fromLTRB(49.w, 17.w, 49.w, 0.w),
                     child: TextFormField(
                       controller: _passwordTextController,
+                      validator: (value) => value!.trim().isEmpty
+                          ? "Mật khẩu không được bỏ trống"
+                          : null,
                       decoration: InputDecoration(
                         labelStyle: const TextStyle(color: ColorApp.black),
                         labelText: "Mật khẩu",
@@ -137,13 +152,15 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   ElevatedButton(
                       onPressed: () async {
-                        String error = await controller.login(
-                            _emailTextController.text,
-                            _passwordTextController.text);
-                        if (error != "") {
-                          Get.defaultDialog(title: "Oop!", middleText: error);
-                        } else {
-                          Get.offAllNamed(MainScreen.route);
+                        if (_formKey.currentState!.validate()) {
+                          String error = await controller.login(
+                              _emailTextController.text,
+                              _passwordTextController.text);
+                          if (error != "") {
+                            Get.defaultDialog(title: "Oop!", middleText: error);
+                          } else {
+                            Get.offAllNamed(MainScreen.route);
+                          }
                         }
                       },
                       child: const Text(
@@ -179,7 +196,7 @@ class LoginScreenState extends State<LoginScreen> {
                   )
                 ],
               ),
-            ),
+            )),
           ),
         ));
   }
