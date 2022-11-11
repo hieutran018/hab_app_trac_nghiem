@@ -63,6 +63,7 @@ class LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                       decoration: InputDecoration(
+                        errorStyle: GoogleFonts.inter(color: ColorApp.white),
                         labelStyle: const TextStyle(color: ColorApp.black),
                         labelText: "Email",
                         hintText: "Nhập email...",
@@ -81,10 +82,14 @@ class LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.fromLTRB(49.w, 17.w, 49.w, 0.w),
                     child: TextFormField(
                       controller: _passwordTextController,
-                      validator: (value) => value!.trim().isEmpty
-                          ? "Mật khẩu không được bỏ trống"
-                          : null,
+                      validator: (val) {
+                        if (val!.trim().isEmpty) {
+                          return 'Mật khẩu không được bỏ trống!';
+                        }
+                        return null;
+                      },
                       decoration: InputDecoration(
+                        errorStyle: GoogleFonts.inter(color: ColorApp.white),
                         labelStyle: const TextStyle(color: ColorApp.black),
                         labelText: "Mật khẩu",
                         hintText: "Nhập mật khẩu...",
@@ -153,6 +158,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
+                          print('true');
                           String error = await controller.login(
                               _emailTextController.text,
                               _passwordTextController.text);
@@ -161,6 +167,8 @@ class LoginScreenState extends State<LoginScreen> {
                           } else {
                             Get.offAllNamed(MainScreen.route);
                           }
+                        } else {
+                          print('false');
                         }
                       },
                       child: const Text(

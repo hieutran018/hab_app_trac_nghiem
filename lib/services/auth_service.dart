@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:hab_app_trac_nghiem/app/app_url.dart';
 import 'package:hab_app_trac_nghiem/models/auth.dart';
@@ -10,12 +10,14 @@ class AuthService {
   static Future<List> loginEmailandPassword(
       String email, String password) async {
     try {
-      var response = await http.post(Uri.parse(AppUrl.login),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8'
-          },
-          body: jsonEncode(
-              <String, String>{"email": email, "password": password}));
+      var response = await http
+          .post(Uri.parse(AppUrl.login),
+              headers: <String, String>{
+                'Content-Type': 'application/json; charset=UTF-8'
+              },
+              body: jsonEncode(
+                  <String, String>{"email": email, "password": password}))
+          .timeout(const Duration(seconds: 25));
       if (response.statusCode == 200) {
         var json = response.body;
         var authRespo = loginRespFromJson(json);
