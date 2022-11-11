@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hab_app_trac_nghiem/models/user.dart';
 import 'package:hab_app_trac_nghiem/services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,5 +47,10 @@ class AuthController extends GetxController {
     }
     print(message);
     return message;
+  }
+
+  static Future<User> getDataUser(String token) async {
+    User user = await AuthService.getUser(token);
+    return user;
   }
 }

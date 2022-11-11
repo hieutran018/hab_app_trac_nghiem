@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hab_app_trac_nghiem/main.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 import 'package:splashscreen/splashscreen.dart';
 
@@ -19,7 +20,7 @@ class FlashScreen extends StatelessWidget {
           designSize: Size(width, height),
           builder: (context, child) => SplashScreen(
               seconds: 4,
-              navigateAfterSeconds: const AfterSplash(),
+              navigateAfterSeconds: const MainScreen(),
               backgroundColor: ColorApp.lightBlue5125,
               loaderColor: const Color.fromARGB(255, 255, 255, 255),
               photoSize: 170.w,

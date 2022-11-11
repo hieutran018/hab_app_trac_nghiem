@@ -1,9 +1,11 @@
 import 'dart:convert';
 // import 'dart:io';
 
+import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:hab_app_trac_nghiem/app/app_url.dart';
 import 'package:hab_app_trac_nghiem/models/auth.dart';
 import 'package:hab_app_trac_nghiem/models/errors.dart';
+import 'package:hab_app_trac_nghiem/models/user.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
@@ -58,6 +60,25 @@ class AuthService {
       return ["", ""];
     } else {
       return ["", "Đăng ký thất bại, vui lòng thử lại sau!"];
+    }
+  }
+
+  static Future<User> getUser(String token) async {
+    try {
+      var response = await http.get(Uri.parse(AppUrl.getUser), headers: {
+        'Content-Type': 'charset=UTF-8',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token'
+      });
+      print([token, response.body]);
+      if (response.statusCode == 200) {
+        print(response.body);
+        return User.fromJson(jsonDecode(response.body));
+      } else {
+        return User.fromJson(jsonDecode(response.body));
+      }
+    } catch (e) {
+      return jsonDecode(e.toString());
     }
   }
 }
