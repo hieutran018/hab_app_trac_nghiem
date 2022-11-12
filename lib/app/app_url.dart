@@ -5,4 +5,5 @@ class AppUrl {
   static const String register = baseUrl + '/register-account';
   static const String newsCategory = baseUrl + '/news/news-category';
   static const String getUser = baseUrl + '/user';
+  static const String fetchRankingChallenge = baseUrl + '/ranking-challenge';
 }

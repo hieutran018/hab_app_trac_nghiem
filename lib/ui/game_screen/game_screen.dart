@@ -120,8 +120,9 @@ class _GameScreenState extends State<_GameScreen> {
                     padding: EdgeInsets.fromLTRB(142.w, 0.h, 142.w, 0.h),
                     child: CircleAvatar(
                       radius: 50.w,
-                      backgroundImage: const AssetImage(
-                          "assets/images/components/avatar_1.png"),
+                      backgroundImage: AssetImage(
+                        "assets/images/components/${snapshot.data.avatar}",
+                      ),
                     ),
                   ),
                   Padding(
@@ -251,7 +252,7 @@ class _GameScreenState extends State<_GameScreen> {
               child: Text('Loi'),
             );
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
