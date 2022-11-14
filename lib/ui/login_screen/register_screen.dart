@@ -86,8 +86,6 @@ class RegisterScreenState extends State<RegisterScreen> {
                         validator: (val) {
                           if (val!.trim().isEmpty) {
                             return 'Tên không được bỏ trống!';
-                          } else if (!val.isValidName) {
-                            return 'Tên không hợp lệ!';
                           }
                           return null;
                         },

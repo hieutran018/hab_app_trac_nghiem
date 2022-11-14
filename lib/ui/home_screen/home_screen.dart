@@ -20,7 +20,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   Future<List<RankingChallenge>> _fetchRankingChallenge() async {
     dynamic rank = await RankingChallengeController.fetchDataRankingChallenge();
-    print(rank[1]);
+    print(['LIST RANK', rank[1].user.avatar]);
     return rank;
   }
 
@@ -214,57 +214,80 @@ class HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                         height: 700.h,
                         child: FutureBuilder<List<RankingChallenge>>(
-                          future: _fetchRankingChallenge(),
-                          builder: (context, AsyncSnapshot snapshot) {
-                            if (snapshot.hasData) {
-                              return ListView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  padding: EdgeInsets.all(8.w),
-                                  itemCount: 6,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Padding(
-                                      padding: EdgeInsets.all(5.w),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.w),
-                                          color: ColorApp.lightBlue,
-                                        ),
-                                        child: SizedBox(
-                                            width: 300.w,
-                                            height: 100.h,
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 10.w),
-                                                  child: Image.asset(
-                                                    "assets/images/components/ic_reward_no_1.png",
-                                                    height: 50.h,
-                                                    width: 50.w,
+                            future: _fetchRankingChallenge(),
+                            builder: (context, AsyncSnapshot snapshot) {
+                              if (snapshot.hasData) {
+                                return ListView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.all(8.w),
+                                    itemCount: snapshot.data.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Padding(
+                                        padding: EdgeInsets.all(5.w),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20.w),
+                                            color: ColorApp.lightBlue,
+                                          ),
+                                          child: SizedBox(
+                                              width: 300.w,
+                                              height: 100.h,
+                                              child: Row(
+                                                children: [
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10.w),
+                                                    child: Image.asset(
+                                                      "assets/images/components/ic_reward_no_1.png",
+                                                      height: 50.h,
+                                                      width: 50.w,
+                                                    ),
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 10.w),
-                                                  child: Image.asset(
-                                                      "assets/images/components/avatar.png"),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 10.w),
-                                                  child: SizedBox(
-                                                    width: 450.w,
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10.w),
+                                                    child: CircleAvatar(
+                                                        backgroundImage:
+                                                            NetworkImage(
+                                                                '${snapshot.data[index].user.avatar}',
+                                                                scale: 0.5)),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10.w),
+                                                    child: SizedBox(
+                                                      width: 410.w,
+                                                      child: AutoSizeText(
+                                                        "${snapshot.data[index].user.firstName} ${snapshot.data[index].user.lastName}",
+                                                        maxLines: 1,
+                                                        maxFontSize: 17,
+                                                        minFontSize: 10,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style:
+                                                            GoogleFonts.inter(
+                                                          fontSize: 22.sp,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color:
+                                                              ColorApp.darkBlue,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10.w),
                                                     child: AutoSizeText(
-                                                      "${snapshot.data[index].userId[0].firstName} ${snapshot.data[index].userId[0].lastName}",
+                                                      "${snapshot.data[index].scoreChallenge}",
                                                       maxLines: 1,
-                                                      maxFontSize: 17,
                                                       minFontSize: 10,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
+                                                      maxFontSize: 20,
                                                       style: GoogleFonts.inter(
-                                                        fontSize: 22.sp,
+                                                        fontSize: 30.sp,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         color:
@@ -272,33 +295,16 @@ class HomeScreenState extends State<HomeScreen> {
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 0.w),
-                                                  child: AutoSizeText(
-                                                    "${snapshot.data[index].scoreChallenge}",
-                                                    maxLines: 1,
-                                                    minFontSize: 10,
-                                                    maxFontSize: 20,
-                                                    style: GoogleFonts.inter(
-                                                      fontSize: 30.sp,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: ColorApp.darkBlue,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            )),
-                                      ),
-                                    );
-                                  });
-                            } else {
-                              return CircularProgressIndicator();
-                            }
-                          },
-                        )),
+                                                ],
+                                              )),
+                                        ),
+                                      );
+                                    });
+                              } else {
+                                print('loi');
+                                return CircularProgressIndicator();
+                              }
+                            })),
                   ],
                 ),
               ),

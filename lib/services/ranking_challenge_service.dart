@@ -7,7 +7,9 @@ import 'package:http/http.dart' as http;
 class RankingChallengeService {
   static Future<List<RankingChallenge>> fetchRankingChallenge() async {
     try {
-      var response = await http.get(Uri.parse(AppUrl.fetchRankingChallenge));
+      var response = await http.get(
+        Uri.parse(AppUrl.fetchRankingChallenge),
+      );
       if (response.statusCode == 200) {
         final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
         return parsed
