@@ -34,7 +34,7 @@ class AuthController extends GetxController {
       registerProcess(true);
       List register = await AuthService.registerEmailandPassword(
           fName, lName, email, password);
-      if (register[0] == "success") {
+      if (register[0] != "") {
         //success
         message = register[1];
         print(message);

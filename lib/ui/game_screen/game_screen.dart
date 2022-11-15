@@ -8,7 +8,6 @@ import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/challenger_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/single_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/login_screen.dart';
-import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/roles_game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -120,8 +119,8 @@ class _GameScreenState extends State<_GameScreen> {
                     padding: EdgeInsets.fromLTRB(142.w, 0.h, 142.w, 0.h),
                     child: CircleAvatar(
                       radius: 50.w,
-                      backgroundImage: AssetImage(
-                        "assets/images/components/${snapshot.data.avatar}",
+                      backgroundImage: NetworkImage(
+                        "${snapshot.data.avatar}",
                       ),
                     ),
                   ),
@@ -197,7 +196,25 @@ class _GameScreenState extends State<_GameScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text("Thứ hạng"),
-                          Text("${snapshot.data.rankingSingle}"),
+                          snapshot.data.rankingSingle == 1
+                              ? Image.asset(
+                                  "assets/images/components/ic_reward_no_1.png",
+                                  height: 50.h,
+                                  width: 50.w,
+                                )
+                              : snapshot.data.rankingSingle == 2
+                                  ? Image.asset(
+                                      "assets/images/components/ic_reward_no_2.png",
+                                      height: 50.h,
+                                      width: 50.w,
+                                    )
+                                  : snapshot.data.rankingSingle == 3
+                                      ? Image.asset(
+                                          "assets/images/components/ic_reward_no_3.png",
+                                          height: 50.h,
+                                          width: 50.w,
+                                        )
+                                      : Text("${snapshot.data.rankingSingle}")
                         ],
                       )),
                   Text(
@@ -237,7 +254,26 @@ class _GameScreenState extends State<_GameScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text("Thứ hạng"),
-                          Text("${snapshot.data.rankingChallenge}"),
+                          snapshot.data.rankingChallenge == 1
+                              ? Image.asset(
+                                  "assets/images/components/ic_reward_no_1.png",
+                                  height: 50.h,
+                                  width: 50.w,
+                                )
+                              : snapshot.data.rankingChallenge == 2
+                                  ? Image.asset(
+                                      "assets/images/components/ic_reward_no_2.png",
+                                      height: 50.h,
+                                      width: 50.w,
+                                    )
+                                  : snapshot.data.rankingChallenge == 3
+                                      ? Image.asset(
+                                          "assets/images/components/ic_reward_no_3.png",
+                                          height: 50.h,
+                                          width: 50.w,
+                                        )
+                                      : Text(
+                                          "${snapshot.data.rankingChallenge}")
                         ],
                       )),
                   Text(

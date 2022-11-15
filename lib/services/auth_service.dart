@@ -59,7 +59,7 @@ class AuthService {
     if (response.statusCode == 200) {
       return ["", ""];
     } else {
-      return ["", "Đăng ký thất bại, vui lòng thử lại sau!"];
+      return ["error", "Đăng ký thất bại, vui lòng thử lại sau!"];
     }
   }
 

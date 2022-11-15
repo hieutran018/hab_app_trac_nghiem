@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +16,13 @@ class SelectTopicChallengerGameScreen extends StatefulWidget {
 
 class SelectTopicChallengerGameScreenState
     extends State<SelectTopicChallengerGameScreen> {
+  final List<String> items = [
+    'Dễ',
+    'Trung Bình',
+    'Khó',
+    'Siêu Khó',
+  ];
+  String? selectedValue;
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -121,6 +129,47 @@ class SelectTopicChallengerGameScreenState
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
                                           children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  bottom: 8.h, right: 15.w),
+                                              child:
+                                                  DropdownButtonHideUnderline(
+                                                child: DropdownButton2(
+                                                  hint: Text(
+                                                    items[1],
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Theme.of(context)
+                                                          .hintColor,
+                                                    ),
+                                                  ),
+                                                  items: items
+                                                      .map((item) =>
+                                                          DropdownMenuItem<
+                                                              String>(
+                                                            value: item,
+                                                            child: Text(
+                                                              item,
+                                                              style:
+                                                                  const TextStyle(
+                                                                fontSize: 14,
+                                                              ),
+                                                            ),
+                                                          ))
+                                                      .toList(),
+                                                  value: selectedValue,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      selectedValue =
+                                                          value as String;
+                                                    });
+                                                  },
+                                                  buttonHeight: 40,
+                                                  buttonWidth: 140,
+                                                  itemHeight: 40,
+                                                ),
+                                              ),
+                                            ),
                                             Padding(
                                               padding: EdgeInsets.only(
                                                   bottom: 8.h, right: 8.w),
