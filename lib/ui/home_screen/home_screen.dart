@@ -22,7 +22,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   Future<List<RankingChallenge>> _fetchRankingChallenge() async {
     dynamic rank = await RankingChallengeController.fetchDataRankingChallenge();
-    print(['LIST RANK', rank[1].user.avatar]);
+    debugPrint(rank[1].user.avatar);
     return rank;
   }
 
@@ -255,17 +255,165 @@ class HomeScreenState extends State<HomeScreen> {
                           ),
                           SizedBox(
                               height: 700.h,
-                              child: FutureBuilder<List<RankingChallenge>>(
-                                  future: _fetchRankingChallenge(),
-                                  builder: (context, AsyncSnapshot snapshot) {
-                                    if (snapshot.connectionState ==
-                                            ConnectionState.done &&
-                                        snapshot.hasData) {
-                                      return ListView.builder(
+                              child: Obx(() {
+                                if (RankingChallengeController
+                                    .isLoading.value) {
+                                  if (RankingChallengeController
+                                      .listRank.isNotEmpty) {
+                                    return ListView.builder(
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        padding: EdgeInsets.all(8.w),
+                                        itemCount: RankingChallengeController
+                                            .listRank.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Padding(
+                                            padding: EdgeInsets.all(5.w),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20.w),
+                                                color: ColorApp.lightBlue,
+                                              ),
+                                              child: SizedBox(
+                                                  width: 300.w,
+                                                  height: 100.h,
+                                                  child: Row(
+                                                    children: [
+                                                      Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 10.w),
+                                                          child: SizedBox(
+                                                            width: 50.w,
+                                                            child: index == 0
+                                                                ? Image.asset(
+                                                                    "assets/images/components/ic_reward_no_1.png",
+                                                                    height:
+                                                                        50.h,
+                                                                    width: 50.w,
+                                                                  )
+                                                                : index == 1
+                                                                    ? Image
+                                                                        .asset(
+                                                                        "assets/images/components/ic_reward_no_2.png",
+                                                                        height:
+                                                                            50.h,
+                                                                        width:
+                                                                            50.w,
+                                                                      )
+                                                                    : index == 2
+                                                                        ? Image
+                                                                            .asset(
+                                                                            "assets/images/components/ic_reward_no_3.png",
+                                                                            height:
+                                                                                50.h,
+                                                                            width:
+                                                                                50.w,
+                                                                          )
+                                                                        : Text(
+                                                                            '${index + 1}',
+                                                                            style:
+                                                                                GoogleFonts.inter(fontSize: 25.sp),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                          ),
+                                                          )),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 10.w),
+                                                        child: CircleAvatar(
+                                                            backgroundImage:
+                                                                NetworkImage(
+                                                                    '${RankingChallengeController.listRank[index].user.avatar}',
+                                                                    scale:
+                                                                        0.5)),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 10.w),
+                                                        child: SizedBox(
+                                                          width: 410.w,
+                                                          child: AutoSizeText(
+                                                            "${RankingChallengeController.listRank[index].user.firstName} ${RankingChallengeController.listRank[index].user.lastName}",
+                                                            maxLines: 1,
+                                                            maxFontSize: 17,
+                                                            minFontSize: 10,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            style: GoogleFonts
+                                                                .inter(
+                                                              fontSize: 22.sp,
+                                                              color: index == 0
+                                                                  ? ColorApp.red
+                                                                  : ColorApp
+                                                                      .black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 10.w),
+                                                        child: AutoSizeText(
+                                                          "${RankingChallengeController.listRank[index].scoreChallenge}",
+                                                          maxLines: 1,
+                                                          minFontSize: 10,
+                                                          maxFontSize: 20,
+                                                          style:
+                                                              GoogleFonts.inter(
+                                                            fontSize: 30.sp,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: index == 0
+                                                                ? ColorApp.red
+                                                                : ColorApp
+                                                                    .black,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )),
+                                            ),
+                                          );
+                                        });
+                                  } else {
+                                    return Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Lottie.asset(
+                                            'assets/images/components/no_data.json'),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 0.h),
+                                          child: Text(
+                                            'Chưa tìm thấy dữ liệu !',
+                                            style: GoogleFonts.inter(
+                                                fontSize: 45.sp,
+                                                color: ColorApp.blue,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        )
+                                      ],
+                                    );
+                                  }
+                                } else {
+                                  return Shimmer.fromColors(
+                                      baseColor: ColorApp.lightBlue,
+                                      highlightColor: ColorApp.lightBlue0121,
+                                      child: ListView.builder(
                                           physics:
                                               const NeverScrollableScrollPhysics(),
                                           padding: EdgeInsets.all(8.w),
-                                          itemCount: snapshot.data.length,
+                                          itemCount: 6,
                                           itemBuilder: (BuildContext context,
                                               int index) {
                                             return Padding(
@@ -278,150 +426,14 @@ class HomeScreenState extends State<HomeScreen> {
                                                   color: ColorApp.lightBlue,
                                                 ),
                                                 child: SizedBox(
-                                                    width: 300.w,
-                                                    height: 100.h,
-                                                    child: Row(
-                                                      children: [
-                                                        Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left: 10.w),
-                                                            child: SizedBox(
-                                                              width: 50.w,
-                                                              child: index == 0
-                                                                  ? Image.asset(
-                                                                      "assets/images/components/ic_reward_no_1.png",
-                                                                      height:
-                                                                          50.h,
-                                                                      width:
-                                                                          50.w,
-                                                                    )
-                                                                  : index == 1
-                                                                      ? Image
-                                                                          .asset(
-                                                                          "assets/images/components/ic_reward_no_2.png",
-                                                                          height:
-                                                                              50.h,
-                                                                          width:
-                                                                              50.w,
-                                                                        )
-                                                                      : index ==
-                                                                              2
-                                                                          ? Image
-                                                                              .asset(
-                                                                              "assets/images/components/ic_reward_no_3.png",
-                                                                              height: 50.h,
-                                                                              width: 50.w,
-                                                                            )
-                                                                          : Text(
-                                                                              '${index + 1}',
-                                                                              style: GoogleFonts.inter(fontSize: 25.sp),
-                                                                              textAlign: TextAlign.center,
-                                                                            ),
-                                                            )),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 10.w),
-                                                          child: CircleAvatar(
-                                                              backgroundImage:
-                                                                  NetworkImage(
-                                                                      '${snapshot.data[index].user.avatar}',
-                                                                      scale:
-                                                                          0.5)),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 10.w),
-                                                          child: SizedBox(
-                                                            width: 410.w,
-                                                            child: AutoSizeText(
-                                                              "${snapshot.data[index].user.firstName} ${snapshot.data[index].user.lastName}",
-                                                              maxLines: 1,
-                                                              maxFontSize: 17,
-                                                              minFontSize: 10,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              style: GoogleFonts
-                                                                  .inter(
-                                                                fontSize: 22.sp,
-                                                                color: index ==
-                                                                        0
-                                                                    ? ColorApp
-                                                                        .red
-                                                                    : ColorApp
-                                                                        .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 10.w),
-                                                          child: AutoSizeText(
-                                                            "${snapshot.data[index].scoreChallenge}",
-                                                            maxLines: 1,
-                                                            minFontSize: 10,
-                                                            maxFontSize: 20,
-                                                            style: GoogleFonts
-                                                                .inter(
-                                                              fontSize: 30.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              color: index == 0
-                                                                  ? ColorApp.red
-                                                                  : ColorApp
-                                                                      .black,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    )),
+                                                  width: 300.w,
+                                                  height: 100.h,
+                                                ),
                                               ),
                                             );
-                                          });
-                                    } else if (snapshot.connectionState ==
-                                        ConnectionState.waiting) {
-                                      return Shimmer.fromColors(
-                                          baseColor: ColorApp.lightBlue,
-                                          highlightColor:
-                                              ColorApp.lightBlue0121,
-                                          child: ListView.builder(
-                                              physics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              padding: EdgeInsets.all(8.w),
-                                              itemCount: 6,
-                                              itemBuilder:
-                                                  (BuildContext context,
-                                                      int index) {
-                                                return Padding(
-                                                  padding: EdgeInsets.all(5.w),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.w),
-                                                      color: ColorApp.lightBlue,
-                                                    ),
-                                                    child: SizedBox(
-                                                      width: 300.w,
-                                                      height: 100.h,
-                                                    ),
-                                                  ),
-                                                );
-                                              }));
-                                    } else {
-                                      return Lottie.asset(
-                                          'assets/images/components/no_data.json');
-                                    }
-                                  })),
+                                          }));
+                                }
+                              })),
                         ],
                       ),
                     ),

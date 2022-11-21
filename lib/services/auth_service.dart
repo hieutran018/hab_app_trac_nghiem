@@ -68,7 +68,9 @@ class AuthService {
       var response = await http.get(Uri.parse(AppUrl.getUser), headers: {
         'Content-Type': 'charset=UTF-8',
         'Accept': 'application/json',
-        'Authorization': 'Bearer $token'
+        'Authorization': 'Bearer $token',
+        "Connection": "Keep-Alive",
+        "Keep-Alive": "timeout=5, max=1000"
       });
       print([token, response.body]);
       if (response.statusCode == 200) {

@@ -172,7 +172,9 @@ class _SettingScreenState extends State<_SettingScreen> {
                                                 width: 50.w,
                                               )
                                             : Text(
-                                                "${snapshot.data.rankingChallenge}")
+                                                "${snapshot.data.rankingChallenge}",
+                                                style: GoogleFonts.inter(
+                                                    fontSize: text_info_size))
                               ],
                             )
                           ],
