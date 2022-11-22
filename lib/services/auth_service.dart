@@ -7,6 +7,7 @@ import 'package:hab_app_trac_nghiem/models/auth.dart';
 import 'package:hab_app_trac_nghiem/models/errors.dart';
 import 'package:hab_app_trac_nghiem/models/user.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   static Future<List> loginEmailandPassword(
@@ -72,15 +73,39 @@ class AuthService {
         "Connection": "Keep-Alive",
         "Keep-Alive": "timeout=5, max=1000"
       });
-      print([token, response.body]);
+
       if (response.statusCode == 200) {
-        print(response.body);
         return User.fromJson(jsonDecode(response.body));
       } else {
         return User.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
       return jsonDecode(e.toString());
+    }
+  }
+
+  static Future<bool> logout() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString("token");
+
+      var response = await http.post(Uri.parse(AppUrl.logout), headers: {
+        'Content-Type': 'charset=UTF-8',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+        "Connection": "Keep-Alive",
+        "Keep-Alive": "timeout=5, max=1000"
+      });
+
+      if (response.statusCode == 200) {
+        print(response);
+        await prefs.remove('token');
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
     }
   }
 }

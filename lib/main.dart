@@ -29,8 +29,6 @@ import 'package:hab_app_trac_nghiem/ui/login_screen/login_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/register_screen.dart';
-import 'package:provider/provider.dart';
-import 'package:splashscreen/splashscreen.dart';
 // import 'package:hab_app_trac_nghiem/ui/login_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
 // import 'package:hab_app_trac_nghiem/ui/flash_screen.dart';
@@ -51,7 +49,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const FlashScreen(),
       routes: {
-        LoginScreen.route: (context) => const LoginScreen(),
+        LoginScreen.route: (context) => const LoginScreen(isScreen: false),
         RegisterScreen.route: (context) => const RegisterScreen(),
         '/main': (context) => const MainScreen(),
         MainScreen.route: (context) => const MainScreen(),

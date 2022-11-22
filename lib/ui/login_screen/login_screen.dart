@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,16 +10,19 @@ import 'package:hab_app_trac_nghiem/ui/login_screen/register_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key, required this.isScreen})
+      : super(
+          key: key,
+        );
   static String route = '/loginscreen';
+  final bool isScreen;
   @override
   State<LoginScreen> createState() => LoginScreenState();
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  var _emailTextController = TextEditingController(text: "");
-  var _passwordTextController = TextEditingController(text: "");
-
+  final _emailTextController = TextEditingController(text: "");
+  final _passwordTextController = TextEditingController(text: "");
   final AuthController controller = Get.put(AuthController());
   final _formKey = GlobalKey<FormState>();
   @override
@@ -158,7 +159,6 @@ class LoginScreenState extends State<LoginScreen> {
                   ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          print('true');
                           String error = await controller.login(
                               _emailTextController.text,
                               _passwordTextController.text);
@@ -167,9 +167,7 @@ class LoginScreenState extends State<LoginScreen> {
                           } else {
                             Get.offAllNamed(MainScreen.route);
                           }
-                        } else {
-                          print('false');
-                        }
+                        } else {}
                       },
                       child: const Text(
                         "Đăng nhập",
@@ -201,6 +199,31 @@ class LoginScreenState extends State<LoginScreen> {
                             .pushNamed(RegisterScreen.route);
                       },
                     ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 200.h),
+                    child: widget.isScreen
+                        ? Container()
+                        : ElevatedButton(
+                            onPressed: () async {
+                              Get.offAllNamed(MainScreen.route);
+                            },
+                            child: const Text(
+                              "Đi đến trang chủ",
+                              style: TextStyle(color: ColorApp.white),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                                primary: ColorApp.lightBlue0121,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 83.w, vertical: 7.w),
+                                textStyle: TextStyle(
+                                  fontSize: 32.w,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                    side:
+                                        const BorderSide(color: ColorApp.white),
+                                    borderRadius:
+                                        BorderRadius.circular(24.w)))),
                   )
                 ],
               ),

@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/friend_screen/request_friend_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/info_user/info_user.dart';
+import 'package:hab_app_trac_nghiem/ui/login_screen/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FriendScreen extends StatefulWidget {
   const FriendScreen({Key? key}) : super(key: key);
@@ -14,6 +16,52 @@ class FriendScreen extends StatefulWidget {
 }
 
 class FriendScreenState extends State<FriendScreen> {
+  Future<bool> goto() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+    if (token != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: goto(),
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // print('LOADING');
+            return const Center(
+              child: Text('Đang tải dữ liệu!'),
+            );
+          } else if (snapshot.connectionState == ConnectionState.done) {
+            // print('HAVE DATA');
+            if (snapshot.data == true) {
+              return const _FriendScreen();
+            } else {
+              return const LoginScreen(
+                isScreen: true,
+              );
+            }
+          } else {
+            return const Center(
+              child: Text('Oop!'),
+            );
+          }
+        });
+  }
+}
+
+class _FriendScreen extends StatefulWidget {
+  const _FriendScreen({Key? key}) : super(key: key);
+
+  @override
+  _FriendScreenState createState() => _FriendScreenState();
+}
+
+class _FriendScreenState extends State<_FriendScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(

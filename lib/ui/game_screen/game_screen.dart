@@ -26,10 +26,8 @@ class GameScreenState extends State<GameScreen> {
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
     if (token != null) {
-      print(['NOT NULL', token]);
       return true;
     } else {
-      print(['NULL', token]);
       return false;
     }
   }
@@ -47,9 +45,11 @@ class GameScreenState extends State<GameScreen> {
           } else if (snapshot.connectionState == ConnectionState.done) {
             // print('HAVE DATA');
             if (snapshot.data == true) {
-              return _GameScreen();
+              return const _GameScreen();
             } else {
-              return LoginScreen();
+              return const LoginScreen(
+                isScreen: true,
+              );
             }
           } else {
             print('ERROR');

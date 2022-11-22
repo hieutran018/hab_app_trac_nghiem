@@ -6,6 +6,7 @@ import 'package:hab_app_trac_nghiem/controllers/auth_controller.dart';
 import 'package:hab_app_trac_nghiem/models/user.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/login_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/setting_screen/dialog/dialog_logout.dart';
 import 'package:hab_app_trac_nghiem/ui/setting_screen/dialog_change_password.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
@@ -50,7 +51,9 @@ class SettingScreenState extends State<SettingScreen> {
             if (snapshot.data == true) {
               return const _SettingScreen();
             } else {
-              return const LoginScreen();
+              return const LoginScreen(
+                isScreen: true,
+              );
             }
           } else {
             return const Center(
@@ -69,6 +72,7 @@ class _SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<_SettingScreen> {
+  final AuthController controller = Get.put(AuthController());
   // ignore: non_constant_identifier_names
   final double icon_size = 70.w;
   // ignore: non_constant_identifier_names
@@ -282,8 +286,7 @@ class _SettingScreenState extends State<_SettingScreen> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context, rootNavigator: true)
-                        .pushNamed(LoginScreen.route);
+                    _buildLogoutDialog();
                   },
                   child: Row(
                     children: [
@@ -491,10 +494,7 @@ class _SettingScreenState extends State<_SettingScreen> {
                   endIndent: 20.w,
                 ),
                 TextButton(
-                  onPressed: () {
-                    Navigator.of(context, rootNavigator: true)
-                        .pushNamed(LoginScreen.route);
-                  },
+                  onPressed: () {},
                   child: Row(
                     children: [
                       Padding(
@@ -519,8 +519,16 @@ class _SettingScreenState extends State<_SettingScreen> {
               ],
             ));
           } else {
-            return Text('Co Loi Xay ra!');
+            return const Text('Co Loi Xay ra!');
           }
+        });
+  }
+
+  _buildLogoutDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const LogoutDialog();
         });
   }
 

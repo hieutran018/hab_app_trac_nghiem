@@ -8,6 +8,7 @@ class AuthController extends GetxController {
   var registerProcess = false.obs;
   var error = "";
   var message = "";
+  var logoutProcess = false.obs;
 
   Future<String> login(String email, String password) async {
     error = "";
@@ -52,5 +53,20 @@ class AuthController extends GetxController {
   static Future<User> getDataUser(String token) async {
     User user = await AuthService.getUser(token);
     return user;
+  }
+
+  Future<bool> logOut() async {
+    logoutProcess(false);
+    try {
+      final logout = await AuthService.logout();
+      if (logout) {
+        logoutProcess(true);
+        return logout;
+      } else {
+        return logout;
+      }
+    } finally {
+      logoutProcess(true);
+    }
   }
 }

@@ -1,17 +1,17 @@
 import 'package:hab_app_trac_nghiem/models/user.dart';
 
-class RankingChallenge {
+class RankingSingle {
   int? id;
   int? userId;
-  int? scoreChallenge;
+  int? scoreSingle;
   User? user;
 
-  RankingChallenge({this.id, this.userId, this.scoreChallenge, this.user});
+  RankingSingle({this.id, this.userId, this.scoreSingle, this.user});
 
-  RankingChallenge.fromJson(Map<String, dynamic> json) {
+  RankingSingle.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
-    scoreChallenge = json['score_challenge'];
+    scoreSingle = json['score_single'];
     user = json['user'] != null ? User.fromJson(json['user']) : null;
   }
 
@@ -19,7 +19,7 @@ class RankingChallenge {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['user_id'] = userId;
-    data['score_challenge'] = scoreChallenge;
+    data['score_single'] = scoreSingle;
     if (user != null) {
       data['user'] = user!.toJson();
     }
