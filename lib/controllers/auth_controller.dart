@@ -38,15 +38,12 @@ class AuthController extends GetxController {
       if (register[0] != "") {
         //success
         message = register[1];
-        print(message);
       } else {
         message = register[1];
-        print(message);
       }
     } finally {
       registerProcess(false);
     }
-    print(message);
     return message;
   }
 

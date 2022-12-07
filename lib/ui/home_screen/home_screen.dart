@@ -26,11 +26,6 @@ class HomeScreenState extends State<HomeScreen> {
     return rank;
   }
 
-  Future<bool> _refresh() async {
-    _fetchRankingChallenge();
-    return Future.value(true);
-  }
-
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -388,16 +383,18 @@ class HomeScreenState extends State<HomeScreen> {
                                   } else {
                                     return Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceAround,
                                       children: [
                                         Lottie.asset(
-                                            'assets/images/components/no_data.json'),
+                                            'assets/images/components/no_data.json',
+                                            height: 500.h,
+                                            fit: BoxFit.fill),
                                         Padding(
                                           padding: EdgeInsets.only(top: 0.h),
                                           child: Text(
                                             'Chưa tìm thấy dữ liệu !',
                                             style: GoogleFonts.inter(
-                                                fontSize: 45.sp,
+                                                fontSize: 25.sp,
                                                 color: ColorApp.blue,
                                                 fontWeight: FontWeight.w700),
                                           ),
