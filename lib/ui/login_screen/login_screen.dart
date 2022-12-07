@@ -142,7 +142,9 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          String result = await controller.loginWithGoogle();
+                        },
                         icon: Image.asset(
                             "assets/images/ic_login_with_google.png")),
                     SizedBox(

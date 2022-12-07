@@ -28,6 +28,11 @@ class AuthController extends GetxController {
     return error;
   }
 
+  Future<String> loginWithGoogle() async {
+    List endpoint = await AuthService.loginWithGoogle();
+    return endpoint[0];
+  }
+
   Future<String> register(
       String fName, String lName, String email, String password) async {
     message = "";

@@ -9,6 +9,7 @@ import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/challenger_game_sc
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/single_game_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/login_screen/login_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/roles_game.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GameScreen extends StatefulWidget {
@@ -33,17 +34,20 @@ class GameScreenState extends State<GameScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: goto(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            // print('LOADING');
-            return const Center(
-              child: Text('Đang tải dữ liệu!'),
-            );
+            return Center(
+                child: Lottie.asset(
+                    'assets/images/components/check_login_loading.json'));
           } else if (snapshot.connectionState == ConnectionState.done) {
-            // print('HAVE DATA');
             if (snapshot.data == true) {
               return const _GameScreen();
             } else {
@@ -73,8 +77,14 @@ class _GameScreenState extends State<_GameScreen> {
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
     dynamic user = await AuthController.getDataUser(token.toString());
-    print(user);
+    // print(user);
     return user;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getInfoUser();
   }
 
   @override

@@ -2,6 +2,7 @@ import 'dart:convert';
 // import 'dart:io';
 
 // import 'package:get/get_connect/http/src/response/response.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hab_app_trac_nghiem/app/app_url.dart';
 import 'package:hab_app_trac_nghiem/models/auth.dart';
 import 'package:hab_app_trac_nghiem/models/errors.dart';
@@ -10,6 +11,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
+  static final _googleSingIn = GoogleSignIn();
+
   static Future<List> loginEmailandPassword(
       String email, String password) async {
     try {
@@ -45,6 +48,24 @@ class AuthService {
     }
   }
 
+  static Future<GoogleSignInAccount?> login() => _googleSingIn.signIn();
+
+  static Future<List> loginWithGoogle() async {
+    final user = await login();
+    var response = await http.post(Uri.parse(AppUrl.loginGoogle),
+        headers: <String, String>{'Content-Type': 'application/json'},
+        body: jsonEncode(<String, String>{
+          'email': user!.email,
+          'provider_id': user.id,
+          'display_name': user.displayName.toString()
+        }));
+    if (response.statusCode == 200) {
+      return [''];
+    } else {
+      return ["error", "Đăng ký thất bại, vui lòng thử lại sau!"];
+    }
+  }
+
   static Future<List> registerEmailandPassword(
       String fName, String lName, String email, String password) async {
     var response = await http.post(Uri.parse(AppUrl.register),
@@ -57,6 +78,7 @@ class AuthService {
           'email': email,
           'password': password
         }));
+
     if (response.statusCode == 200) {
       return ["", ""];
     } else {

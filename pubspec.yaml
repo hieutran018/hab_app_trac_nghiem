@@ -55,6 +55,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   shimmer: ^2.0.0
   lottie:
+  google_sign_in: ^5.4.2
   
 
   
