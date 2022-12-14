@@ -8,6 +8,7 @@ import 'package:hab_app_trac_nghiem/controllers/ranking_single_controller.dart';
 import 'package:hab_app_trac_nghiem/models/ranking_single.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/roles_game_single.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/single/select_level.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/select_topic.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -260,7 +261,7 @@ class SingleGameScreenState extends State<SingleGameScreen> {
                                                           child: SizedBox(
                                                             width: 410.w,
                                                             child: AutoSizeText(
-                                                              "${RankingSingleController.listRank[index].user.firstName} ${RankingSingleController.listRank[index].user.lastName}",
+                                                              "${RankingSingleController.listRank[index].user.displayName}",
                                                               maxLines: 1,
                                                               maxFontSize: 17,
                                                               minFontSize: 10,

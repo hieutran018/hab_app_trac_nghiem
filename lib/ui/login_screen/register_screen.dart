@@ -15,8 +15,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _displayNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
@@ -54,35 +53,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(49.w, 17.w, 49.w, 0.w),
                       child: TextFormField(
-                        controller: _firstNameController,
-                        validator: (val) {
-                          if (val!.trim().isEmpty) {
-                            return 'Họ không được bỏ trống!';
-                          } else if (!val.isValidName) {
-                            return 'Họ không hợp lệ!';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          errorStyle: GoogleFonts.inter(color: ColorApp.white),
-                          labelStyle: const TextStyle(color: ColorApp.black),
-                          labelText: "Họ",
-                          hintText: "Nhập họ...",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(24.0.w),
-                          ),
-                          filled: true,
-                          fillColor: ColorApp.lightGrey,
-                          isDense: true,
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.w, 25.h, 20.w, 25.h),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(49.w, 17.w, 49.w, 0.w),
-                      child: TextFormField(
-                        controller: _lastNameController,
+                        controller: _displayNameController,
                         validator: (val) {
                           if (val!.trim().isEmpty) {
                             return 'Tên không được bỏ trống!';
@@ -206,8 +177,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                         onPressed: () async {
                           if (formKey.currentState!.validate()) {
                             String message = await controller.register(
-                                _firstNameController.text,
-                                _lastNameController.text,
+                                _displayNameController.text,
                                 _emailController.text,
                                 _passwordController.text);
                             if (message != "") {

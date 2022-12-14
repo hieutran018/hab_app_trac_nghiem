@@ -34,12 +34,12 @@ class AuthController extends GetxController {
   }
 
   Future<String> register(
-      String fName, String lName, String email, String password) async {
+      String displayName, String email, String password) async {
     message = "";
     try {
       registerProcess(true);
       List register = await AuthService.registerEmailandPassword(
-          fName, lName, email, password);
+          displayName, email, password);
       if (register[0] != "") {
         //success
         message = register[1];

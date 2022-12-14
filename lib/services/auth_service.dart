@@ -11,8 +11,6 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  static final _googleSingIn = GoogleSignIn();
-
   static Future<List> loginEmailandPassword(
       String email, String password) async {
     try {
@@ -48,9 +46,9 @@ class AuthService {
     }
   }
 
-  static Future<GoogleSignInAccount?> login() => _googleSingIn.signIn();
-
   static Future<List> loginWithGoogle() async {
+    final _googleSingIn = GoogleSignIn();
+    Future<GoogleSignInAccount?> login() => _googleSingIn.signIn();
     final user = await login();
     var response = await http.post(Uri.parse(AppUrl.loginGoogle),
         headers: <String, String>{'Content-Type': 'application/json'},
@@ -59,6 +57,7 @@ class AuthService {
           'provider_id': user.id,
           'display_name': user.displayName.toString()
         }));
+    print(['1', jsonDecode(response.body)]);
     if (response.statusCode == 200) {
       return [''];
     } else {
@@ -67,14 +66,13 @@ class AuthService {
   }
 
   static Future<List> registerEmailandPassword(
-      String fName, String lName, String email, String password) async {
+      String displayName, String email, String password) async {
     var response = await http.post(Uri.parse(AppUrl.register),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8'
         },
         body: jsonEncode(<String, String>{
-          'first_name': fName,
-          'last_name': lName,
+          'display_name': displayName,
           'email': email,
           'password': password
         }));

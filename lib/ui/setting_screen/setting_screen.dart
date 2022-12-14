@@ -141,7 +141,7 @@ class _SettingScreenState extends State<_SettingScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${snapshot.data.firstName} ${snapshot.data.lastName}",
+                              "${snapshot.data.displayName}",
                               style:
                                   GoogleFonts.inter(fontSize: text_info_size),
                             ),

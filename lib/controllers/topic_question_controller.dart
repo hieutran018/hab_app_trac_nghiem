@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hab_app_trac_nghiem/controllers/game_controller.dart';
 import 'package:hab_app_trac_nghiem/models/topic_question.dart';
 import 'package:hab_app_trac_nghiem/services/topic_question_services.dart';
 
@@ -17,11 +18,18 @@ class TopicQuestionController extends GetxController {
     try {
       var list = await TopicQuestionService.fetchTopicQuestion();
       listtp.assignAll(list);
-      print(["CONTROLLER", listtp]);
       isLoading.value = true;
       return list;
     } finally {
       isLoading.value = true;
     }
+  }
+
+  static Future<TopicQuestion> getTopicbyId() async {
+    try {
+      var tp = await TopicQuestionService.getTopicbyId(GameController.idTopic);
+
+      return tp;
+    } finally {}
   }
 }

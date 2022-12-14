@@ -1,43 +1,36 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/controllers/game_controller.dart';
+import 'package:hab_app_trac_nghiem/controllers/level_controller.dart';
 import 'package:hab_app_trac_nghiem/controllers/topic_question_controller.dart';
-import 'package:hab_app_trac_nghiem/models/topic_question.dart';
+import 'package:hab_app_trac_nghiem/models/level.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/playing_game_screen.dart';
-import 'package:hab_app_trac_nghiem/ui/game_screen/single/select_level.dart';
 import 'package:lottie/lottie.dart';
 
-class SelectTopicSingleGameScreen extends StatefulWidget {
-  const SelectTopicSingleGameScreen({Key? key}) : super(key: key);
-  static String route = "/selecttopicsinglegame";
+class SelectLevelSingleGameScreen extends StatefulWidget {
+  const SelectLevelSingleGameScreen({Key? key}) : super(key: key);
+  static String route = "/selectlevelsinglegame";
 
   @override
-  State<SelectTopicSingleGameScreen> createState() =>
-      SelectTopicSingleGameScreenState();
+  State<SelectLevelSingleGameScreen> createState() =>
+      SelectLevelSingleGameScreenState();
 }
 
-class SelectTopicSingleGameScreenState
-    extends State<SelectTopicSingleGameScreen> {
-  final List<String> items = [
-    'Dễ',
-    'Trung Bình',
-    'Khó',
-    'Siêu Khó',
-  ];
-  TopicQuestionController controller = Get.put(TopicQuestionController());
-  String? selectedValue;
+class SelectLevelSingleGameScreenState
+    extends State<SelectLevelSingleGameScreen> {
+  LevelQuestionController controller = Get.put(LevelQuestionController());
 
-  Future<List<TopicQuestion>> _fetchTopicQuestion() async {
-    dynamic tpq = await TopicQuestionController.fetchDataTopicQuestion();
-    return tpq;
+  Future<List<Level>> _fetchLevelQuestion() async {
+    dynamic lv = await LevelQuestionController.fetchDataLevelQuestion();
+    return lv;
   }
 
   Future<bool> _refresh() async {
-    _fetchTopicQuestion();
+    _fetchLevelQuestion();
     return Future.value(true);
   }
 
@@ -49,10 +42,10 @@ class SelectTopicSingleGameScreenState
         body: SafeArea(
           child: RefreshIndicator(
             onRefresh: () async {
-              await _fetchTopicQuestion().then((lA) {
+              await _fetchLevelQuestion().then((lA) {
                 if (lA is Future) {
                   setState(() {
-                    _fetchTopicQuestion();
+                    _fetchLevelQuestion();
                   });
                   return;
                 } else {
@@ -107,7 +100,7 @@ class SelectTopicSingleGameScreenState
                               padding:
                                   EdgeInsets.fromLTRB(10.w, 5.w, 0.w, 10.w),
                               child: Text(
-                                "Chọn chủ đề bạn muốn <:",
+                                "Chọn độ khó bạn muốn <:",
                                 style: GoogleFonts.inter(
                                     fontSize: 25.sp,
                                     fontWeight: FontWeight.w400,
@@ -134,7 +127,7 @@ class SelectTopicSingleGameScreenState
                                 padding:
                                     EdgeInsets.fromLTRB(4.w, 20.w, 4.w, 0.w),
                                 itemCount:
-                                    TopicQuestionController.listtp.length,
+                                    LevelQuestionController.listtp.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Padding(
                                       padding: EdgeInsets.all(5.w),
@@ -152,73 +145,83 @@ class SelectTopicSingleGameScreenState
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               ListTile(
-                                                  leading: Image.network(
-                                                    '${TopicQuestionController.listtp[index].image}',
-                                                    width: 130.w,
-                                                    // height: 120.h,
-                                                    fit: BoxFit.fill,
-                                                  ),
                                                   title: Text(
-                                                      "${TopicQuestionController.listtp[index].topicQuestionName}",
+                                                      "${LevelQuestionController.listtp[index].levelName}",
                                                       style: GoogleFonts.inter(
                                                           fontSize: 32.sp,
                                                           fontWeight:
                                                               FontWeight.w600)),
-                                                  subtitle: Text(
-                                                    "${TopicQuestionController.listtp[index].description}",
-                                                    style: GoogleFonts.inter(
-                                                        fontSize: 20.sp),
+                                                  subtitle: Column(
+                                                    children: [
+                                                      AutoSizeText(
+                                                        "${LevelQuestionController.listtp[index].description}",
+                                                        maxLines: 2,
+                                                        minFontSize: 14,
+                                                        maxFontSize: 17,
+                                                        style:
+                                                            GoogleFonts.inter(
+                                                                fontSize: 20.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: ColorApp
+                                                                    .black),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10.h,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          AutoSizeText(
+                                                            "Số câu hỏi: ${LevelQuestionController.listtp[index].amountQuestion}",
+                                                            maxLines: 3,
+                                                            minFontSize: 12,
+                                                            maxFontSize: 15,
+                                                            style: GoogleFonts.inter(
+                                                                fontSize: 14.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: ColorApp
+                                                                    .blue),
+                                                          ),
+                                                          SizedBox(width: 5.w),
+                                                          AutoSizeText(
+                                                            "Thời gian trả lời: ${LevelQuestionController.listtp[index].timeAnswer}",
+                                                            maxLines: 3,
+                                                            minFontSize: 12,
+                                                            maxFontSize: 15,
+                                                            style: GoogleFonts.inter(
+                                                                fontSize: 14.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: ColorApp
+                                                                    .darkGreen),
+                                                          ),
+                                                          SizedBox(width: 5.w),
+                                                          AutoSizeText(
+                                                            "Điểm mỗi câu: ${LevelQuestionController.listtp[index].point}",
+                                                            maxLines: 3,
+                                                            minFontSize: 12,
+                                                            maxFontSize: 15,
+                                                            style: GoogleFonts.inter(
+                                                                fontSize: 14.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: ColorApp
+                                                                    .lightRed2251),
+                                                          )
+                                                        ],
+                                                      )
+                                                    ],
                                                   )),
                                               Expanded(
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.end,
                                                   children: [
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 8.h,
-                                                          right: 15.w),
-                                                      child:
-                                                          DropdownButtonHideUnderline(
-                                                        child: DropdownButton2(
-                                                          hint: Text(
-                                                            items[1],
-                                                            style: TextStyle(
-                                                              fontSize: 14,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .hintColor,
-                                                            ),
-                                                          ),
-                                                          items: items
-                                                              .map((item) =>
-                                                                  DropdownMenuItem<
-                                                                      String>(
-                                                                    value: item,
-                                                                    child: Text(
-                                                                      item,
-                                                                      style:
-                                                                          const TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
-                                                                    ),
-                                                                  ))
-                                                              .toList(),
-                                                          value: selectedValue,
-                                                          onChanged: (value) {
-                                                            setState(() {
-                                                              selectedValue =
-                                                                  value
-                                                                      as String;
-                                                            });
-                                                          },
-                                                          buttonHeight: 40,
-                                                          buttonWidth: 140,
-                                                          itemHeight: 40,
-                                                        ),
-                                                      ),
-                                                    ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
                                                           bottom: 8.h,
@@ -233,11 +236,12 @@ class SelectTopicSingleGameScreenState
                                                                         .circular(
                                                                             12))),
                                                         child: TextButton(
-                                                            onPressed: () {
+                                                            onPressed:
+                                                                () async {
                                                               setState(() {
                                                                 GameController
-                                                                        .idTopic =
-                                                                    TopicQuestionController
+                                                                        .idLevel =
+                                                                    LevelQuestionController
                                                                         .listtp[
                                                                             index]
                                                                         .id;
@@ -247,7 +251,7 @@ class SelectTopicSingleGameScreenState
                                                                 rootNavigator:
                                                                     true,
                                                               ).pushNamed(
-                                                                SelectLevelSingleGameScreen
+                                                                PlayingSingleGameScreen
                                                                     .route,
                                                               );
                                                             },

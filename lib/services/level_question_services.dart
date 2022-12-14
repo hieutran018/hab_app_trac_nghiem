@@ -1,21 +1,20 @@
 import 'dart:convert';
 
 import 'package:hab_app_trac_nghiem/app/app_url.dart';
-import 'package:hab_app_trac_nghiem/models/topic_question.dart';
+import 'package:hab_app_trac_nghiem/models/level.dart';
 import 'package:http/http.dart' as http;
 
-class TopicQuestionService {
-  static Future<List<TopicQuestion>> fetchTopicQuestion() async {
+class LevelQuestionService {
+  static Future<List<Level>> fetchLevelQuestion() async {
     try {
       var response = await http.get(
-        Uri.parse(AppUrl.fetchTopicQuestion),
+        Uri.parse(AppUrl.fetchLevelQuestion),
       );
 
       if (response.statusCode == 200) {
         final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
-        return parsed
-            .map<TopicQuestion>((json) => TopicQuestion.fromJson(json))
-            .toList();
+
+        return parsed.map<Level>((json) => Level.fromJson(json)).toList();
       } else {
         return jsonDecode(response.body);
       }
@@ -24,18 +23,18 @@ class TopicQuestionService {
     }
   }
 
-  static Future<TopicQuestion> getTopicbyId(int idTopic) async {
+  static Future<Level> getLevelbyId(int idLevel) async {
     try {
-      var response = await http.post(Uri.parse(AppUrl.getTopicbyId),
+      var response = await http.post(Uri.parse(AppUrl.getLevelbyId),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8'
           },
           body: jsonEncode(<String, int>{
-            'id_topic': idTopic,
+            'id_level': idLevel,
           }));
 
       if (response.statusCode == 200) {
-        return TopicQuestion.fromJson(jsonDecode(response.body));
+        return Level.fromJson(jsonDecode(response.body));
       } else {
         return jsonDecode(response.body);
       }

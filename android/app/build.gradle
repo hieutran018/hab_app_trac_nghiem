@@ -52,10 +52,10 @@ android {
 
     signingConfigs{
         debug{
-            keyAlias 'upload'
-            keyPassword '123456'
-            storeFile file('uploadkeystore.jks')
-            storePassword '123456'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('debugkeystore.jks')
+            storePassword 'android'
         }
 
     buildTypes {
