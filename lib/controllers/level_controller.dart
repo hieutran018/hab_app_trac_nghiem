@@ -33,6 +33,7 @@ class LevelQuestionController extends GetxController {
     try {
       var lv = await LevelQuestionService.getLevelbyId(GameController.idLevel);
       getTime(lv);
+      getPoint(lv);
       return lv;
     } finally {}
   }

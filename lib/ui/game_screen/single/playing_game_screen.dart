@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/controllers/game_controller.dart';
 import 'package:hab_app_trac_nghiem/controllers/level_controller.dart';
 import 'package:hab_app_trac_nghiem/controllers/topic_question_controller.dart';
-import 'package:hab_app_trac_nghiem/models/level.dart';
 import 'package:hab_app_trac_nghiem/models/topic_question.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/dialog_exit_game.dart';
@@ -23,6 +23,9 @@ class PlayingSingleGameScreen extends StatefulWidget {
 
 class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
   var list = [];
+  var start = true;
+  var checkSelect = false;
+
   // ignore: unused_field
   final TopicQuestionController _topicQuestionController =
       Get.put(TopicQuestionController());
@@ -30,17 +33,19 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
   final LevelQuestionController _levelQuestionController =
       Get.put(LevelQuestionController());
   final GameController _gameController = Get.put(GameController());
+  final CountDownController _controller = CountDownController();
   @override
   void initState() {
     super.initState();
     TopicQuestionController.getTopicbyId();
     LevelQuestionController.getLevelbyId();
     GameController.fetchDataQuestion();
+
     setState(() {
-      list = GameController.list;
+      GameController.item = 0;
+      GameController.score = 0;
     });
     list = GameController.list;
-    print(['screen', list[list.length - 1].questionContent]);
   }
 
   @override
@@ -135,13 +140,21 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                       color: const Color.fromRGBO(118, 255, 207, 1),
                       border: Border.all(width: 2.w, color: ColorApp.blue),
                     ),
-                    child: Center(
-                      child: Text(
-                        "Điểm: 100",
-                        style: TextStyle(fontSize: 25.sp),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                    child: Center(child: Obx(() {
+                      if (GameController.isLoading.value) {
+                        return Text(
+                          "Điểm: ${GameController.score}",
+                          style: TextStyle(fontSize: 25.sp),
+                          textAlign: TextAlign.center,
+                        );
+                      } else {
+                        return Text(
+                          "Đang tải...",
+                          style: TextStyle(fontSize: 25.sp),
+                          textAlign: TextAlign.center,
+                        );
+                      }
+                    })),
                   ),
                   Obx(() {
                     if (GameController.isLoading.value) {
@@ -152,8 +165,35 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                         width: 60.w,
                         height: 60.w,
                         fillColor: ColorApp.red,
-                        onStart: () {},
-                        onComplete: () {},
+                        isReverse: false,
+                        onStart: () {
+                          setState(() {
+                            if (!checkSelect) {
+                              if (start) {
+                                GameController.item = 0;
+                                start = false;
+                              } else {
+                                if (GameController.item <
+                                    GameController.amountQuestion - 1) {
+                                  GameController.item = GameController.item + 1;
+                                  checkSelect = false;
+                                }
+                              }
+                            }
+                          });
+                        },
+                        onComplete: () {
+                          setState(() {
+                            if (GameController.item <
+                                GameController.amountQuestion) {
+                              _controller.restart();
+                            } else {
+                              // Get.defaultDialog();
+                            }
+                            checkSelect = false;
+                          });
+                        },
+                        controller: _controller,
                       );
                     } else {
                       return Container();
@@ -169,7 +209,8 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                     ),
                     child: Center(child: Obx(() {
                       if (GameController.isLoading.value) {
-                        return Text("1/${GameController.amountQuestion}",
+                        return Text(
+                            "${GameController.item + 1}/${GameController.amountQuestion}",
                             style: GoogleFonts.inter(color: ColorApp.black));
                       } else {
                         return Text("Đang tải...",
@@ -196,7 +237,7 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                       child: Obx(() {
                         if (GameController.isLoading.value) {
                           return Text(
-                            "${GameController.list[0].questionContent} ",
+                            "${GameController.item + 1} - ${GameController.list[GameController.item].questionContent} ",
                             style: GoogleFonts.inter(
                                 fontSize: 30.sp, fontWeight: FontWeight.w400),
                             textAlign: TextAlign.center,
@@ -221,33 +262,55 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                       return Padding(
                         padding: EdgeInsets.all(5.w),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            GameController.answerQuestion(GameController
+                                .list[GameController.item]
+                                .answer[index]
+                                .isTrue);
+                            setState(() {
+                              if (GameController.item <
+                                  GameController.amountQuestion - 1) {
+                                GameController.nextQUestion();
+                                checkSelect = true;
+                                if (GameController.item ==
+                                    GameController.amountQuestion) {
+                                  _controller.pause();
+                                } else {
+                                  checkSelect = true;
+                                  _controller.restart();
+                                }
+                              } else {
+                                // Get.defaultDialog();
+                              }
+                            });
+                          },
                           child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.w),
-                              color: const Color.fromRGBO(123, 120, 237, 1),
-                            ),
-                            child: SizedBox(
-                                height: 100.h,
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(
-                                          20.w, 0.h, 10.w, 0.h),
-                                      child: Text("A",
-                                          style: GoogleFonts.inter(
-                                              fontSize: 25.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: ColorApp.white)),
-                                    ),
-                                    Text("Bạn của ông",
-                                        style: GoogleFonts.inter(
-                                            fontSize: 25.sp,
-                                            fontWeight: FontWeight.w400,
-                                            color: ColorApp.white))
-                                  ],
-                                )),
-                          ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.w),
+                                color: const Color.fromRGBO(123, 120, 237, 1),
+                              ),
+                              child: Obx(() {
+                                if (GameController.isLoading.value) {
+                                  return SizedBox(
+                                    height: 100.h,
+                                    child: Padding(
+                                        padding: EdgeInsets.fromLTRB(
+                                            20.w, 30.h, 10.w, 0.h),
+                                        child: AutoSizeText(
+                                            "${index + 1} - ${GameController.list[GameController.item].answer[index].answerContent}",
+                                            maxLines: 2,
+                                            maxFontSize: 14,
+                                            minFontSize: 12,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: GoogleFonts.inter(
+                                                fontSize: 15.sp,
+                                                fontWeight: FontWeight.w400,
+                                                color: ColorApp.white))),
+                                  );
+                                } else {
+                                  return Container();
+                                }
+                              })),
                         ),
                       );
                     }),
