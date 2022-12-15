@@ -4,6 +4,7 @@ import 'dart:convert';
 // import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hab_app_trac_nghiem/app/app_url.dart';
+import 'package:hab_app_trac_nghiem/controllers/game_controller.dart';
 import 'package:hab_app_trac_nghiem/models/auth.dart';
 import 'package:hab_app_trac_nghiem/models/errors.dart';
 import 'package:hab_app_trac_nghiem/models/user.dart';
@@ -95,6 +96,8 @@ class AuthService {
       });
 
       if (response.statusCode == 200) {
+        var user = User.fromJson(jsonDecode(response.body));
+        GameController.currentScoreSingle = user.scoreSingle!;
         return User.fromJson(jsonDecode(response.body));
       } else {
         return User.fromJson(jsonDecode(response.body));
@@ -118,7 +121,6 @@ class AuthService {
       });
 
       if (response.statusCode == 200) {
-        print(response);
         await prefs.remove('token');
         return true;
       } else {

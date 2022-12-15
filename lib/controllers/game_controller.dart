@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:hab_app_trac_nghiem/controllers/level_controller.dart';
 import 'package:hab_app_trac_nghiem/models/question.dart';
+import 'package:hab_app_trac_nghiem/services/game_services.dart';
 import 'package:hab_app_trac_nghiem/services/question_services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GameController extends GetxController {
   static late int idLevel;
@@ -12,8 +14,9 @@ class GameController extends GetxController {
   static var amountQuestion = 0;
   static var item = 0;
   static var score = 0;
+  static var currentScoreSingle = 0;
   static var point = 0;
-  static var timeAnswer = 0;
+  static var timeAnswer = LevelQuestionController.time;
 
   @override
   void onInit() {
@@ -24,6 +27,7 @@ class GameController extends GetxController {
     item;
     score;
     point;
+    timeAnswer = LevelQuestionController.time;
     super.onInit();
   }
 
@@ -64,5 +68,21 @@ class GameController extends GetxController {
       score = score + point;
       // print(['controller score', score]);
     } else {}
+  }
+
+  static Future<bool> createGameSingle(
+      int idTopic, int idLevel, int score) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+
+    try {
+      print(['controller save', token, idTopic, idLevel, score]);
+      var postData = await GameService.createDataGameSingle(
+          token, idTopic, idLevel, score);
+      return postData;
+    } finally {
+      // ignore: control_flow_in_finally
+      return false;
+    }
   }
 }

@@ -11,6 +11,7 @@ import 'package:hab_app_trac_nghiem/controllers/topic_question_controller.dart';
 import 'package:hab_app_trac_nghiem/models/topic_question.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/dialog_exit_game.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/single/dialog_end_game.dart';
 
 class PlayingSingleGameScreen extends StatefulWidget {
   const PlayingSingleGameScreen({Key? key}) : super(key: key);
@@ -177,6 +178,8 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                                     GameController.amountQuestion - 1) {
                                   GameController.item = GameController.item + 1;
                                   checkSelect = false;
+                                } else {
+                                  _buildEndGameSingleDialog();
                                 }
                               }
                             }
@@ -188,7 +191,7 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                                 GameController.amountQuestion) {
                               _controller.restart();
                             } else {
-                              // Get.defaultDialog();
+                              _buildEndGameSingleDialog();
                             }
                             checkSelect = false;
                           });
@@ -280,7 +283,8 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                                   _controller.restart();
                                 }
                               } else {
-                                // Get.defaultDialog();
+                                _controller.pause();
+                                _buildEndGameSingleDialog();
                               }
                             });
                           },
@@ -353,6 +357,14 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
         context: context,
         builder: (BuildContext context) {
           return const ExitGameDialog();
+        });
+  }
+
+  _buildEndGameSingleDialog() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const EndGameSingleDialog();
         });
   }
 }

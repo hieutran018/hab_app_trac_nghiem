@@ -14,4 +14,5 @@ class AppUrl {
   static const String fetchLevelQuestion = baseUrl + '/level-quesiton';
   static const String getLevelbyId = baseUrl + '/get-level-by-id';
   static const String fetchQuestion = baseUrl + '/question';
+  static const String createGameSingle = baseUrl + '/games/create-match-single';
 }
