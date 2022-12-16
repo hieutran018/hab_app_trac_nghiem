@@ -10,6 +10,8 @@ import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/roles_game_single.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/select_level.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/select_topic.dart';
+import 'package:hab_app_trac_nghiem/ui/home_screen/home_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SingleGameScreen extends StatefulWidget {
@@ -34,7 +36,9 @@ class SingleGameScreenState extends State<SingleGameScreen> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: ColorApp.lightBlue5125,
-          leading: const BackButton(color: Color.fromRGBO(255, 255, 255, 1)),
+          leading: const BackButton(
+            color: Color.fromRGBO(255, 255, 255, 1),
+          ),
           title: Image.asset(
             "assets/images/components/ic_logo_hab.png",
             width: 45.w,

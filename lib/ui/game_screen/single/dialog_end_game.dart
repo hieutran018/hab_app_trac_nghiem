@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/controllers/game_controller.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/single/single_game_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/home_screen/home_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 
 class EndGameSingleDialog extends StatefulWidget {
   const EndGameSingleDialog({Key? key}) : super(key: key);
@@ -80,7 +82,7 @@ class _EndGameSingleDialogState extends State<EndGameSingleDialog> {
                           GameController.idTopic,
                           GameController.idLevel,
                           GameController.score);
-                      Get.offAllNamed(SingleGameScreen.route);
+                      Get.offAllNamed(MainScreen.route);
                     },
                     child: Container(
                       width: 300.w,

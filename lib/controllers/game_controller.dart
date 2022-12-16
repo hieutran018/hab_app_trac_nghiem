@@ -17,6 +17,7 @@ class GameController extends GetxController {
   static var currentScoreSingle = 0;
   static var point = 0;
   static var timeAnswer = LevelQuestionController.time;
+  static var isStartTime = false;
 
   @override
   void onInit() {
@@ -43,6 +44,7 @@ class GameController extends GetxController {
       // print(['list', list[0].questionContent]);
       // print(['listq', listq.length]);
       isLoading.value = true;
+      isStartTime = true;
       return listq;
     } finally {
       isLoading.value = true;

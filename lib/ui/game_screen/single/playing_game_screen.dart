@@ -60,7 +60,6 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
               IconButton(
                   alignment: Alignment.center,
                   onPressed: () {
-                    // _buildFailDialog();
                     Navigator.pop(context);
                   },
                   icon: Icon(
@@ -157,6 +156,7 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                       }
                     })),
                   ),
+                  //! Bug: Lần đầu vào phần chơi chọn đáp án sẽ crash đơ app
                   Obx(() {
                     if (GameController.isLoading.value) {
                       return CircularCountDownTimer(

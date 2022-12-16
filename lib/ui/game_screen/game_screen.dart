@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -73,6 +75,8 @@ class _GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<_GameScreen> {
+  int minutes = 1;
+  int seconds = 60;
   Future<User> getInfoUser() async {
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
