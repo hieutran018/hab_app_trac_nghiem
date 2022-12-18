@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/controllers/notification_controller.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+import 'package:lottie/lottie.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);
@@ -12,6 +15,12 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class NotificationScreenState extends State<NotificationScreen> {
+  @override
+  void initState() {
+    super.initState();
+    NotificationController.fetchDataNotification();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,55 +62,65 @@ class NotificationScreenState extends State<NotificationScreen> {
             SizedBox(
               height: 5.w,
             ),
-            Expanded(
-              child: ListView.builder(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      height: 100.w,
-                      decoration: BoxDecoration(
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          border: Border.all(
-                              width: 0.1.w, color: ColorApp.darkGrey)),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 15.w),
-                            child: CircleAvatar(
-                              child: SvgPicture.asset(
-                                  "assets/images/components/noti_friend.svg"),
-                            ),
-                          ),
-                          Padding(
-                              padding: EdgeInsets.only(left: 15.w),
-                              child: Container(
-                                color: ColorApp.white,
-                                height: 70.h,
-                                child: SizedBox(
-                                  child: RichText(
-                                    text: TextSpan(children: [
-                                      TextSpan(
-                                          text: "Trần Dương Chí Hiếu",
-                                          style: TextStyle(
-                                              color: ColorApp.black,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 20.w)),
-                                      TextSpan(
-                                          text:
-                                              " đã gửi cho bạn lời mời kết bạn.",
-                                          style: TextStyle(
-                                              color: ColorApp.black,
-                                              fontSize: 20.w)),
-                                    ]),
-                                  ),
+            Obx(() {
+              if (NotificationController.isLoading.value) {
+                return Expanded(
+                  child: ListView.builder(
+                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      itemCount: NotificationController.listNoti.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          height: 100.w,
+                          decoration: BoxDecoration(
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              border: Border.all(
+                                  width: 0.1.w, color: ColorApp.darkGrey)),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 15.w),
+                                child: CircleAvatar(
+                                  child: SvgPicture.asset(
+                                      "assets/images/components/noti_friend.svg"),
                                 ),
-                              ))
-                        ],
-                      ),
-                    );
-                  }),
-            )
+                              ),
+                              Expanded(
+                                child: Padding(
+                                    padding: EdgeInsets.only(left: 15.w),
+                                    child: Container(
+                                      color: ColorApp.white,
+                                      height: 90.h,
+                                      child: SizedBox(
+                                        child: RichText(
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                                text:
+                                                    "${NotificationController.listNoti[index].userIdRequest[0].displayName}",
+                                                style: TextStyle(
+                                                    color: ColorApp.black,
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 40.sp)),
+                                            TextSpan(
+                                                text:
+                                                    " ${NotificationController.listNoti[index].notificationId == 1 ? 'đã gửi cho bạn một lời THÁCH ĐẤU' : 'đã gửi cho bạn một lời mời kết bạn'}",
+                                                style: TextStyle(
+                                                    color: ColorApp.black,
+                                                    fontSize: 40.sp)),
+                                          ]),
+                                        ),
+                                      ),
+                                    )),
+                              )
+                            ],
+                          ),
+                        );
+                      }),
+                );
+              } else {
+                return LottieBuilder.asset(
+                    'assets/images/components/loading_data.json');
+              }
+            })
           ],
         ));
   }

@@ -8,8 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class GameController extends GetxController {
   static late int idLevel;
   static late int idTopic;
+  static late int idUserTo;
 
   static var isLoading = false.obs;
+  static var isLoadingSingle = false.obs;
   static var list = [].obs;
   static var amountQuestion = 0;
   static var item = 0;
@@ -18,6 +20,7 @@ class GameController extends GetxController {
   static var point = 0;
   static var timeAnswer = LevelQuestionController.time;
   static var isStartTime = false;
+  static var listAnswer = [].obs;
 
   @override
   void onInit() {
@@ -76,15 +79,52 @@ class GameController extends GetxController {
       int idTopic, int idLevel, int score) async {
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
+    List jsonList = [];
 
+    for (var answer in listAnswer) {
+      Map<String, String> val = {
+        'question_id': answer[0].toString(),
+        'answer_id': answer[1].toString(),
+      };
+      jsonList.add(val);
+    }
     try {
-      print(['controller save', token, idTopic, idLevel, score]);
+      // print(['controller save', token, idTopic, idLevel, score]);
       var postData = await GameService.createDataGameSingle(
-          token, idTopic, idLevel, score);
+          token, idTopic, idLevel, score, jsonList);
       return postData;
     } finally {
       // ignore: control_flow_in_finally
       return false;
     }
+  }
+
+  static Future<bool> createDataGameChallenge(
+      int idTopic, int idLevel, int score) async {
+    final prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString("token");
+    List jsonList = [];
+
+    for (var answer in listAnswer) {
+      Map<String, String> val = {
+        'question_id': answer[0].toString(),
+        'answer_id': answer[1].toString(),
+      };
+      jsonList.add(val);
+    }
+
+    try {
+      var postData = await GameService.createDataGameChallenge(
+          token, idUserTo, idTopic, idLevel, score, jsonList);
+      return postData;
+    } finally {
+      // ignore: control_flow_in_finally
+      return false;
+    }
+  }
+
+  static void setAnswer(int questionId, int answerId) {
+    var item = [questionId.toString(), answerId.toString()];
+    listAnswer.add(item);
   }
 }

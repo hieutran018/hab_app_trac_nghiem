@@ -6,27 +6,22 @@ import 'package:hab_app_trac_nghiem/controllers/match_history_controller.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:lottie/lottie.dart';
 
-class HistoryDetailSingleGame extends StatefulWidget {
-  const HistoryDetailSingleGame(
+class HistoryChallengeGame extends StatefulWidget {
+  const HistoryChallengeGame(
       {Key? key, required this.matchId, required this.mode})
       : super(key: key);
-  static String route = 'historydetailsingle';
+  static String route = 'historydetailchallenge';
   final int matchId;
   final int mode;
   @override
-  State<HistoryDetailSingleGame> createState() =>
-      HistoryDetailSingleGameState();
+  State<HistoryChallengeGame> createState() => HistoryChallengeGameState();
 }
 
-class HistoryDetailSingleGameState extends State<HistoryDetailSingleGame> {
+class HistoryChallengeGameState extends State<HistoryChallengeGame> {
   @override
   void initState() {
     super.initState();
-    if (widget.mode == 1) {
-      MatchHistoryController.getDataMatchHistorySingleDetail(widget.matchId);
-    } else {
-      MatchHistoryController.getDataMatchHistoryChallengeDetail(widget.matchId);
-    }
+    MatchHistoryController.getDataMatchHistoryChallengeDetail(widget.matchId);
   }
 
   @override

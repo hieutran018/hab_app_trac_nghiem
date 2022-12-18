@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hab_app_trac_nghiem/controllers/notification_controller.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/friend_screen/friend_screen.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/game_screen.dart';
@@ -60,6 +61,12 @@ class MainScreenState extends State<MainScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    NotificationController.fetchDataNotification();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -74,7 +81,12 @@ class MainScreenState extends State<MainScreen> {
               onPressed: () {
                 Navigator.pushNamed(context, '/notification');
               },
-              icon: Image.asset("assets/images/ic_notification.png"))
+              icon: Icon(
+                NotificationController.listNoti.isNotEmpty
+                    ? Icons.notification_important_outlined
+                    : Icons.notifications,
+                size: 70.w,
+              ))
         ],
       ),
       body: PersistentTabView(

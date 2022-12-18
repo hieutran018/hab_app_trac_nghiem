@@ -1,35 +1,36 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/controllers/game_controller.dart';
+import 'package:hab_app_trac_nghiem/controllers/level_controller.dart';
 import 'package:hab_app_trac_nghiem/controllers/topic_question_controller.dart';
-import 'package:hab_app_trac_nghiem/models/topic_question.dart';
+import 'package:hab_app_trac_nghiem/models/level.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
-import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/select_level.dart';
-
+import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/playing_game_screen_challenger_mode.dart';
 import 'package:lottie/lottie.dart';
 
-class SelectTopicChallengerGameScreen extends StatefulWidget {
-  const SelectTopicChallengerGameScreen({Key? key}) : super(key: key);
-  static String route = "/selecttopicschallengegame";
+class SelectLevelChallengeGameScreen extends StatefulWidget {
+  const SelectLevelChallengeGameScreen({Key? key}) : super(key: key);
+  static String route = "/selectlevelchallengegame";
 
   @override
-  State<SelectTopicChallengerGameScreen> createState() =>
-      SelectTopicChallengerGameScreenState();
+  State<SelectLevelChallengeGameScreen> createState() =>
+      SelectLevelChallengeGameScreenState();
 }
 
-class SelectTopicChallengerGameScreenState
-    extends State<SelectTopicChallengerGameScreen> {
-  TopicQuestionController controller = Get.put(TopicQuestionController());
+class SelectLevelChallengeGameScreenState
+    extends State<SelectLevelChallengeGameScreen> {
+  LevelQuestionController controller = Get.put(LevelQuestionController());
 
-  Future<List<TopicQuestion>> _fetchTopicQuestion() async {
-    dynamic tpq = await TopicQuestionController.fetchDataTopicQuestion();
-    return tpq;
+  Future<List<Level>> _fetchLevelQuestion() async {
+    dynamic lv = await LevelQuestionController.fetchDataLevelQuestion();
+    return lv;
   }
 
   Future<bool> _refresh() async {
-    _fetchTopicQuestion();
+    _fetchLevelQuestion();
     return Future.value(true);
   }
 
@@ -41,10 +42,10 @@ class SelectTopicChallengerGameScreenState
         body: SafeArea(
           child: RefreshIndicator(
             onRefresh: () async {
-              await _fetchTopicQuestion().then((lA) {
+              await _fetchLevelQuestion().then((lA) {
                 if (lA is Future) {
                   setState(() {
-                    _fetchTopicQuestion();
+                    _fetchLevelQuestion();
                   });
                   return;
                 } else {
@@ -99,7 +100,7 @@ class SelectTopicChallengerGameScreenState
                               padding:
                                   EdgeInsets.fromLTRB(10.w, 5.w, 0.w, 10.w),
                               child: Text(
-                                "Chọn chủ đề bạn muốn <:",
+                                "Chọn độ khó bạn muốn <:",
                                 style: GoogleFonts.inter(
                                     fontSize: 25.sp,
                                     fontWeight: FontWeight.w400,
@@ -126,7 +127,7 @@ class SelectTopicChallengerGameScreenState
                                 padding:
                                     EdgeInsets.fromLTRB(4.w, 20.w, 4.w, 0.w),
                                 itemCount:
-                                    TopicQuestionController.listtp.length,
+                                    LevelQuestionController.listtp.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Padding(
                                       padding: EdgeInsets.all(5.w),
@@ -144,22 +145,77 @@ class SelectTopicChallengerGameScreenState
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               ListTile(
-                                                  leading: Image.network(
-                                                    '${TopicQuestionController.listtp[index].image}',
-                                                    width: 130.w,
-                                                    // height: 120.h,
-                                                    fit: BoxFit.fill,
-                                                  ),
                                                   title: Text(
-                                                      "${TopicQuestionController.listtp[index].topicQuestionName}",
+                                                      "${LevelQuestionController.listtp[index].levelName}",
                                                       style: GoogleFonts.inter(
                                                           fontSize: 32.sp,
                                                           fontWeight:
                                                               FontWeight.w600)),
-                                                  subtitle: Text(
-                                                    "${TopicQuestionController.listtp[index].description}",
-                                                    style: GoogleFonts.inter(
-                                                        fontSize: 20.sp),
+                                                  subtitle: Column(
+                                                    children: [
+                                                      AutoSizeText(
+                                                        "${LevelQuestionController.listtp[index].description}",
+                                                        maxLines: 2,
+                                                        minFontSize: 14,
+                                                        maxFontSize: 17,
+                                                        style:
+                                                            GoogleFonts.inter(
+                                                                fontSize: 20.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: ColorApp
+                                                                    .black),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10.h,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          AutoSizeText(
+                                                            "Số câu hỏi: ${LevelQuestionController.listtp[index].amountQuestion}",
+                                                            maxLines: 3,
+                                                            minFontSize: 12,
+                                                            maxFontSize: 15,
+                                                            style: GoogleFonts.inter(
+                                                                fontSize: 14.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: ColorApp
+                                                                    .blue),
+                                                          ),
+                                                          SizedBox(width: 5.w),
+                                                          AutoSizeText(
+                                                            "Thời gian trả lời: ${LevelQuestionController.listtp[index].timeAnswer}",
+                                                            maxLines: 3,
+                                                            minFontSize: 12,
+                                                            maxFontSize: 15,
+                                                            style: GoogleFonts.inter(
+                                                                fontSize: 14.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: ColorApp
+                                                                    .darkGreen),
+                                                          ),
+                                                          SizedBox(width: 5.w),
+                                                          AutoSizeText(
+                                                            "Điểm mỗi câu: ${LevelQuestionController.listtp[index].point}",
+                                                            maxLines: 3,
+                                                            minFontSize: 12,
+                                                            maxFontSize: 15,
+                                                            style: GoogleFonts.inter(
+                                                                fontSize: 14.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: ColorApp
+                                                                    .lightRed2251),
+                                                          )
+                                                        ],
+                                                      )
+                                                    ],
                                                   )),
                                               Expanded(
                                                 child: Row(
@@ -180,11 +236,12 @@ class SelectTopicChallengerGameScreenState
                                                                         .circular(
                                                                             12))),
                                                         child: TextButton(
-                                                            onPressed: () {
+                                                            onPressed:
+                                                                () async {
                                                               setState(() {
                                                                 GameController
-                                                                        .idTopic =
-                                                                    TopicQuestionController
+                                                                        .idLevel =
+                                                                    LevelQuestionController
                                                                         .listtp[
                                                                             index]
                                                                         .id;
@@ -194,7 +251,7 @@ class SelectTopicChallengerGameScreenState
                                                                 rootNavigator:
                                                                     true,
                                                               ).pushNamed(
-                                                                SelectLevelChallengeGameScreen
+                                                                PlayingChallengerGameScreen
                                                                     .route,
                                                               );
                                                             },

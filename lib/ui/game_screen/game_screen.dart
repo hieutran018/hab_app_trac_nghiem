@@ -25,7 +25,7 @@ class GameScreen extends StatefulWidget {
 class GameScreenState extends State<GameScreen> {
   final AuthController controller = Get.put(AuthController());
 
-  Future<bool> goto() async {
+  static Future<bool> goto() async {
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
     if (token != null) {
@@ -302,9 +302,12 @@ class _GameScreenState extends State<_GameScreen> {
               child: Text('Loi'),
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return Center(
+                child: Padding(
+              padding: EdgeInsets.fromLTRB(100.w, 0.h, 100.w, 0.h),
+              child: LottieBuilder.asset(
+                  'assets/images/components/game_loading.json'),
+            ));
           }
         });
   }

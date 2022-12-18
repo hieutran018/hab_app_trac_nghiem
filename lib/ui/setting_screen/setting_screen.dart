@@ -28,10 +28,8 @@ class SettingScreenState extends State<SettingScreen> {
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
     if (token != null) {
-      print(['NOT NULL', token]);
       return true;
     } else {
-      print(['NULL', token]);
       return false;
     }
   }
@@ -84,7 +82,6 @@ class _SettingScreenState extends State<_SettingScreen> {
     final prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString("token");
     dynamic user = await AuthController.getDataUser(token.toString());
-    print(user);
     return user;
   }
 
@@ -225,8 +222,11 @@ class _SettingScreenState extends State<_SettingScreen> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context, rootNavigator: true)
-                        .pushNamed(HistoryScreen.route);
+                    Get.to(
+                      () => HistoryScreen(
+                        idUser: AuthController.id,
+                      ),
+                    );
                   },
                   child: Row(
                     children: [

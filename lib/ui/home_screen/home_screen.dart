@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/controllers/notification_controller.dart';
 import 'package:hab_app_trac_nghiem/controllers/ranking_challenge_controller.dart';
 import 'package:hab_app_trac_nghiem/models/ranking_challenge.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+import 'package:hab_app_trac_nghiem/ui/info_user/info_user.dart';
 import 'package:hab_app_trac_nghiem/ui/new_screen/news_detail_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
@@ -28,6 +30,12 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    NotificationController.fetchDataNotification();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
@@ -35,6 +43,7 @@ class HomeScreenState extends State<HomeScreen> {
           if (lA is Future) {
             setState(() {
               _fetchRankingChallenge();
+              NotificationController.fetchDataNotification();
             });
             return;
           } else {
@@ -265,121 +274,142 @@ class HomeScreenState extends State<HomeScreen> {
                                         itemBuilder:
                                             (BuildContext context, int index) {
                                           return Padding(
-                                            padding: EdgeInsets.all(5.w),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20.w),
-                                                color: ColorApp.lightBlue,
-                                              ),
-                                              child: SizedBox(
-                                                  width: 300.w,
-                                                  height: 100.h,
-                                                  child: Row(
-                                                    children: [
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 10.w),
-                                                          child: SizedBox(
-                                                            width: 50.w,
-                                                            child: index == 0
-                                                                ? Image.asset(
-                                                                    "assets/images/components/ic_reward_no_1.png",
-                                                                    height:
-                                                                        50.h,
-                                                                    width: 50.w,
-                                                                  )
-                                                                : index == 1
+                                              padding: EdgeInsets.all(5.w),
+                                              child: InkWell(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20.w),
+                                                    color: ColorApp.lightBlue,
+                                                  ),
+                                                  child: SizedBox(
+                                                      width: 300.w,
+                                                      height: 100.h,
+                                                      child: Row(
+                                                        children: [
+                                                          Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left:
+                                                                          10.w),
+                                                              child: SizedBox(
+                                                                width: 50.w,
+                                                                child: index ==
+                                                                        0
                                                                     ? Image
                                                                         .asset(
-                                                                        "assets/images/components/ic_reward_no_2.png",
+                                                                        "assets/images/components/ic_reward_no_1.png",
                                                                         height:
                                                                             50.h,
                                                                         width:
                                                                             50.w,
                                                                       )
-                                                                    : index == 2
+                                                                    : index == 1
                                                                         ? Image
                                                                             .asset(
-                                                                            "assets/images/components/ic_reward_no_3.png",
+                                                                            "assets/images/components/ic_reward_no_2.png",
                                                                             height:
                                                                                 50.h,
                                                                             width:
                                                                                 50.w,
                                                                           )
-                                                                        : Text(
-                                                                            '${index + 1}',
-                                                                            style:
-                                                                                GoogleFonts.inter(fontSize: 25.sp),
-                                                                            textAlign:
-                                                                                TextAlign.center,
-                                                                          ),
-                                                          )),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10.w),
-                                                        child: CircleAvatar(
-                                                            backgroundImage:
-                                                                NetworkImage(
-                                                                    '${RankingChallengeController.listRank[index].user.avatar}',
-                                                                    scale:
-                                                                        0.5)),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10.w),
-                                                        child: SizedBox(
-                                                          width: 410.w,
-                                                          child: AutoSizeText(
-                                                            "${RankingChallengeController.listRank[index].user.displayName}",
-                                                            maxLines: 1,
-                                                            maxFontSize: 17,
-                                                            minFontSize: 10,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            style: GoogleFonts
-                                                                .inter(
-                                                              fontSize: 22.sp,
-                                                              color: index == 0
-                                                                  ? ColorApp.red
-                                                                  : ColorApp
-                                                                      .black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
+                                                                        : index ==
+                                                                                2
+                                                                            ? Image.asset(
+                                                                                "assets/images/components/ic_reward_no_3.png",
+                                                                                height: 50.h,
+                                                                                width: 50.w,
+                                                                              )
+                                                                            : Text(
+                                                                                '${index + 1}',
+                                                                                style: GoogleFonts.inter(fontSize: 25.sp),
+                                                                                textAlign: TextAlign.center,
+                                                                              ),
+                                                              )),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 10.w),
+                                                            child: CircleAvatar(
+                                                                backgroundImage:
+                                                                    NetworkImage(
+                                                                        '${RankingChallengeController.listRank[index].user.avatar}',
+                                                                        scale:
+                                                                            0.5)),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 10.w),
+                                                            child: SizedBox(
+                                                              width: 410.w,
+                                                              child:
+                                                                  AutoSizeText(
+                                                                "${RankingChallengeController.listRank[index].user.displayName}",
+                                                                maxLines: 1,
+                                                                maxFontSize: 17,
+                                                                minFontSize: 10,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                style:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontSize:
+                                                                      22.sp,
+                                                                  color: index ==
+                                                                          0
+                                                                      ? ColorApp
+                                                                          .red
+                                                                      : ColorApp
+                                                                          .black,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10.w),
-                                                        child: AutoSizeText(
-                                                          "${RankingChallengeController.listRank[index].scoreChallenge}",
-                                                          maxLines: 1,
-                                                          minFontSize: 10,
-                                                          maxFontSize: 20,
-                                                          style:
-                                                              GoogleFonts.inter(
-                                                            fontSize: 30.sp,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            color: index == 0
-                                                                ? ColorApp.red
-                                                                : ColorApp
-                                                                    .black,
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 10.w),
+                                                            child: AutoSizeText(
+                                                              "${RankingChallengeController.listRank[index].scoreChallenge}",
+                                                              maxLines: 1,
+                                                              minFontSize: 10,
+                                                              maxFontSize: 20,
+                                                              style: GoogleFonts
+                                                                  .inter(
+                                                                fontSize: 30.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: index ==
+                                                                        0
+                                                                    ? ColorApp
+                                                                        .red
+                                                                    : ColorApp
+                                                                        .black,
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )),
-                                            ),
-                                          );
+                                                        ],
+                                                      )),
+                                                ),
+                                                onTap: () {
+                                                  Get.to(
+                                                    () => InfoUserScreen(
+                                                      idUser:
+                                                          RankingChallengeController
+                                                              .listRank[index]
+                                                              .user
+                                                              .id,
+                                                    ),
+                                                  );
+                                                },
+                                              ));
                                         });
                                   } else {
                                     return Column(

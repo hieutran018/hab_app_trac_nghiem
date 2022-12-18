@@ -33,7 +33,6 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
   // ignore: unused_field
   final LevelQuestionController _levelQuestionController =
       Get.put(LevelQuestionController());
-  final GameController _gameController = Get.put(GameController());
   final CountDownController _controller = CountDownController();
   @override
   void initState() {
@@ -45,6 +44,7 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
     setState(() {
       GameController.item = 0;
       GameController.score = 0;
+      GameController.listAnswer.clear();
     });
     list = GameController.list;
   }
@@ -158,7 +158,7 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                   ),
                   //! Bug: Lần đầu vào phần chơi chọn đáp án sẽ crash đơ app
                   Obx(() {
-                    if (GameController.isLoading.value) {
+                    if (LevelQuestionController.isLoadLevel.value) {
                       return CircularCountDownTimer(
                         duration: GameController.timeAnswer,
                         initialDuration: 0,
@@ -271,9 +271,14 @@ class PlayingSingleGameScreenState extends State<PlayingSingleGameScreen> {
                                 .answer[index]
                                 .isTrue);
                             setState(() {
+                              GameController.setAnswer(
+                                  GameController.list[GameController.item].id,
+                                  GameController.list[GameController.item]
+                                      .answer[index].id);
                               if (GameController.item <
                                   GameController.amountQuestion - 1) {
                                 GameController.nextQUestion();
+
                                 checkSelect = true;
                                 if (GameController.item ==
                                     GameController.amountQuestion) {

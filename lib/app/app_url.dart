@@ -7,6 +7,7 @@ class AppUrl {
   static const String register = baseUrl + '/register-account';
   static const String newsCategory = baseUrl + '/news/news-category';
   static const String getUser = baseUrl + '/user';
+  static const String getUserById = baseUrl + '/user/get-data-user';
   static const String fetchRankingChallenge = baseUrl + '/ranking-challenge';
   static const String fetchRankingSingle = baseUrl + '/ranking-single';
   static const String fetchTopicQuestion = baseUrl + '/topic-quesiton';
@@ -15,4 +16,14 @@ class AppUrl {
   static const String getLevelbyId = baseUrl + '/get-level-by-id';
   static const String fetchQuestion = baseUrl + '/question';
   static const String createGameSingle = baseUrl + '/games/create-match-single';
+  static const String fetchMatchHistory = baseUrl + '/match-history';
+  static const String getMatchHistorySinglebyId =
+      baseUrl + '/match-history/history-detail';
+  static const String getMatchHistoryChallengebyId =
+      baseUrl + '/match-history/history-challenge-detail';
+  static const String getListUserGameChallenge =
+      baseUrl + '/games/get-list-user-game-challenge';
+  static const String createGameChallenge =
+      baseUrl + '/games/create-match-challenge';
+  static const String notification = baseUrl + '/notification';
 }

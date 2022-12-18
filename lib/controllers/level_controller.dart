@@ -5,6 +5,7 @@ import 'package:hab_app_trac_nghiem/services/level_question_services.dart';
 
 class LevelQuestionController extends GetxController {
   static var isLoading = false.obs;
+  static var isLoadLevel = false.obs;
   static var listtp = [].obs;
   static var time = 0;
   static var amount = 0;
@@ -31,9 +32,11 @@ class LevelQuestionController extends GetxController {
 
   static Future<Level> getLevelbyId() async {
     try {
+      isLoadLevel.value = false;
       var lv = await LevelQuestionService.getLevelbyId(GameController.idLevel);
       getTime(lv);
       getPoint(lv);
+      isLoadLevel.value = true;
       return lv;
     } finally {}
   }

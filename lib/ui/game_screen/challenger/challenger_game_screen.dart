@@ -261,7 +261,7 @@ class ChallengerGameScreenState extends State<ChallengerGameScreen> {
                                                           child: SizedBox(
                                                             width: 410.w,
                                                             child: AutoSizeText(
-                                                              "${RankingChallengeController.listRank[index].user.firstName} ${RankingChallengeController.listRank[index].user.lastName}",
+                                                              "${RankingChallengeController.listRank[index].user.displayName}",
                                                               maxLines: 1,
                                                               maxFontSize: 17,
                                                               minFontSize: 10,
