@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:hab_app_trac_nghiem/app/app_url.dart';
+import 'package:hab_app_trac_nghiem/controllers/game_controller.dart';
+import 'package:hab_app_trac_nghiem/controllers/ranking_challenge_controller.dart';
 import 'package:hab_app_trac_nghiem/controllers/ranking_single_controller.dart';
 import 'package:http/http.dart' as http;
 
@@ -50,7 +52,34 @@ class GameService {
               body: jsonEncode(data))
           .timeout(const Duration(seconds: 25));
       if (response.statusCode == 200) {
-        RankingSingleController.fetchDataRankingSingle();
+        RankingChallengeController.fetchDataRankingChallenge();
+        return true;
+      } else {
+        return false;
+      }
+    } finally {}
+  }
+
+  static Future<bool> createDataAcceptGameChallenge(
+      String? token, int score, List lstAnswer) async {
+    try {
+      Map data = {
+        "match_id": GameController.matchId.toString(),
+        "point_user_id_to": score.toString(),
+        "topic_id": GameController.idTopic.toString(),
+        "level_id": GameController.idLevel.toString(),
+        "list_answer": lstAnswer
+      };
+      var response = await http
+          .post(Uri.parse(AppUrl.saveAcceptGameChallenge),
+              headers: <String, String>{
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization': 'Bearer $token',
+              },
+              body: jsonEncode(data))
+          .timeout(const Duration(seconds: 25));
+      if (response.statusCode == 200) {
+        RankingChallengeController.fetchDataRankingChallenge();
         return true;
       } else {
         return false;

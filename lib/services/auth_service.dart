@@ -66,8 +66,8 @@ class AuthService {
     }
   }
 
-  static Future<List> registerEmailandPassword(
-      String displayName, String email, String password) async {
+  static Future<List> registerEmailandPassword(String displayName, String email,
+      String password, String confirm_password) async {
     var response = await http.post(Uri.parse(AppUrl.register),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8'
@@ -75,13 +75,16 @@ class AuthService {
         body: jsonEncode(<String, String>{
           'display_name': displayName,
           'email': email,
-          'password': password
+          'password': password,
+          'confirm_password': confirm_password
         }));
-
+    print(['1', jsonDecode(response.body)]);
     if (response.statusCode == 200) {
       return ["", ""];
     } else {
-      return ["error", "Đăng ký thất bại, vui lòng thử lại sau!"];
+      var json = response.body;
+      var errorResp = errorRespFromJson(json);
+      return ["error", errorResp.error];
     }
   }
 

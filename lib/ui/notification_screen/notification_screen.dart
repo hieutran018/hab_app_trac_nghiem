@@ -3,12 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/controllers/game_controller.dart';
 import 'package:hab_app_trac_nghiem/controllers/notification_controller.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/challenger_game_screen.dart';
+import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/playing_game_screen_challenger_mode.dart';
 import 'package:lottie/lottie.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);
+  static String route = '/notification';
 
   @override
   State<NotificationScreen> createState() => NotificationScreenState();
@@ -69,51 +73,85 @@ class NotificationScreenState extends State<NotificationScreen> {
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                       itemCount: NotificationController.listNoti.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          height: 100.w,
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                              border: Border.all(
-                                  width: 0.1.w, color: ColorApp.darkGrey)),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 15.w),
-                                child: CircleAvatar(
-                                  child: SvgPicture.asset(
-                                      "assets/images/components/noti_friend.svg"),
-                                ),
-                              ),
-                              Expanded(
-                                child: Padding(
+                        return InkWell(
+                            onTap: () {
+                              if (NotificationController
+                                      .listNoti[index].status !=
+                                  0) {
+                                setState(() {
+                                  GameController.idTopic =
+                                      NotificationController
+                                          .listNoti[index].topicId[0].id;
+                                  GameController.idLevel =
+                                      NotificationController
+                                          .listNoti[index].levelId[0].id;
+
+                                  GameController.matchId =
+                                      NotificationController
+                                          .listNoti[index].matchId;
+                                });
+                                Get.to(
+                                  () => PlayingChallengerGameScreen(
+                                    screen: true,
+                                  ),
+                                );
+                              } else {
+                                Get.defaultDialog(
+                                    title: "Thông báo",
+                                    textConfirm: 'Xác nhận',
+                                    middleText:
+                                        'Bạn đã giải quyết phần chơi này rồi!',
+                                    onConfirm: () {
+                                      Navigator.pop(context);
+                                    });
+                              }
+                            },
+                            child: Container(
+                              height: 150.h,
+                              decoration: BoxDecoration(
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  border: Border.all(
+                                      width: 0.1.w, color: ColorApp.darkGrey)),
+                              child: Row(
+                                children: [
+                                  Padding(
                                     padding: EdgeInsets.only(left: 15.w),
-                                    child: Container(
-                                      color: ColorApp.white,
-                                      height: 90.h,
-                                      child: SizedBox(
-                                        child: RichText(
-                                          text: TextSpan(children: [
-                                            TextSpan(
-                                                text:
-                                                    "${NotificationController.listNoti[index].userIdRequest[0].displayName}",
-                                                style: TextStyle(
-                                                    color: ColorApp.black,
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 40.sp)),
-                                            TextSpan(
-                                                text:
-                                                    " ${NotificationController.listNoti[index].notificationId == 1 ? 'đã gửi cho bạn một lời THÁCH ĐẤU' : 'đã gửi cho bạn một lời mời kết bạn'}",
-                                                style: TextStyle(
-                                                    color: ColorApp.black,
-                                                    fontSize: 40.sp)),
-                                          ]),
-                                        ),
-                                      ),
-                                    )),
-                              )
-                            ],
-                          ),
-                        );
+                                    child: CircleAvatar(
+                                      child: SvgPicture.asset(
+                                          "assets/images/components/noti_friend.svg"),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                        padding: EdgeInsets.only(left: 15.w),
+                                        child: Container(
+                                          color: ColorApp.white,
+                                          height: 90.h,
+                                          child: SizedBox(
+                                            child: RichText(
+                                              text: TextSpan(children: [
+                                                TextSpan(
+                                                    text:
+                                                        "${NotificationController.listNoti[index].userIdRequest[0].displayName}",
+                                                    style: TextStyle(
+                                                        color: ColorApp.black,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 40.sp)),
+                                                TextSpan(
+                                                    text:
+                                                        " ${NotificationController.listNoti[index].notificationId == 1 ? 'đã gửi cho bạn một lời THÁCH ĐẤU' : 'đã gửi cho bạn một lời mời kết bạn'}",
+                                                    style: TextStyle(
+                                                        color: ColorApp.black,
+                                                        fontSize: 40.sp)),
+                                              ]),
+                                            ),
+                                          ),
+                                        )),
+                                  )
+                                ],
+                              ),
+                            ));
                       }),
                 );
               } else {

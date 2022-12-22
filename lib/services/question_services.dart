@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 class QuestionService {
   static Future<List<Question>> fetchQuestion(int idTopic, int idLevel) async {
     try {
-      print([idTopic, idLevel]);
       var response = await http.post(Uri.parse(AppUrl.fetchQuestion),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8'
@@ -19,6 +18,29 @@ class QuestionService {
 
       if (response.statusCode == 200) {
         final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
+        return parsed.map<Question>((json) => Question.fromJson(json)).toList();
+      } else {
+        return jsonDecode(response.body);
+      }
+    } catch (e) {
+      return jsonDecode(e.toString());
+    }
+  }
+
+  static Future<List<Question>> fetchQuestionToNotifiCation(int matchId) async {
+    try {
+      var response = await http.post(
+          Uri.parse(AppUrl.fetchQuestionAcceptChallenge),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8'
+          },
+          body: jsonEncode(<String, int>{
+            'match_id': matchId,
+          }));
+
+      if (response.statusCode == 200) {
+        final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
+        // print(parsed.map<Question>((json) => Question.fromJson(json)).toList());
         return parsed.map<Question>((json) => Question.fromJson(json)).toList();
       } else {
         return jsonDecode(response.body);

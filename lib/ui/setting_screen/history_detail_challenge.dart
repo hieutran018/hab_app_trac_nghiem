@@ -71,7 +71,7 @@ class HistoryChallengeGameState extends State<HistoryChallengeGame> {
                             Padding(
                               padding: EdgeInsets.only(bottom: 10.h),
                               child: Text(
-                                  MatchHistoryController.match.gameMode == 1
+                                  MatchHistoryController.matchS.gameMode == 1
                                       ? 'THỬ THÁCH'
                                       : 'THÁCH ĐẤU',
                                   style: GoogleFonts.inter(
@@ -81,7 +81,7 @@ class HistoryChallengeGameState extends State<HistoryChallengeGame> {
                             Padding(
                               padding: EdgeInsets.only(bottom: 10.h),
                               child: Text(
-                                  "Chủ đề: ${MatchHistoryController.match.topicQuestion[0].topicQuestionName}",
+                                  "Chủ đề: ${MatchHistoryController.matchS.topicQuestion[0].topicQuestionName} - ${widget.matchId}",
                                   style: GoogleFonts.inter(
                                       fontSize: 30.sp,
                                       fontWeight: FontWeight.w600)),
@@ -89,7 +89,7 @@ class HistoryChallengeGameState extends State<HistoryChallengeGame> {
                             Padding(
                               padding: EdgeInsets.only(bottom: 10.h),
                               child: Text(
-                                  "Độ khó: ${MatchHistoryController.match.levelQuestion[0].levelName}",
+                                  "Độ khó: ${MatchHistoryController.matchS.levelQuestion[0].levelName}",
                                   style: GoogleFonts.inter(
                                       fontSize: 30.sp,
                                       fontWeight: FontWeight.w600)),
@@ -104,7 +104,15 @@ class HistoryChallengeGameState extends State<HistoryChallengeGame> {
                             Padding(
                               padding: EdgeInsets.only(bottom: 10.h),
                               child: Text(
-                                  "Ngày: ${MatchHistoryController.match.createdAt}",
+                                  "Ngày: ${MatchHistoryController.matchS.createdAt}",
+                                  style: GoogleFonts.inter(
+                                      fontSize: 30.sp,
+                                      fontWeight: FontWeight.w600)),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 10.h),
+                              child: Text(
+                                  "Người thắng: ${MatchHistoryController.matchS.userIdWin ?? 'Chưa phân định'}",
                                   style: GoogleFonts.inter(
                                       fontSize: 30.sp,
                                       fontWeight: FontWeight.w600)),
@@ -120,9 +128,12 @@ class HistoryChallengeGameState extends State<HistoryChallengeGame> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Điểm: ${MatchHistoryController.match.score}",
-                          style: GoogleFonts.inter(
-                              fontSize: 40.sp, fontWeight: FontWeight.w600)),
+                      Expanded(
+                        child: Text(
+                            "Điểm ${MatchHistoryController.matchS.userIdFrom[0].displayName}: ${MatchHistoryController.matchS.potinUserIdFrom}",
+                            style: GoogleFonts.inter(
+                                fontSize: 40.sp, fontWeight: FontWeight.w600)),
+                      ),
                     ],
                   ),
                 ),
@@ -136,8 +147,8 @@ class HistoryChallengeGameState extends State<HistoryChallengeGame> {
                 Expanded(
                   child: ListView.builder(
                       padding: EdgeInsets.all(8.w),
-                      itemCount:
-                          MatchHistoryController.match.historyAnswer.length,
+                      itemCount: MatchHistoryController
+                          .matchS.historyAnswerFrom.length,
                       itemBuilder: (BuildContext context, int item) {
                         return Padding(
                             padding: EdgeInsets.all(5.w),
@@ -175,8 +186,8 @@ class HistoryChallengeGameState extends State<HistoryChallengeGame> {
                                       child: ListView.builder(
                                         scrollDirection: Axis.horizontal,
                                         itemCount: MatchHistoryController
-                                            .match
-                                            .historyAnswer[item]
+                                            .matchS
+                                            .historyAnswerFrom[item]
                                             .questionId
                                             .length,
                                         itemBuilder: (context, index) {
@@ -190,8 +201,8 @@ class HistoryChallengeGameState extends State<HistoryChallengeGame> {
                                                     height: 70.w,
                                                     decoration: BoxDecoration(
                                                         color: MatchHistoryController
-                                                                    .match
-                                                                    .historyAnswer[
+                                                                    .matchS
+                                                                    .historyAnswerFrom[
                                                                         item]
                                                                     .questionId[
                                                                         index]
@@ -202,29 +213,163 @@ class HistoryChallengeGameState extends State<HistoryChallengeGame> {
                                                         shape: BoxShape.circle,
                                                         border: Border.all(
                                                           color: MatchHistoryController
-                                                                      .match
-                                                                      .historyAnswer[
+                                                                      .matchS
+                                                                      .historyAnswerFrom[
                                                                           item]
                                                                       .questionId[
                                                                           index]
                                                                       .id ==
                                                                   MatchHistoryController
-                                                                      .match
-                                                                      .historyAnswer[
+                                                                      .matchS
+                                                                      .historyAnswerFrom[
                                                                           item]
                                                                       .answerId
                                                               ? ColorApp.blue
                                                               : ColorApp.white,
                                                           width: MatchHistoryController
-                                                                      .match
-                                                                      .historyAnswer[
+                                                                      .matchS
+                                                                      .historyAnswerFrom[
                                                                           item]
                                                                       .questionId[
                                                                           index]
                                                                       .id ==
                                                                   MatchHistoryController
-                                                                      .match
-                                                                      .historyAnswer[
+                                                                      .matchS
+                                                                      .historyAnswerFrom[
+                                                                          item]
+                                                                      .answerId
+                                                              ? 5.w
+                                                              : 0.w,
+                                                        )),
+                                                    child: Center(
+                                                        child: Text(
+                                                      "${index + 1}",
+                                                      style: GoogleFonts.inter(
+                                                          fontSize: 30.sp,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    )),
+                                                  )
+                                                ],
+                                              ));
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ));
+                      }),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(20.w, 0.h, 20.w, 0.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                            "Điểm ${MatchHistoryController.matchS.userIdTo[0].displayName}: ${MatchHistoryController.matchS.potinUserIdTo}",
+                            style: GoogleFonts.inter(
+                                fontSize: 40.sp, fontWeight: FontWeight.w600)),
+                      )
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      padding: EdgeInsets.all(8.w),
+                      itemCount:
+                          MatchHistoryController.matchS.historyAnswerTo == null
+                              ? 0
+                              : MatchHistoryController
+                                  .matchS.historyAnswerTo.length,
+                      itemBuilder: (BuildContext context, int item) {
+                        return Padding(
+                            padding: EdgeInsets.all(5.w),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.w),
+                                color: ColorApp.lightBlue,
+                              ),
+                              child: SizedBox(
+                                // width: 300.w,
+                                height: 150.h,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          10.w, 25.h, 50.w, 25.h),
+                                      child: Container(
+                                        width: 70.w,
+                                        height: 100.h,
+                                        decoration: const BoxDecoration(
+                                          color: ColorApp.lightBlue5125,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Center(
+                                            child: Text(
+                                          "C${item + 1}",
+                                          style: GoogleFonts.inter(
+                                              fontSize: 30.sp,
+                                              fontWeight: FontWeight.w700,
+                                              color: ColorApp.white),
+                                        )),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: MatchHistoryController
+                                            .matchS
+                                            .historyAnswerTo[item]
+                                            .questionId
+                                            .length,
+                                        itemBuilder: (context, index) {
+                                          return Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  30.w, 20.h, 30.w, 20.h),
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    width: 70.w,
+                                                    height: 70.w,
+                                                    decoration: BoxDecoration(
+                                                        color: MatchHistoryController
+                                                                    .matchS
+                                                                    .historyAnswerTo[
+                                                                        item]
+                                                                    .questionId[
+                                                                        index]
+                                                                    .isTrue ==
+                                                                1
+                                                            ? ColorApp.red
+                                                            : ColorApp.white,
+                                                        shape: BoxShape.circle,
+                                                        border: Border.all(
+                                                          color: MatchHistoryController
+                                                                      .matchS
+                                                                      .historyAnswerTo[
+                                                                          item]
+                                                                      .questionId[
+                                                                          index]
+                                                                      .id ==
+                                                                  MatchHistoryController
+                                                                      .matchS
+                                                                      .historyAnswerTo[
+                                                                          item]
+                                                                      .answerId
+                                                              ? ColorApp.blue
+                                                              : ColorApp.white,
+                                                          width: MatchHistoryController
+                                                                      .matchS
+                                                                      .historyAnswerTo[
+                                                                          item]
+                                                                      .questionId[
+                                                                          index]
+                                                                      .id ==
+                                                                  MatchHistoryController
+                                                                      .matchS
+                                                                      .historyAnswerTo[
                                                                           item]
                                                                       .answerId
                                                               ? 5.w

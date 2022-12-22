@@ -107,6 +107,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(49.w, 17.w, 49.w, 0.w),
                       child: TextFormField(
+                        obscureText: true,
                         controller: _passwordController,
                         validator: (val) {
                           if (val!.trim().isEmpty) {
@@ -133,6 +134,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(49.w, 17.w, 49.w, 0.w),
                       child: TextFormField(
+                        obscureText: true,
                         controller: _confirmPasswordController,
                         validator: (val) {
                           if (val!.trim().isEmpty) {
@@ -179,12 +181,20 @@ class RegisterScreenState extends State<RegisterScreen> {
                             String message = await controller.register(
                                 _displayNameController.text,
                                 _emailController.text,
-                                _passwordController.text);
+                                _passwordController.text,
+                                _confirmPasswordController.text);
                             if (message != "") {
                               Get.defaultDialog(
                                   title: "Oop!", middleText: message);
                             } else {
-                              Get.offAllNamed(LoginScreen.route);
+                              Get.defaultDialog(
+                                  title: "Thông báo!",
+                                  textConfirm: 'Xác nhận',
+                                  middleText:
+                                      'Đăng ký tài khoản thành công, đi đến đăng nhập!',
+                                  onConfirm: () {
+                                    Get.offAllNamed(LoginScreen.route);
+                                  });
                             }
                           }
                         },

@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hab_app_trac_nghiem/controllers/auth_controller.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'dialog_fail_update_info.dart';
 import 'dialog_success_update_info.dart';
@@ -16,6 +18,20 @@ class InfoScreen extends StatefulWidget {
 }
 
 class _InfoScreenState extends State<InfoScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  final _idTextController =
+      TextEditingController(text: AuthController.dataUser.id.toString());
+  final _emailTextController =
+      TextEditingController(text: AuthController.dataUser.email);
+  final _displayNameTextController =
+      TextEditingController(text: AuthController.dataUser.displayName);
+  final _dateOfBirthlTextController =
+      TextEditingController(text: AuthController.dataUser.dateOfBirth);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +69,9 @@ class _InfoScreenState extends State<InfoScreen> {
             children: [
               Center(
                 child: CircleAvatar(
-                  radius: 80.w,
-                ),
+                    radius: 80.w,
+                    backgroundImage:
+                        NetworkImage('${AuthController.dataUser.avatar}')),
               ),
               Positioned(
                 top: 100.w,
@@ -74,6 +91,8 @@ class _InfoScreenState extends State<InfoScreen> {
               Padding(
                 padding: EdgeInsets.only(top: 20.w, left: 50.w, right: 50.w),
                 child: TextField(
+                  enabled: false,
+                  controller: _idTextController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.w)),
@@ -86,6 +105,7 @@ class _InfoScreenState extends State<InfoScreen> {
               Padding(
                 padding: EdgeInsets.only(top: 20.w, left: 50.w, right: 50.w),
                 child: TextField(
+                  controller: _emailTextController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.w)),
@@ -98,30 +118,20 @@ class _InfoScreenState extends State<InfoScreen> {
               Padding(
                 padding: EdgeInsets.only(top: 20.w, left: 50.w, right: 50.w),
                 child: TextField(
+                  controller: _displayNameTextController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.w)),
                     ),
-                    hintText: 'Họ',
-                    labelText: 'Họ',
+                    hintText: 'Tên hiển thị',
+                    labelText: 'Tên hiển thị',
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 20.w, left: 50.w, right: 50.w),
                 child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15.w)),
-                    ),
-                    hintText: 'Tên',
-                    labelText: 'Tên',
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.w, left: 50.w, right: 50.w),
-                child: TextField(
+                  controller: _dateOfBirthlTextController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.w)),

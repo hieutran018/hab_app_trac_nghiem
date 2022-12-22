@@ -26,4 +26,8 @@ class AppUrl {
   static const String createGameChallenge =
       baseUrl + '/games/create-match-challenge';
   static const String notification = baseUrl + '/notification';
+  static const String fetchQuestionAcceptChallenge =
+      baseUrl + '/games/accept-game-challenge';
+  static const String saveAcceptGameChallenge =
+      baseUrl + '/games/create-accept-game-challenge';
 }

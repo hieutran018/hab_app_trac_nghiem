@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hab_app_trac_nghiem/controllers/match_history_controller.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
+import 'package:hab_app_trac_nghiem/ui/setting_screen/history_detail_challenge.dart';
 import 'package:hab_app_trac_nghiem/ui/setting_screen/history_detail_single_game.dart';
 import 'package:lottie/lottie.dart';
 
@@ -167,14 +168,19 @@ class HistoryScreenState extends State<HistoryScreen> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-                            Get.to(
-                              () => HistoryDetailSingleGame(
-                                  matchId:
-                                      MatchHistoryController.lstMatch[index].id,
-                                  mode: MatchHistoryController
-                                      .lstMatch[index].gameMode),
-                            );
-                            print(MatchHistoryController.lstMatch[index].id);
+                            MatchHistoryController.lstMatch[index].gameMode == 1
+                                ? Get.to(
+                                    () => HistoryDetailSingleGame(
+                                        matchId: MatchHistoryController
+                                            .lstMatch[index].id,
+                                        mode: MatchHistoryController
+                                            .lstMatch[index].gameMode),
+                                  )
+                                : Get.to(() => HistoryChallengeGame(
+                                    matchId: MatchHistoryController
+                                        .lstMatch[index].id,
+                                    mode: MatchHistoryController
+                                        .lstMatch[index].gameMode));
                           },
                           child: Padding(
                             padding: EdgeInsets.all(5.w),

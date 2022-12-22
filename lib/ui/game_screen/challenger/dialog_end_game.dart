@@ -7,14 +7,14 @@ import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/main_screen.dart';
 
 class EndGameChallengeDialog extends StatefulWidget {
-  const EndGameChallengeDialog({Key? key}) : super(key: key);
-
+  const EndGameChallengeDialog({Key? key, required this.screen})
+      : super(key: key);
+  final bool screen;
   @override
   State<EndGameChallengeDialog> createState() => _EndGameChallengeDialogState();
 }
 
 class _EndGameChallengeDialogState extends State<EndGameChallengeDialog> {
-  GameController _gameController = Get.put(GameController());
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -56,10 +56,18 @@ class _EndGameChallengeDialogState extends State<EndGameChallengeDialog> {
               children: [
                 TextButton(
                     onPressed: () async {
-                      await GameController.createDataGameChallenge(
-                          GameController.idTopic,
-                          GameController.idLevel,
-                          GameController.score);
+                      print(!widget.screen);
+                      if (!widget.screen) {
+                        await GameController.createDataGameChallenge(
+                            GameController.idTopic,
+                            GameController.idLevel,
+                            GameController.score);
+                      } else {
+                        await GameController.createDataAcceptGameChallenge(
+                            GameController.idTopic,
+                            GameController.idLevel,
+                            GameController.score);
+                      }
                       Get.offAllNamed(MainScreen.route);
                     },
                     child: Container(

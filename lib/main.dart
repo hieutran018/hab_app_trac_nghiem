@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         RegisterScreen.route: (context) => const RegisterScreen(),
         '/main': (context) => const MainScreen(),
         MainScreen.route: (context) => const MainScreen(),
-        '/notification': (context) => const NotificationScreen(),
+        NotificationScreen.route: (context) => const NotificationScreen(),
         NewsDetailScreen.route: (context) => const NewsDetailScreen(),
         SingleGameScreen.route: (context) => const SingleGameScreen(),
         InfoScreen.route: (context) => const InfoScreen(),
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         SelectLevelChallengeGameScreen.route: (context) =>
             const SelectLevelChallengeGameScreen(),
         PlayingChallengerGameScreen.route: (context) =>
-            const PlayingChallengerGameScreen(),
+            const PlayingChallengerGameScreen(screen: false),
         GameScreen.route: (context) => const GameScreen(),
         HistoryScreen.route: (context) => const HistoryScreen(idUser: 0),
         HistoryDetailSingleGame.route: (context) =>

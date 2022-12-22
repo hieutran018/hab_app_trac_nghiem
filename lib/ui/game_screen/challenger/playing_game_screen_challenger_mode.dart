@@ -11,13 +11,12 @@ import 'package:hab_app_trac_nghiem/controllers/topic_question_controller.dart';
 import 'package:hab_app_trac_nghiem/models/topic_question.dart';
 import 'package:hab_app_trac_nghiem/ui/components/color.dart';
 import 'package:hab_app_trac_nghiem/ui/game_screen/challenger/dialog_end_game.dart';
-import 'package:hab_app_trac_nghiem/ui/game_screen/dialog_exit_game.dart';
-import 'package:hab_app_trac_nghiem/ui/game_screen/single/dialog_end_game.dart';
 
 class PlayingChallengerGameScreen extends StatefulWidget {
-  const PlayingChallengerGameScreen({Key? key}) : super(key: key);
+  const PlayingChallengerGameScreen({Key? key, required this.screen})
+      : super(key: key);
   static String route = "/playingchallengergame";
-
+  final bool screen;
   @override
   State<PlayingChallengerGameScreen> createState() =>
       PlayingChallengerGameScreenState();
@@ -29,11 +28,18 @@ class PlayingChallengerGameScreenState
   var start = true;
   var checkSelect = false;
   final CountDownController _controller = CountDownController();
+  @override
   void initState() {
     super.initState();
-    TopicQuestionController.getTopicbyId();
-    LevelQuestionController.getLevelbyId();
-    GameController.fetchDataQuestion();
+    if (widget.screen) {
+      // TopicQuestionController.getTopicbyId();
+      // LevelQuestionController.getLevelbyId();
+      GameController.fetchDataQuestionToNotification();
+    } else {
+      TopicQuestionController.getTopicbyId();
+      LevelQuestionController.getLevelbyId();
+      GameController.fetchDataQuestion();
+    }
 
     setState(() {
       GameController.item = 0;
@@ -54,7 +60,6 @@ class PlayingChallengerGameScreenState
               IconButton(
                   alignment: Alignment.center,
                   onPressed: () {
-                    // _buildFailDialog();
                     Navigator.pop(context);
                   },
                   icon: Icon(
@@ -356,7 +361,7 @@ class PlayingChallengerGameScreenState
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          return const EndGameChallengeDialog();
+          return EndGameChallengeDialog(screen: widget.screen);
         });
   }
 }

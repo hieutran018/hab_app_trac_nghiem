@@ -89,6 +89,7 @@ class LoginScreenState extends State<LoginScreen> {
                         }
                         return null;
                       },
+                      obscureText: true,
                       decoration: InputDecoration(
                         errorStyle: GoogleFonts.inter(color: ColorApp.white),
                         labelStyle: const TextStyle(color: ColorApp.black),

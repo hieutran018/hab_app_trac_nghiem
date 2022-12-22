@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:hab_app_trac_nghiem/app/app_url.dart';
+import 'package:hab_app_trac_nghiem/models/history_detail_challenge.dart';
 import 'package:hab_app_trac_nghiem/models/match_history.dart';
 import 'package:hab_app_trac_nghiem/models/match_history_single_detail.dart';
 import 'package:http/http.dart' as http;
@@ -54,7 +55,7 @@ class MatchService {
     }
   }
 
-  static Future<HistorySingleDetail> getMatchHistoryChallengebyId(
+  static Future<HistoryChallengeDetail> getMatchHistoryChallengebyId(
       int matchId) async {
     try {
       var response = await http
@@ -68,9 +69,9 @@ class MatchService {
           .timeout(const Duration(seconds: 25));
 
       if (response.statusCode == 200) {
-        return HistorySingleDetail.fromJson(jsonDecode(response.body));
+        return HistoryChallengeDetail.fromJson(jsonDecode(response.body));
       } else {
-        return HistorySingleDetail.fromJson(jsonDecode(response.body));
+        return HistoryChallengeDetail.fromJson(jsonDecode(response.body));
       }
     } catch (e) {
       return jsonDecode(e.toString());

@@ -10,6 +10,7 @@ class AuthController extends GetxController {
   var message = "";
   var logoutProcess = false.obs;
   static var id = 0;
+  static var dataUser;
 
   Future<String> login(String email, String password) async {
     error = "";
@@ -34,13 +35,13 @@ class AuthController extends GetxController {
     return endpoint[0];
   }
 
-  Future<String> register(
-      String displayName, String email, String password) async {
+  Future<String> register(String displayName, String email, String password,
+      String confirm_password) async {
     message = "";
     try {
       registerProcess(true);
       List register = await AuthService.registerEmailandPassword(
-          displayName, email, password);
+          displayName, email, password, confirm_password);
       if (register[0] != "") {
         //success
         message = register[1];
@@ -56,7 +57,12 @@ class AuthController extends GetxController {
   static Future<User> getDataUser(String token) async {
     User user = await AuthService.getUser(token);
     setId(user);
+    getData(user);
     return user;
+  }
+
+  static getData(User user) {
+    dataUser = user;
   }
 
   static void setId(User user) {
